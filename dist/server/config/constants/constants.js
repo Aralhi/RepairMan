@@ -1,0 +1,14 @@
+"use strict";
+/**
+ * Created by Moiz.Kachwala on 15-06-2016.
+ */
+var Constants = (function () {
+    function Constants() {
+    }
+    return Constants;
+}());
+Constants.DB_CONNECTION_STRING = process.env.NODE_ENV === 'production' ? process.env.dbURI : "mongodb://localhost:27017/quickStart";
+Object.seal(Constants);
+module.exports = Constants;
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbmZpZy9jb25zdGFudHMvY29uc3RhbnRzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQTs7R0FFRztBQUVIO0lBQUE7SUFFQSxDQUFDO0lBQUQsZ0JBQUM7QUFBRCxDQUZBLEFBRUM7QUFEVSw4QkFBb0IsR0FBVyxPQUFPLENBQUMsR0FBRyxDQUFDLFFBQVEsS0FBSyxZQUFZLEdBQUcsT0FBTyxDQUFDLEdBQUcsQ0FBQyxLQUFLLEdBQUcsc0NBQXNDLENBQUE7QUFFNUksTUFBTSxDQUFDLElBQUksQ0FBQyxTQUFTLENBQUMsQ0FBQztBQUN2QixpQkFBUyxTQUFTLENBQUMiLCJmaWxlIjoiY29uZmlnL2NvbnN0YW50cy9jb25zdGFudHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIENyZWF0ZWQgYnkgTW9pei5LYWNod2FsYSBvbiAxNS0wNi0yMDE2LlxuICovXG5cbmNsYXNzIENvbnN0YW50cyB7XG4gICAgc3RhdGljIERCX0NPTk5FQ1RJT05fU1RSSU5HOiBzdHJpbmcgPSBwcm9jZXNzLmVudi5OT0RFX0VOViA9PT0gJ3Byb2R1Y3Rpb24nID8gcHJvY2Vzcy5lbnYuZGJVUkkgOiBcIm1vbmdvZGI6Ly9sb2NhbGhvc3Q6MjcwMTcvcXVpY2tTdGFydFwiXG59XG5PYmplY3Quc2VhbChDb25zdGFudHMpO1xuZXhwb3J0ID0gQ29uc3RhbnRzOyJdfQ==
