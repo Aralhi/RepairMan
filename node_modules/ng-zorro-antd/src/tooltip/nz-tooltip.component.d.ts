@@ -1,0 +1,35 @@
+import { TemplateRef, Renderer2, EventEmitter, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
+import { AnimationEvent } from '@angular/animations';
+import { ConnectionPositionPair, ConnectedOverlayDirective } from '../core/overlay/index';
+export declare class NzToolTipComponent implements AfterViewInit {
+    private _renderer;
+    private _cdr;
+    nzTitle: string;
+    nzOverlayClassName: string;
+    nzOverlayStyle: {};
+    nzVisibleChange: EventEmitter<any>;
+    nzOrigin: any;
+    nzTemplate: TemplateRef<any>;
+    overlay: ConnectedOverlayDirective;
+    nzVisible: boolean;
+    visibleSource: BehaviorSubject<boolean>;
+    visible$: Observable<boolean>;
+    nzTrigger: string;
+    _prefix: string;
+    _positions: ConnectionPositionPair[];
+    _classMap: {};
+    _placement: string;
+    _trigger: string;
+    _hasBackdrop: boolean;
+    nzPlacement: string;
+    updatePosition(): void;
+    onPositionChange($event: any): void;
+    show(): void;
+    hide(): void;
+    _afterVisibilityAnimation(e: AnimationEvent): void;
+    setClassMap(): void;
+    constructor(_renderer: Renderer2, _cdr: ChangeDetectorRef);
+    ngAfterViewInit(): void;
+}

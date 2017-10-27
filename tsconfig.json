@@ -1,17 +1,21 @@
 {
   "compilerOptions": {
     "outDir": "build/app",
-    "target": "es5",
-    "module": "system",
+    "target": "es2015",
+    "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "removeComments": false,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "typeRoots": [
+      "./node_modules/@types"
+    ]
   },
   "exclude": [
     "node_modules",
+    "dist",
     "typings",
     "typings/index.d.ts"
   ]

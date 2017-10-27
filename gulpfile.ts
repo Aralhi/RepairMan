@@ -134,20 +134,20 @@ gulp.task('start', function () {
  */
 
 gulp.task("build", function (callback) {
-    runSequence('clean', 'build:server', 'build:client', 'clientResources', 'serverResources', 'libs', 'css', callback);
+    runSequence('clean', 'build:server', 'serverResources', callback);
 });
 
 /**
  * Watch for changes in TypeScript, HTML and CSS files.
  */
 gulp.task('watch', function () {
-    gulp.watch(["client/**/*.ts"], ['compile']).on('change', function (e) {
-        console.log('TypeScript file ' + e.path + ' has been changed. Compiling.');
-    });
+    // gulp.watch(["client/**/*.ts"], ['compile']).on('change', function (e) {
+    //     console.log('TypeScript file ' + e.path + ' has been changed. Compiling.');
+    // });
 
-    gulp.watch(["client/**/*.html", "client/**/*.css"], ['clientResources']).on('change', function (e) {
-        console.log('Resource file ' + e.path + ' has been changed. Updating.');
-    });
+    // gulp.watch(["client/**/*.html", "client/**/*.css"], ['clientResources']).on('change', function (e) {
+    //     console.log('Resource file ' + e.path + ' has been changed. Updating.');
+    // });
 
     gulp.watch(["server/src/**/*.ts"], ['compile']).on('change', function (e) {
         console.log('TypeScript file ' + e.path + ' has been changed. Compiling.');
@@ -168,5 +168,5 @@ gulp.task("build", function (callback) {
 });
 
 gulp.task('default', function () {
-    runSequence('build:server', 'build:client', 'clientResources', 'serverResources', 'libs', 'css', 'watch', 'start');
+    runSequence('build:server', 'serverResources', 'start');
 });
