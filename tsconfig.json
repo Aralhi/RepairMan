@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "build/app",
-    "target": "es2015",
+    "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": true,
@@ -11,6 +11,12 @@
     "noImplicitAny": false,
     "typeRoots": [
       "./node_modules/@types"
+    ],
+    "lib": [
+      "dom",
+      "es2015",
+      "scripthost",
+      "es2015.promise"
     ]
   },
   "exclude": [
