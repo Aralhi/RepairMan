@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 /**
  * Created by Moiz.Kachwala on 02-06-2016.
  */
@@ -6,7 +7,7 @@ import {Injectable} from '@angular/core';
 
 import { Headers, Http, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import {Hero} from "../models/hero";
+import {Hero} from '../models/hero';
 
 @Injectable()
 export class HeroService {
@@ -15,10 +16,8 @@ export class HeroService {
 
     constructor(private http: Http) { }
 
-    getHeroes(): Promise<Hero[]> {
-        return this.http.get(this.heroesUrl)
-            .toPromise()
-            .then(response => response.json())
+    getHeroes(): Observable<Hero[]> {
+        return this.http.get(this.heroesUrl).map(res => res.json())
             .catch(this.handleError);
     }
 
@@ -41,7 +40,7 @@ export class HeroService {
             'Content-Type': 'application/json'});
 
         return this.http
-            .post(this.heroesUrl, JSON.stringify(hero), {headers:headers})
+            .post(this.heroesUrl, JSON.stringify(hero), {headers: headers})
             .toPromise()
             .then(response => response.json().data)
             .catch(this.handleError);

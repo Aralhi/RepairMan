@@ -2,8 +2,8 @@
  * Created by Moiz.Kachwala on 02-06-2016.
  */
 import {Component, OnInit} from '@angular/core';
-import {HeroService} from "../../services/hero.service";
-import {Hero} from "../../models/hero";
+import {HeroService} from '../../services/hero.service';
+import {Hero} from '../../models/hero';
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,7 +21,7 @@ export class HeroesComponent implements OnInit {
         private router: Router,
         private heroService: HeroService) { }
     getHeroes() {
-        this.heroService.getHeroes().then(heroes => this.heroes = heroes);
+        this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
     }
     ngOnInit() {
         this.getHeroes();

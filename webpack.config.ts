@@ -10,7 +10,7 @@ var copyArray = [{
   to: 'app/assets'
 }, {
   context: 'client',
-  from: 'favicon.ico'
+  from: 'favicon.png'
 }];
 
 const config = {
@@ -23,8 +23,8 @@ const config = {
   output: {
     path: './dist/client',
     filename: '[name].bundle.js',
-    chunkFilename: '[name].module.js',
-    sourceMapFilename: '[name].module.map'
+    chunkFilename: 'app/[name].module.js',
+    sourceMapFilename: 'app/[name].module.map'
   },
   module: {
     rules: [{
@@ -33,12 +33,12 @@ const config = {
     }, {
       test: /\.css$/,
       loaders: ['to-string-loader', 'css-loader'],
-      //exclude: [path.resolve(__dirname, 'node_modules/')]
+      // exclude: [path.resolve(__dirname, 'node_modules/')]
     }, {
       test: /\.(jpg|jpeg|png|gif)$/,
       loader: 'file-loader',
       query: {
-        name: '[path][hash].[ext]',
+        name: '[path][name].[ext]',
         emitFile: true,
         context: path.resolve(__dirname, 'client')
       }

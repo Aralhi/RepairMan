@@ -9,20 +9,37 @@ h2 {
     padding-top: 0;
 }
 nav a {
-    padding: 5px 10px;
     text-decoration: none;
-    margin-top: 10px;
-    display: inline-block;
-    background-color: #eee;
-    border-radius: 4px;
+    font-size: 18px;
 }
 nav a:visited, a:link {
-    color: #607D8B;
+    color: #999;
 }
 nav a:hover {
-    color: #039be5;
-    background-color: #CFD8DC;
+    color: #ddd;
+}
+nav a.active {
+    color: #ddd;
 }
 nav a.router-link-active {
     color: #039be5;
+}
+.logo {
+    width: 60px;
+    height: 60px;
+    float: left;
+    background: url("./assets/images/logo.png") no-repeat;
+    background-size: 100%;
+}
+.fl {
+    float: left;
+}
+.nav-menu ul {
+    height: 60px;
+}
+.nav-menu ul li {
+    float: left;
+    height: 100%;
+    line-height: 60px;
+    margin-left: 20px;
 }
