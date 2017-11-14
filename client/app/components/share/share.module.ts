@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from "@angular/common";
 import { HttpModule } from "@angular/http";
 import { FormsModule } from "@angular/forms";
 import { HeroService } from "../../services/hero.service";
 import {NgZorroAntdModule} from 'ng-zorro-antd';
+import { CommonModule } from '@angular/common';
 @NgModule({
   imports: [
-    NgZorroAntdModule.forRoot(),
     CommonModule,
+    NgZorroAntdModule.forRoot(),
     HttpModule,
     FormsModule
   ],

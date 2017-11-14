@@ -1,0 +1,79 @@
+<div class="order-title row">
+  <span>标题:</span>
+  <nz-input style="width: 94%" [(ngModel)]="inputValue" [nzPlaceHolder]="'简答描述下维修单'"></nz-input>
+</div>
+<!--车辆信息-->
+<div class="common-card">
+  <span class="card-label-pos">车辆信息</span>
+  <div class="row">
+    <span class="common-label">姓名:</span>
+    <div class="col-md-3 mr-20">
+      <nz-input [(ngModel)]="inputValue"></nz-input>
+    </div>
+    <span class="common-label">车牌号:</span>
+    <div class="col-md-3 mr-20">
+      <nz-input [(ngModel)]="inputValue"></nz-input>
+    </div>
+    <span class="common-label">车型:</span>
+    <div class="col-md-3">
+      <nz-input [(ngModel)]="inputValue"></nz-input>
+    </div>
+  </div>
+  <div class="row">
+    <span class="common-label">单位:</span>
+    <div class="col-md-3 mr-20">
+      <nz-input [(ngModel)]="inputValue"></nz-input>
+    </div>
+    <span class="common-label">电话:</span>
+    <div class="col-md-3 mr-20">
+      <nz-input [(ngModel)]="inputValue"></nz-input>
+    </div>
+    <span class="common-label">备注:</span>
+    <div class="col-md-3">
+      <nz-input [(ngModel)]="inputValue"></nz-input>
+    </div>
+  </div>
+</div>
+<!--工单信息-->
+<div class="common-card">
+  <span class="card-label-pos">工单信息</span>
+  <div class="row">
+    <span class="common-label">单号:</span>
+    <div class="col-md-3 mr-20">
+      <nz-input [(ngModel)]="inputValue" disabled="disabled"></nz-input>
+    </div>
+    <span class="common-label">科目:</span>
+    <div class="col-md-3 mr-20">
+      <nz-select style="width: 100%;" [(ngModel)]="selectedOption" [nzDisabled]="false" nzAllowClear>
+        <nz-option
+          *ngFor="let option of subjects"
+          [nzLabel]="option.label"
+          [nzValue]="option">
+        </nz-option>
+      </nz-select>
+    </div>
+    <span class="common-label">派工日期:</span>
+    <div class="col-md-3">
+      <nz-datepicker style="width: 50%;" [(ngModel)]="_date" [nzPlaceHolder]="'Select date'"></nz-datepicker>
+      <nz-timepicker style="width: 50%;" [(ngModel)]="_date"></nz-timepicker>
+    </div>
+  </div>
+  <div class="row">
+    <div class="common-table-head">
+      <div class="col-md-2">序号</div>
+      <div class="col-md-2">项目名称</div>
+      <div class="col-md-2">项目编码</div>
+      <div class="col-md-2">施工人</div>
+      <div class="col-md-2">工时费</div>
+    </div>
+    <div class="table-content">
+      <div class="item" *ngFor="let item of order.repairItems;let index = index;">
+        <div class="col-md-2" style="height: 30px;line-height: 30px;">{{index+1}}</div>
+        <div class="col-md-2"><nz-input [(ngModel)]="item.repairName"></nz-input></div>
+        <div class="col-md-2"><nz-input [(ngModel)]="item.repairCode"></nz-input></div>
+        <div class="col-md-2"><nz-input [(ngModel)]="item.staff"></nz-input></div>
+        <div class="col-md-2"><nz-input [(ngModel)]="item.cost"></nz-input></div>
+      </div>
+    </div>
+  </div>
+</div>

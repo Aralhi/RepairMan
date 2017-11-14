@@ -19,6 +19,26 @@ const appRoutes: Routes = [
   {
     path: 'heroes',
     loadChildren: './components/heroes/heroes.module#HeroesModule'
+  },
+  {
+    path: 'order',
+    loadChildren: './components/order/order.module#OrderModule'
+  },
+  {
+    path: 'dispatch',
+    loadChildren: './components/dispatch/dispatch.module#DispathcModule'
+  },
+  {
+    path: 'storage',
+    loadChildren: './components/storage/storage.module#StorageModule'
+  },
+  {
+    path: 'carcheck',
+    loadChildren: './components/carcheck/carcheck.module#CarcheckModule'
+  },
+  {
+    path: 'staff',
+    loadChildren: './components/staff/staff.module#StaffModule'
   }
 ];
 

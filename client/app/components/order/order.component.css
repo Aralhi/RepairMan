@@ -1,0 +1,11 @@
+.order-page{
+  padding-top: 50px;
+  font-size: 14px;
+}
+.create-btn{
+  background-color: #28a745;
+  color: #ffffff;
+  padding: 3px 10px;
+  font-size: 12px;
+  line-height: 20px;
+}
