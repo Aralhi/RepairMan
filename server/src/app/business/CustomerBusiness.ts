@@ -1,0 +1,3 @@
+class CustomerBusiness implements ICustomerBusiness {
+  
+}

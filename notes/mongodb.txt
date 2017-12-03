@@ -1,0 +1,6 @@
+show dbs
+use quickStart
+show tables
+// 导入json文件到mongoDB
+mongoimport --db ML_OER --collection lecture --file /home/tmp/course_temp.json  --jsonArray
+mongoimport --db quickStart --collection customer --file /Users/zhangzhiping/Documents/git/RepairMan/models/customer.json --jsonArray

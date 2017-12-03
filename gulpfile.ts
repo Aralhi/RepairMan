@@ -167,6 +167,6 @@ gulp.task("build", function (callback) {
     runSequence('clean', 'build:server', 'build:client', 'clientResources', 'serverResources', 'libs', 'css', callback);
 });
 
-gulp.task('default', function () {
-    runSequence('build:server', 'serverResources', 'start');
+gulp.task('server', function () {
+    runSequence('build:server', 'serverResources');
 });

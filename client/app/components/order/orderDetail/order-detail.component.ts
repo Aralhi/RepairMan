@@ -11,16 +11,35 @@ export class OrderDetailComponenet implements OnInit{
   order: any = {};
   ngOnInit(){
     this.order = {
-      repairItems: [{
-        repairName: '',
-        repairCode: '',
-        staff: '',
-        cost: 0
+      repairSubjects: [{
+        name: '检查电路',
+        code: '',
+        staff: '张三',
+        cost: 0,
+        costUnit: '元'
       }, {
-        repairName: '1',
-        repairCode: '2',
-        staff: '',
-        cost: 0
+        name: '更换机油',
+        code: '2',
+        staff: '李四',
+        cost: 0,
+        costUnit: '元'
+      }],
+      repairMaterials: [{
+        name: '机油滤芯',
+        code: '',
+        spec: '50L',
+        count: 1,
+        costUnit: '元',
+        outPrice: 20,
+        unit: '个'
+      }, {
+        name: '螺丝',
+        code: '',
+        spec: '50L',
+        count: 1,
+        costUnit: '元',
+        outPrice: 20,
+        unit: '个'
       }]
     };
   }
