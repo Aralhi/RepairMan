@@ -1,5 +1,5 @@
 import BaseBusiness = require("./../BaseBusiness");
-import ICustomerModel = require("./../../model/interfaces/HeroModel")
+import ICustomerModel = require("./../../model/interfaces/CustomerModel")
 
 interface CustomerBusiness extends BaseBusiness<ICustomerModel> {
   

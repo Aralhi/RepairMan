@@ -1,3 +1,4 @@
+import { CustomerService } from './../../../services/customer.service';
 import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'order-detail',
@@ -9,7 +10,13 @@ export class OrderDetailComponenet implements OnInit{
     label: '保养', value: '保养'
   }];
   order: any = {};
+  customers: any = [];
+
+  constructor(private customerService: CustomerService) {
+
+  }
   ngOnInit(){
+    this.customerService.getCustomers().subscribe(customers => this.customers = customers);
     this.order = {
       repairSubjects: [{
         name: '检查电路',

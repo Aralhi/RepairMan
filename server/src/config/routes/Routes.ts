@@ -1,20 +1,17 @@
-/**
- * Created by Moiz.Kachwala on 15-06-2016.
- */
-import express = require('express');
-import path = require('path');
+import express = require('express')
+import path = require('path')
 
-import HeroRoutes = require('../routes/HeroRoutes');
+import HeroRoutes = require('../routes/HeroRoutes')
+import CustomerRoutes = require('../routes/CustomerRoutes')
 
-var app = express();
+var app = express()
 
 class Routes {
+  get routes() {
+    app.use('/', new HeroRoutes().routes)
+    app.use('/', new CustomerRoutes().routes)
 
-    get routes() {
-
-        app.use("/", new HeroRoutes().routes);
-        
-        return app;
-    }
+    return app
+  }
 }
-export = Routes;
+export = Routes

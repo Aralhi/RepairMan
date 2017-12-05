@@ -16,9 +16,9 @@
         [(ngModel)]="cars"
         [nzShowSearch]="true">
         <nz-option
-          *ngFor="let option of cars"
-          [nzLabel]="option.label"
-          [nzValue]="option.value">
+          *ngFor="let option of customers"
+          [nzLabel]="option.name"
+          [nzValue]="option.name">
         </nz-option>
       </nz-select>
     </div>

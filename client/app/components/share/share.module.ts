@@ -1,3 +1,4 @@
+import { CustomerService } from './../../services/customer.service';
 import { NgModule } from '@angular/core';
 import { HttpModule } from "@angular/http";
 import { FormsModule } from "@angular/forms";
@@ -12,6 +13,9 @@ import { CommonModule } from '@angular/common';
     FormsModule
   ],
   exports: [CommonModule, HttpModule, FormsModule, NgZorroAntdModule],
-  providers: [HeroService]
+  providers: [
+    HeroService,
+    CustomerService
+  ]
 })
 export class ShareModule {}
