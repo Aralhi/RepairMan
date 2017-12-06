@@ -33,8 +33,8 @@ const appRoutes: Routes = [
     loadChildren: './components/storage/storage.module#StorageModule'
   },
   {
-    path: 'carcheck',
-    loadChildren: './components/carcheck/carcheck.module#CarcheckModule'
+    path: 'customer',
+    loadChildren: './components/customer/customer.module#CustomerModule'
   },
   {
     path: 'staff',

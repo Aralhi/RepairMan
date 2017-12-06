@@ -1,4 +1,4 @@
-import { CarcheckComponent } from './carcheck.component';
+import { CustomerComponent } from './customer.component';
 import { ShareModule } from './../share/share.module';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -8,14 +8,14 @@ import { RouterModule } from '@angular/router';
     RouterModule.forChild([
       {
         path: '',
-        component: CarcheckComponent
+        component: CustomerComponent
       }
     ])
   ],
   declarations: [
-    CarcheckComponent
+    CustomerComponent
   ]
 })
-export class CarcheckModule {
+export class CustomerModule {
 
 }

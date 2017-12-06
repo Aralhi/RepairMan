@@ -1,0 +1,21 @@
+.search-div{
+  width: 25%;
+  position: relative;
+  float: right;
+}
+.search-icon{
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.search-input{
+  width: calc(100% - 30px);
+}
+.customer-detail{
+  padding: 20px 35px;
+  border: 1px solid #ccc;
+  clear: both;
+  margin-top: 20px;
+  position: relative;
+  margin-bottom: 10px;
+}

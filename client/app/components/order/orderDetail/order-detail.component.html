@@ -5,46 +5,7 @@
 <!--车辆信息-->
 <div class="common-card">
   <span class="card-label-pos">车辆信息</span>
-  <div class="row">
-    <span class="common-label">姓名:</span>
-    <div class="col-md-3 mr-20">
-      <!-- <nz-input [(ngModel)]="inputValue"></nz-input> -->
-      <nz-select
-        style="width: 100%;"
-        nzAllowClear
-        [nzPlaceHolder]="'选择用户'"
-        [(ngModel)]="cars"
-        [nzShowSearch]="true">
-        <nz-option
-          *ngFor="let option of customers"
-          [nzLabel]="option.name"
-          [nzValue]="option.name">
-        </nz-option>
-      </nz-select>
-    </div>
-    <span class="common-label">车牌号:</span>
-    <div class="col-md-3 mr-20">
-      <nz-input [(ngModel)]="inputValue"></nz-input>
-    </div>
-    <span class="common-label">车型:</span>
-    <div class="col-md-3">
-      <nz-input [(ngModel)]="inputValue"></nz-input>
-    </div>
-  </div>
-  <div class="row">
-    <span class="common-label">单位:</span>
-    <div class="col-md-3 mr-20">
-      <nz-input [(ngModel)]="inputValue"></nz-input>
-    </div>
-    <span class="common-label">电话:</span>
-    <div class="col-md-3 mr-20">
-      <nz-input [(ngModel)]="inputValue"></nz-input>
-    </div>
-    <span class="common-label">备注:</span>
-    <div class="col-md-3">
-      <nz-input [(ngModel)]="inputValue"></nz-input>
-    </div>
-  </div>
+  <customer-detail [customerObj]="order.customer"></customer-detail>
 </div>
 <!--工单信息-->
 <div class="common-card">

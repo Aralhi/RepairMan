@@ -10,14 +10,20 @@ export class OrderDetailComponenet implements OnInit{
     label: '保养', value: '保养'
   }];
   order: any = {};
-  customers: any = [];
 
-  constructor(private customerService: CustomerService) {
+  constructor() {
 
   }
   ngOnInit(){
-    this.customerService.getCustomers().subscribe(customers => this.customers = customers);
     this.order = {
+      customer: {
+        name: '',
+        carNumber: '',
+        phone: '',
+        carType: '',
+        company: '',
+        remark: ''
+      },
       repairSubjects: [{
         name: '检查电路',
         code: '',

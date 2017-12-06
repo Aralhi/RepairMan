@@ -16,7 +16,10 @@ class CustomerBusiness implements ICustomerBusiness {
   findById: (_id: string, callback: (error: any, result: ICustomerModel) => void) => void;
   create: (item: ICustomerModel, callback: (error: any, result: any) => void) => void;
   update: (_id: string, item: ICustomerModel, callback: (error: any, result: any) => void) => void;
-  delete: (_id: string, callback: (error: any, result: any) => void) => void;
+  
+  delete (_id: string, callback:(error: any, result: any) => void) {
+    this._customerRepository.delete(_id , callback);
+  }
 }
 Object.seal(CustomerBusiness);
 export = CustomerBusiness;

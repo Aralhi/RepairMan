@@ -13,6 +13,14 @@ h2 {
     margin-top: 0;
     padding-top: 0;
 }
+a {
+    color: #108ee9;
+    background: transparent;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    transition: color .3s ease;
+}
 nav a {
     text-decoration: none;
     font-size: 18px;
@@ -75,4 +83,8 @@ nav a.router-link-active {
     border-left: 2px solid #ffffff;
     height: 30px;
     line-height: 30px;
+}
+.page-container {
+    padding-top: 50px;
+    font-size: 14px;
 }
