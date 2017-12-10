@@ -7,7 +7,7 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
     <div class="row">
       <span class="common-label">姓名:</span>
       <div class="col-md-3 mr-20">
-        <nz-select
+        <nz-select *ngIf="!isCreate"
           style="width: 100%;"
           nzAllowClear
           [nzPlaceHolder]="'选择用户'"
@@ -19,6 +19,7 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
             [nzValue]="option.name">
           </nz-option>
         </nz-select>
+        <nz-input *ngIf="isCreate" [(ngModel)]="customerObj.name"></nz-input>
       </div>
       <span class="common-label">车牌号:</span>
       <div class="col-md-3 mr-20">
@@ -55,10 +56,12 @@ export class CustomerDetailComponent implements OnInit{
     remark: ''
   };
   customers: any = [];
+  isCreate: boolean = false;
 
   constructor(private customerService: CustomerService){}
 
   ngOnInit() {
+    this.isCreate = !this.customerObj._id;
     this.customerService.getCustomers().subscribe(customers => this.customers = customers);
   }
   

@@ -13,6 +13,11 @@
   <!--创建客户-->
   <div class="customer-detail" *ngIf="showCreate">
     <customer-detail [customerObj]="newCustomer"></customer-detail>
+    <div style="width: 50px; margin: 10px auto 0;">
+      <button style="width: 80px;" nz-button [nzType]="'primary'" (click)="add()">
+        <span>保存</span>
+      </button>
+    </div>
   </div>
   <nz-table #nzTable [nzDataSource]="customers" [nzPageSize]="pageSize">
       <thead nz-thead>
@@ -36,7 +41,7 @@
           <td nz-td>{{data.remark}}</td>
           <td nz-td>
             <span>
-              <a >编辑</a>
+              <a (click)="edit(data)">编辑</a>
               <span nz-table-divider></span>
               <a (click)="delete(data._id, data.name)">删除</a>
             </span>

@@ -12,8 +12,8 @@ class CustomerRoutes {
     let controller = this._customerController
 
     router.get('/customers', controller.retrieve)
-    // router.post('/customers', controller.create)
-    // router.put('/customers/:_id', controller.update)
+    router.post('/customers', controller.create)
+    router.put('/customers/:_id', controller.update)
     // router.get('/customers/:_id', controller.findById)
     router.delete('/customers/:_id', controller.delete)
 

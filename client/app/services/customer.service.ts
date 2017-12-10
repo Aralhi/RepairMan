@@ -1,8 +1,8 @@
+import { Customer } from './../models/customer';
 import { Observable } from 'rxjs/Observable'
 import { Injectable } from '@angular/core'
 import { Headers, Http, Response } from '@angular/http'
 import 'rxjs/add/operator/toPromise'
-import { Customer } from '../models/customer'
 import { ApiService } from './api.service'
 
 @Injectable()
@@ -22,6 +22,23 @@ export class CustomerService {
     let url = `${this.customersUrl}/${id}`
     return this.http
       .delete(url)
+      .map(res => res.json())
+      .catch(this.apiService.handleError)
+  }
+
+  save(customer: Customer): Observable<any> {
+    let headers = new Headers({
+      'Content-Type': 'application/json'
+    })
+    if (customer._id) {
+      let url = `${this.customersUrl}/${customer._id}`;
+      return this.http
+      .put(url, JSON.stringify(customer), { headers: headers })
+      .map(res => res.json())
+      .catch(this.apiService.handleError)
+    }
+    return this.http
+      .post(this.customersUrl, JSON.stringify(customer), { headers: headers })
       .map(res => res.json())
       .catch(this.apiService.handleError)
   }

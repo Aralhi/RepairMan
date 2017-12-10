@@ -1,18 +1,19 @@
+import ICustomerModel = require('./../app/model/interfaces/CustomerModel')
 import express = require('express')
 import IBaseController = require('./BaseController')
 import CustomerBusiness = require('./../app/business/CustomerBusiness')
 
 class CustomerController implements IBaseController<CustomerBusiness> {
   findById: express.RequestHandler
-  create: express.RequestHandler
-  update: express.RequestHandler
 
   retrieve(req: express.Request, res: express.Response): void {
     try {
       let heroBusiness = new CustomerBusiness()
       heroBusiness.retrieve((error, result) => {
-        if (error) res.send({ error: 'error' })
-        else res.send(result)
+        if (error) 
+          res.send({ error: error })
+        else 
+          res.send(result)
       })
     } catch (e) {
       console.log(e)
@@ -25,16 +26,61 @@ class CustomerController implements IBaseController<CustomerBusiness> {
       let _id: string = req.params._id
       let customerBusiness = new CustomerBusiness()
       customerBusiness.delete(_id, (error, result) => {
-        if (error) res.send({ error: 'error' })
-        else res.send({ 
-          status: 'success',
-          msg: '删除成功！'
-        })
+        if (error) 
+          res.send({ error: error });
+        else
+          res.send({
+            status: 'success',
+            msg: '删除成功！'
+          })
       })
     } catch (e) {
       res.send({
         status: 'error',
-        msg: '删除失败！'
+        msg: '删除失败！' + e
+      })
+    }
+  }
+
+  create(req: express.Request, res: express.Response): void {
+    try {
+      let hero: ICustomerModel = <ICustomerModel>req.body
+      let heroBusiness = new CustomerBusiness()
+      heroBusiness.create(hero, (error, result) => {
+        if (error) 
+          res.send({ error: error });
+        else
+          res.send({
+            status: 'success',
+            msg: '保存成功！'
+          })
+      })
+    } catch (e) {
+      res.send({
+        status: 'error',
+        msg: '保存失败！' + e
+      })
+    }
+  }
+
+  update(req: express.Request, res: express.Response): void {
+    try {
+      let hero: ICustomerModel = <ICustomerModel>req.body
+      let _id: string = req.params._id
+      let heroBusiness = new CustomerBusiness()
+      heroBusiness.update(_id, hero, (error, result) => {
+        if (error) 
+          res.send({ error: error });
+        else
+          res.send({
+            status: 'success',
+            msg: '保存成功！'
+          })
+      })
+    } catch (e) {
+      res.send({
+        status: 'error',
+        msg: '保存失败！' + e
       })
     }
   }

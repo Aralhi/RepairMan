@@ -3,9 +3,9 @@ import mongoose = require("mongoose");
 interface CustomerModel extends mongoose.Document {
     name: string;
     carNumber: string;
-    phone: number;
+    phone: string;
     carType: string;
-    company: number;
+    company: string;
     remark: string;
 }
 

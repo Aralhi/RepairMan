@@ -18,11 +18,10 @@ class RepositoryBase<T extends mongoose.Document> implements IRead<T>, IWrite<T>
 
     create (item: T, callback: (error: any, result: any) => void) {
         this._model.create(item, callback);
-
     }
 
     retrieve (callback: (error: any, result: any) => void) {
-        this._model.find({}, callback)
+        this._model.find({}, callback).sort({createdAt: -1});
     }
 
     update (_id: mongoose.Types.ObjectId, item: T, callback: (error: any, result: any) => void) {
@@ -36,7 +35,7 @@ class RepositoryBase<T extends mongoose.Document> implements IRead<T>, IWrite<T>
     }
 
     findById (_id: string, callback: (error: any, result: T) => void) {
-        this._model.findById( _id, callback);
+        this._model.findById( _id, callback).sort({create_at: -1});
     }
 
 

@@ -12,10 +12,21 @@ class CustomerBusiness implements ICustomerBusiness {
   retrieve(callback: (error: any, result: any) => void) {
     this._customerRepository.retrieve(callback)
   }
+  
+  create (item: ICustomerModel, callback: (error: any, result: any) => void) {
+    this._customerRepository.create(item, callback);
+  }
+  
+  update (_id: string, item: ICustomerModel, callback: (error: any, result: any) => void) {
+    this._customerRepository.findById(_id, (err, res) => {
+      if(err) 
+        callback(err, res);
+      else
+        this._customerRepository.update(res._id, item, callback);
+    });
+  }
 
   findById: (_id: string, callback: (error: any, result: ICustomerModel) => void) => void;
-  create: (item: ICustomerModel, callback: (error: any, result: any) => void) => void;
-  update: (_id: string, item: ICustomerModel, callback: (error: any, result: any) => void) => void;
   
   delete (_id: string, callback:(error: any, result: any) => void) {
     this._customerRepository.delete(_id , callback);
