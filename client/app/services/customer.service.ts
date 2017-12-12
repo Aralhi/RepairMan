@@ -18,6 +18,14 @@ export class CustomerService {
       .catch(this.apiService.handleError)
   }
 
+  search(searchText: string): Observable<Customer[]> {
+    let url = `${this.customersUrl}/${searchText}`
+    return this.http
+      .get(url)
+      .map(res => res.json())
+      .catch(this.apiService.handleError)
+  }
+
   delete(id: string): Observable<any> {
     let url = `${this.customersUrl}/${id}`
     return this.http

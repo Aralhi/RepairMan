@@ -78,6 +78,8 @@ export class CustomerComponent implements OnInit{
   }
 
   search() {
-    console.info(this.searchText);
+    this.customerService.search(this.searchText).subscribe(res => {
+      console.info(res);
+    });
   }
 }

@@ -16,6 +16,7 @@ class CustomerRoutes {
     router.put('/customers/:_id', controller.update)
     // router.get('/customers/:_id', controller.findById)
     router.delete('/customers/:_id', controller.delete)
+    router.get('/customers/:searchText', controller.find)
 
     return router
   }

@@ -20,6 +20,27 @@ class CustomerController implements IBaseController<CustomerBusiness> {
       res.send({ error: 'error in your request' })
     }
   }
+  
+  find(req: express.Request, res: express.Response): void {
+    try {
+      let heroBusiness = new CustomerBusiness();
+      const searchText: string = req.params.searchText;
+      heroBusiness.find(searchText, (error, result) => {
+        if (error) 
+          res.send({ error: error });
+        else
+          res.send({
+            status: 'success',
+            msg: '查询成功！'
+          })
+      })
+    } catch (e) {
+      res.send({
+        status: 'error',
+        msg: '查询失败！' + e
+      })
+    }
+  }
 
   delete(req: express.Request, res: express.Response): void {
     try {
