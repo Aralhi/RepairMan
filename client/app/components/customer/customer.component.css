@@ -19,3 +19,9 @@
   position: relative;
   margin-bottom: 10px;
 }
+.search-icon{
+  top: 6px;
+  right: 5px;
+  position: absolute;
+  cursor: pointer;
+}

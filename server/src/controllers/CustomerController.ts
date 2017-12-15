@@ -10,14 +10,17 @@ class CustomerController implements IBaseController<CustomerBusiness> {
     try {
       let heroBusiness = new CustomerBusiness()
       heroBusiness.retrieve((error, result) => {
-        if (error) 
-          res.send({ error: error })
-        else 
-          res.send(result)
-      })
+        if (error) {
+          res.send({ error: error });
+        } else {
+          res.send({
+            status: 'success',
+            result: result
+          });
+        }
+      });
     } catch (e) {
-      console.log(e)
-      res.send({ error: 'error in your request' })
+      res.send({ error: 'error in your request' });
     }
   }
   
@@ -26,26 +29,27 @@ class CustomerController implements IBaseController<CustomerBusiness> {
       let heroBusiness = new CustomerBusiness();
       const searchText: string = req.params.searchText;
       heroBusiness.find(searchText, (error, result) => {
-        if (error) 
+        if (error) {
           res.send({ error: error });
-        else
+        } else {
           res.send({
             status: 'success',
-            msg: '查询成功！'
-          })
-      })
+            result: result
+          });
+        }
+      });
     } catch (e) {
       res.send({
         status: 'error',
         msg: '查询失败！' + e
-      })
+      });
     }
   }
 
   delete(req: express.Request, res: express.Response): void {
     try {
-      let _id: string = req.params._id
-      let customerBusiness = new CustomerBusiness()
+      let _id: string = req.params._id;
+      let customerBusiness = new CustomerBusiness();
       customerBusiness.delete(_id, (error, result) => {
         if (error) 
           res.send({ error: error });
@@ -54,19 +58,19 @@ class CustomerController implements IBaseController<CustomerBusiness> {
             status: 'success',
             msg: '删除成功！'
           })
-      })
+      });
     } catch (e) {
       res.send({
         status: 'error',
         msg: '删除失败！' + e
-      })
+      });
     }
   }
 
   create(req: express.Request, res: express.Response): void {
     try {
-      let hero: ICustomerModel = <ICustomerModel>req.body
-      let heroBusiness = new CustomerBusiness()
+      let hero: ICustomerModel = <ICustomerModel>req.body;
+      let heroBusiness = new CustomerBusiness();
       heroBusiness.create(hero, (error, result) => {
         if (error) 
           res.send({ error: error });
@@ -74,21 +78,21 @@ class CustomerController implements IBaseController<CustomerBusiness> {
           res.send({
             status: 'success',
             msg: '保存成功！'
-          })
-      })
+          });
+      });
     } catch (e) {
       res.send({
         status: 'error',
         msg: '保存失败！' + e
-      })
+      });
     }
   }
 
   update(req: express.Request, res: express.Response): void {
     try {
-      let hero: ICustomerModel = <ICustomerModel>req.body
-      let _id: string = req.params._id
-      let heroBusiness = new CustomerBusiness()
+      let hero: ICustomerModel = <ICustomerModel>req.body;
+      let _id: string = req.params._id;
+      let heroBusiness = new CustomerBusiness();
       heroBusiness.update(_id, hero, (error, result) => {
         if (error) 
           res.send({ error: error });
@@ -96,14 +100,14 @@ class CustomerController implements IBaseController<CustomerBusiness> {
           res.send({
             status: 'success',
             msg: '保存成功！'
-          })
-      })
+          });
+      });
     } catch (e) {
       res.send({
         status: 'error',
         msg: '保存失败！' + e
-      })
+      });
     }
   }
 }
-export = CustomerController
+export = CustomerController;

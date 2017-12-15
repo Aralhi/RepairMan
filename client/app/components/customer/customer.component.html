@@ -4,10 +4,9 @@
       <span>新建客户</span>
     </button>
     <div class="search-div">
-      <nz-input class="search-input" [(ngModel)]="searchText" [nzPlaceHolder]="'输入关键字搜索'" (keyup.enter)="search()"></nz-input>
-      <button class="search-icon" nz-button [nzType]="'primary'" [nzShape]="'circle'">
-        <i class="anticon anticon-search"></i>
-      </button>
+      <nz-input class="search-input" [(ngModel)]="searchText" [nzPlaceHolder]="'输入关键字搜索'" (keyup)="search()"></nz-input>
+      <!-- <span class="search-icon glyphicon glyphicon-remove" (click)="search()"></span> -->
+      <span class="search-icon glyphicon glyphicon-search" (click)="search()"></span>
     </div>
   </div>
   <!--创建客户-->

@@ -10,7 +10,7 @@ import { cloneDeepWith } from 'lodash';
 export class CustomerComponent implements OnInit{
   customers: any = [];
   pageSize: number = 10;
-  searchText:string = '';
+  searchText: string = '';
   showCreate: boolean = false;
   newCustomer: any = {
     name: '',
@@ -27,7 +27,11 @@ export class CustomerComponent implements OnInit{
               private confirmServ: NzModalService) {}
 
   ngOnInit() {
-    this.customerService.getCustomers().subscribe(customers => this.customers = customers);
+    this.customerService.getCustomers().subscribe(res => {
+      if (res.status === 'success') {
+        this.customers = res.result;
+      }
+    });
   }
 
   delete(id: string, name: string) {
@@ -79,7 +83,9 @@ export class CustomerComponent implements OnInit{
 
   search() {
     this.customerService.search(this.searchText).subscribe(res => {
-      console.info(res);
+      if (res.status === 'success') {
+        this.customers = res.result;
+      }
     });
   }
 }

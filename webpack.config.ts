@@ -61,7 +61,7 @@ const config = {
       'process.env.ENV_TTL': process.env.NODE_ENV === 'prod' ? Date.now() : undefined
     }),
     new webpack.ContextReplacementPlugin(
-      /angular(\\|\/)core(\\|\/)@angular/,
+      /angular(\\|\/)core(\\|\/)(@angular|esm5)/,      
       __dirname
     ),
     new webpack.NamedModulesPlugin({
