@@ -38,14 +38,8 @@ class RepositoryBase<T extends mongoose.Document> implements IRead<T>, IWrite<T>
         this._model.findById( _id, callback).sort({create_at: -1});
     }
     
-    find (keys: any = [], reg: RegExp, projection: string= '', callback: (error: any, result: T) => void) {
-        let conditions = [];
-        keys.forEach((key: string) => {
-            let tmp: any = {};
-            tmp[key] = reg;
-            conditions.push(tmp);
-        });
-        this._model.find(conditions, projection || null, callback).sort({create_at: -1});
+    find (conditions: any, callback: (error: any, result: T) => void) {
+        this._model.find(conditions, callback).sort({create_at: -1});
     }
 
     private toObjectId (_id: string): mongoose.Types.ObjectId {

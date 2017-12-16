@@ -34,8 +34,7 @@ class CustomerBusiness implements ICustomerBusiness {
 
   find (searchText: string, callback: (error: any, result: any) => void) {
     const reg = new RegExp(searchText, 'i');
-    this._customerRepository.find(['name', 'carNumber', 'phone'], reg,
-      'name carNumber phone carType company remark', callback);
+    this._customerRepository.find({$or: [{'name': reg}, {'carNumber': reg}, {'phone': reg}, {'carType': reg}]}, callback);
   }
 }
 Object.seal(CustomerBusiness);
