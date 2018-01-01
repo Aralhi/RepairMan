@@ -1,11 +1,11 @@
 <div class="order-title row">
   <span>标题:</span>
-  <nz-input style="width: 94%" [(ngModel)]="inputValue" [nzPlaceHolder]="'简答描述下维修单'"></nz-input>
+  <nz-input style="width: 94%" [(ngModel)]="order.name" [nzPlaceHolder]="'简答描述下维修单'"></nz-input>
 </div>
 <!--车辆信息-->
 <div class="common-card">
   <span class="card-label-pos">车辆信息</span>
-  <customer-detail [customerObj]="order.customer"></customer-detail>
+  <customer-detail [isCreate]="false" [customerObj]="order.customer"></customer-detail>
 </div>
 <!--工单信息-->
 <div class="common-card">
@@ -13,15 +13,15 @@
   <div class="row">
     <span class="common-label">单号:</span>
     <div class="col-md-3 mr-20">
-      <nz-input [(ngModel)]="inputValue" disabled="disabled"></nz-input>
+      <nz-input [(ngModel)]="order.no"></nz-input>
     </div>
     <span class="common-label">科目:</span>
     <div class="col-md-3 mr-20">
-      <nz-select style="width: 100%;" [(ngModel)]="selectedOption" [nzDisabled]="false" nzAllowClear>
+      <nz-select style="width: 100%;" [(ngModel)]="order.subject" [nzDisabled]="false" nzAllowClear>
         <nz-option
           *ngFor="let option of subjects"
           [nzLabel]="option.label"
-          [nzValue]="option">
+          [nzValue]="option.value">
         </nz-option>
       </nz-select>
     </div>

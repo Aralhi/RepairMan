@@ -1,6 +1,6 @@
-import ICustomerModel = require("./../model/interfaces/CustomerModel");
-import CustomerSchema = require("./../dataAccess/schemas/CustomerSchema");
-import RepositoryBase = require("./BaseRepository");
+import ICustomerModel = require('./../model/CustomerModel');
+import CustomerSchema = require('./../dataAccess/schemas/CustomerSchema');
+import RepositoryBase = require('./BaseRepository');
 
 class CustomerRepository  extends RepositoryBase<ICustomerModel> {
     constructor () {

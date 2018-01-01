@@ -46,7 +46,7 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
     </div>
   `
 })
-export class CustomerDetailComponent implements OnInit{
+export class CustomerDetailComponent implements OnInit {
   @Input() customerObj: any = {
     name: '',
     carNumber: '',
@@ -56,13 +56,19 @@ export class CustomerDetailComponent implements OnInit{
     remark: ''
   };
   customers: any = [];
-  isCreate: boolean = false;
+  @Input() isCreate: boolean = false;
 
-  constructor(private customerService: CustomerService){}
+  constructor(private customerService: CustomerService) {}
 
   ngOnInit() {
-    this.isCreate = !this.customerObj._id;
-    this.customerService.getCustomers().subscribe(customers => this.customers = customers);
+    this.customerService.getCustomers().subscribe(resp => {
+      if (resp.status === 'success') {
+        this.customers = resp.result;
+      }
+    });
   }
-  
+
+  selectCustomer(option: any) {
+    this.customerObj = option;
+  }
 }

@@ -2,4 +2,34 @@
   <button nz-button [nzType]="'primary'" routerLink="../create">
     <span>创建工单</span>
   </button>
+  <nz-table #nzTable [nzDataSource]="orders" [nzPageSize]="pageSize">
+    <thead nz-thead>
+      <tr>
+        <th nz-th><span>单号</span></th>
+        <th nz-th><span>名称</span></th>
+        <th nz-th><span>类型</span></th>
+        <th nz-th><span>客户</span></th>
+        <th nz-th><span>车型</span></th>
+        <th nz-th class="col-md-2"><span>车牌号</span></th>
+        <th nz-th><span>操作</span></th>
+      </tr>
+    </thead>
+    <tbody nz-tbody>
+      <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+        <td nz-td>{{data.no}}</td>
+        <td nz-td>{{data.name}}</td>
+        <td nz-td>{{data.subject}}</td>
+        <td nz-td>{{data.customer.name}}</td>
+        <td nz-td>{{data.customer.carType}}</td>
+        <td nz-td>{{data.customer.carNumber}}</td>
+        <td nz-td>
+          <span>
+            <a (click)="edit(data)">编辑</a>
+            <span nz-table-divider></span>
+            <a (click)="delete(data._id, data.name)">删除</a>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
 </div>

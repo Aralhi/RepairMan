@@ -43,7 +43,11 @@ export class CustomerComponent implements OnInit{
         that.customerService.delete(id).subscribe(res => {
           if (res.status === 'success') {
             that._notification.create('success', res.msg, `${name}删除成功`);
-            that.customerService.getCustomers().subscribe(customers => that.customers = customers);
+            that.customerService.getCustomers().subscribe(res => {
+              if (res.status === 'success') {
+                that.customers = res.result;
+              }
+            });
           } else {
             that._notification.create('error', res.msg, `${name}删除失败`);
           }
@@ -52,7 +56,6 @@ export class CustomerComponent implements OnInit{
       onCancel() {
       }
     });
-    
   }
 
   add() {
@@ -68,7 +71,11 @@ export class CustomerComponent implements OnInit{
           company: '',
           remark: ''
         };
-        this.customerService.getCustomers().subscribe(customers => this.customers = customers);
+        this.customerService.getCustomers().subscribe(res => {
+          if (res.status === 'success') {
+            this.customers = res.result;
+          }
+        });
       } else {
         this._notification.create('error', res.msg, `${name}保存失败`);
       }

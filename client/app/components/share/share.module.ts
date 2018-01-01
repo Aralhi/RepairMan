@@ -1,11 +1,13 @@
+import {OrderService} from '../../services/order.service';
 import { CustomerService } from './../../services/customer.service';
 import { NgModule } from '@angular/core';
-import { HttpModule } from "@angular/http";
-import { FormsModule } from "@angular/forms";
-import { HeroService } from "../../services/hero.service";
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
+import { HeroService } from '../../services/hero.service';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { CommonModule } from '@angular/common';
 import { CustomerDetailComponent } from './components/customer-detail.component';
+import { WsOptionComponent } from './components/ws-option.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -18,14 +20,17 @@ import { CustomerDetailComponent } from './components/customer-detail.component'
     HttpModule,
     FormsModule,
     NgZorroAntdModule,
-    CustomerDetailComponent
+    CustomerDetailComponent,
+    WsOptionComponent
   ],
   declarations: [
-    CustomerDetailComponent
+    CustomerDetailComponent,
+    WsOptionComponent
   ],
   providers: [
     HeroService,
-    CustomerService
+    CustomerService,
+    OrderService
   ]
 })
 export class ShareModule {}

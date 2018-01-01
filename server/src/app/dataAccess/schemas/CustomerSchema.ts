@@ -1,5 +1,5 @@
 import DataAccess = require('../DataAccess');
-import ICustsomerModel = require("./../../model/interfaces/CustomerModel");
+import ICustsomerModel = require('./../../model/CustomerModel');
 var timestamps = require('mongoose-timestamp');
 
 var mongoose = DataAccess.mongooseInstance;
@@ -16,9 +16,9 @@ class CustomerSchema {
             company : {type: String, required: false},
             remark : {type: String, required: false},
         });
-        schema.plugin(timestamps);        
+        schema.plugin(timestamps);
         return schema;
     }
 }
-let schema = mongooseConnection.model<ICustsomerModel>("Customers", CustomerSchema.schema);
+let schema = mongooseConnection.model<ICustsomerModel>('Customers', CustomerSchema.schema);
 export = schema;

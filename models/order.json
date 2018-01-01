@@ -1,0 +1,35 @@
+[
+  {
+    "name": "string",
+    "no": "string",
+    "subject": "string",
+    "customer": {
+      "name": "张经理",
+      "carNumber": "粤B12345",
+      "phone": "18575699426",
+      "carType": "宝马7系",
+      "company": "腾讯",
+      "remark": ""
+    },
+    "repairSubjects": [
+      {
+        "name": "string",
+        "code": "string",
+        "staff": "string",
+        "cost": 0,
+        "costUnit": "string"
+      }
+    ],
+    "repairMaterials": [
+      {
+        "name": "string",
+        "code": "string",
+        "spec": "string",
+        "count": 0,
+        "costUnit": "string",
+        "outPrice": 0,
+        "unit": "string"
+      }
+    ]
+  }
+]

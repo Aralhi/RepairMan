@@ -1,8 +1,8 @@
-import ICustomerBusiness = require('./interfaces/CustomerBusiness');
+import BaseBusiness = require('./BaseBusiness');
 import CustomerRepository = require('./../repository/CustomerRepository');
-import ICustomerModel = require('./../model/interfaces/CustomerModel');
+import ICustomerModel = require('./../model/CustomerModel');
 
-class CustomerBusiness implements ICustomerBusiness {
+class CustomerBusiness implements BaseBusiness<ICustomerModel> {
   private _customerRepository: CustomerRepository;
 
   constructor() {

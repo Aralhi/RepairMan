@@ -1,4 +1,4 @@
-import mongoose = require("mongoose");
+import mongoose = require('mongoose');
 
 interface CustomerModel extends mongoose.Document {
     name: string;

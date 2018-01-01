@@ -1,15 +1,14 @@
-import ICustomerModel = require('./../app/model/CustomerModel');
-import express = require('express');
 import IBaseController = require('./BaseController');
-import CustomerBusiness = require('./../app/business/CustomerBusiness');
+import express = require('express');
+import OrderBusiness = require('./../app/business/OrderBusiness');
+import IOrderModel = require('./../app/model/OrderModel');
 
-class CustomerController implements IBaseController<CustomerBusiness> {
-  findById: express.RequestHandler;
+class OrderController implements IBaseController<OrderBusiness> {
 
   retrieve(req: express.Request, res: express.Response): void {
     try {
-      let customerBusiness = new CustomerBusiness();
-      customerBusiness.retrieve((error, result) => {
+      let orderBusiness = new OrderBusiness();
+      orderBusiness.retrieve((error, result) => {
         if (error) {
           res.send({ error: error });
         } else {
@@ -23,12 +22,34 @@ class CustomerController implements IBaseController<CustomerBusiness> {
       res.send({ error: 'error in your request' });
     }
   }
-  
+
   find(req: express.Request, res: express.Response): void {
     try {
-      let customerBusiness = new CustomerBusiness();
+      let orderBusiness = new OrderBusiness();
       const searchText: string = req.params.searchText;
-      customerBusiness.find(searchText, (error, result) => {
+      orderBusiness.find(searchText, (error, result) => {
+        if (error) {
+          res.send({ error: error });
+        } else {
+          res.send({
+            status: 'success',
+            result: result
+          });
+        }
+      });
+    } catch (e) {
+      res.send({
+        status: 'error',
+        msg: '查询失败！' + e
+      });
+    }
+  }
+
+  findById(req: express.Request, res: express.Response): void {
+    try {
+      let _id: string = req.params._id;
+      let orderBusiness = new OrderBusiness();
+      orderBusiness.findById(_id, (error, result) => {
         if (error) {
           res.send({ error: error });
         } else {
@@ -49,15 +70,16 @@ class CustomerController implements IBaseController<CustomerBusiness> {
   delete(req: express.Request, res: express.Response): void {
     try {
       let _id: string = req.params._id;
-      let customerBusiness = new CustomerBusiness();
-      customerBusiness.delete(_id, (error, result) => {
-        if (error) 
+      let orderBusiness = new OrderBusiness();
+      orderBusiness.delete(_id, (error, result) => {
+        if (error) {
           res.send({ error: error });
-        else
+        } else {
           res.send({
             status: 'success',
             msg: '删除成功！'
           });
+        }
       });
     } catch (e) {
       res.send({
@@ -69,16 +91,17 @@ class CustomerController implements IBaseController<CustomerBusiness> {
 
   create(req: express.Request, res: express.Response): void {
     try {
-      let hero: ICustomerModel = <ICustomerModel>req.body;
-      let customerBusiness = new CustomerBusiness();
-      customerBusiness.create(hero, (error, result) => {
-        if (error) 
+      let hero: IOrderModel = <IOrderModel>req.body;
+      let orderBusiness = new OrderBusiness();
+      orderBusiness.create(hero, (error, result) => {
+        if (error) {
           res.send({ error: error });
-        else
+        } else {
           res.send({
             status: 'success',
             msg: '保存成功！'
           });
+        }
       });
     } catch (e) {
       res.send({
@@ -90,17 +113,18 @@ class CustomerController implements IBaseController<CustomerBusiness> {
 
   update(req: express.Request, res: express.Response): void {
     try {
-      let hero: ICustomerModel = <ICustomerModel>req.body;
+      let hero: IOrderModel = <IOrderModel>req.body;
       let _id: string = req.params._id;
-      let customerBusiness = new CustomerBusiness();
-      customerBusiness.update(_id, hero, (error, result) => {
-        if (error) 
+      let orderBusiness = new OrderBusiness();
+      orderBusiness.update(_id, hero, (error, result) => {
+        if (error) {
           res.send({ error: error });
-        else
+        } else {
           res.send({
             status: 'success',
             msg: '保存成功！'
           });
+        }
       });
     } catch (e) {
       res.send({
@@ -110,4 +134,4 @@ class CustomerController implements IBaseController<CustomerBusiness> {
     }
   }
 }
-export = CustomerController;
+export = OrderController;
