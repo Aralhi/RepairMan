@@ -20,7 +20,6 @@ import { CreateOrderComponent } from './create/create.order.component';
           component: OrderListComponent
         }, {
           path: 'create',
-          component: CreateOrderComponent,
           children: [{
             path: '',
             component: CreateOrderComponent

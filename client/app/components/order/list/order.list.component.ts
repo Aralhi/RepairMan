@@ -50,6 +50,6 @@ export class OrderListComponent implements OnInit{
   }
 
   edit(order: any) {
-    this.router.navigate(['../create', {id: order._id}], { relativeTo: this.activatedRoute});
+    this.router.navigate(['../create', order._id], { relativeTo: this.activatedRoute});
   }
 }

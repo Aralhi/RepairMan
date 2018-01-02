@@ -12,6 +12,7 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
           nzAllowClear
           [nzPlaceHolder]="'选择用户'"
           [(ngModel)]="customerObj.name"
+          (ngModelChange)="changeCustomer($event)"
           [nzShowSearch]="true">
           <nz-option
             *ngFor="let option of customers"
@@ -70,5 +71,9 @@ export class CustomerDetailComponent implements OnInit {
 
   selectCustomer(option: any) {
     this.customerObj = option;
+  }
+
+  changeCustomer(event: any) {
+    console.info(event);
   }
 }
