@@ -1,7 +1,3 @@
-/**
- * Created by Moiz.Kachwala on 15-06-2016.
- */
-
 import HeroModel = require("./../model/HeroModel");
 import IHeroModel = require("./../model/interfaces/HeroModel");
 import HeroSchema = require("./../dataAccess/schemas/HeroSchema");

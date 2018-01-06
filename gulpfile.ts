@@ -1,10 +1,3 @@
-/**
- * Created by Moiz.Kachwala on 08-06-2016.
- */
-
-
-"use strict";
-
 const gulp = require("gulp"),
     del = require("del"),
     tsc = require("gulp-typescript"),
@@ -73,40 +66,40 @@ gulp.task("compile", ["tslint"], () => {
  * Copy all resources that are not TypeScript files into build directory. e.g. index.html, css, images
  */
 gulp.task("clientResources", () => {
-    return gulp.src(["client/**/*", "!**/*.ts", "!client/*.json"])
-        .pipe(gulp.dest("dist/client"));
+    return gulp.src(["client/**/*", '!**/*.ts', '!client/*.json'])
+        .pipe(gulp.dest('dist/client'));
 });
 
 /**
  * Copy bin directory for www
  */
-gulp.task("serverResources", () => {
-    return gulp.src(["server/src/bin/**"])
-        .pipe(gulp.dest("dist/server/bin"));
+gulp.task('serverResources', () => {
+    return gulp.src(['server/src/bin/**'])
+        .pipe(gulp.dest('dist/server/bin'));
 });
 
 /**
  * Copy all required libraries into build directory.
  */
-gulp.task("libs", () => {
+gulp.task('libs', () => {
     return gulp.src([
         'core-js/client/**',
         'zone.js/dist/zone.js',
         'reflect-metadata/Reflect.js',
         'reflect-metadata/Reflect.js.map',
         'systemjs/dist/system.src.js'
-    ], { cwd: "node_modules/**" }) /* Glob required here. */
-        .pipe(gulp.dest("dist/client/libs"));
+    ], { cwd: 'node_modules/**' }) /* Glob required here. */
+        .pipe(gulp.dest('dist/client/libs'));
 });
 
 /**
  * Copy all required libraries into build directory.
  */
-gulp.task("css", () => {
+gulp.task('css', () => {
     return gulp.src([
         'bootstrap/dist/**/**'
-    ], { cwd: "node_modules/**" }) /* Glob required here. */
-        .pipe(gulp.dest("dist/client/css"));
+    ], { cwd: 'node_modules/**' }) /* Glob required here. */
+        .pipe(gulp.dest('dist/client/css'));
 });
 
 /**
@@ -133,7 +126,7 @@ gulp.task('start', function () {
  * 5. Copy the dependencies.
  */
 
-gulp.task("build", function (callback) {
+gulp.task('build', function (callback) {
     runSequence('clean', 'build:server', 'serverResources', callback);
 });
 
@@ -149,7 +142,7 @@ gulp.task('watch', function () {
     //     console.log('Resource file ' + e.path + ' has been changed. Updating.');
     // });
 
-    gulp.watch(["server/src/**/*.ts"], ['compile']).on('change', function (e) {
+    gulp.watch(['server/src/**/*.ts'], ['compile']).on('change', function (e) {
         console.log('TypeScript file ' + e.path + ' has been changed. Compiling.');
     });
 });
@@ -163,7 +156,7 @@ gulp.task('watch', function () {
  * 5. Copy the dependencies.
  */
 
-gulp.task("build", function (callback) {
+gulp.task('build', function (callback) {
     runSequence('clean', 'build:server', 'build:client', 'clientResources', 'serverResources', 'libs', 'css', callback);
 });
 

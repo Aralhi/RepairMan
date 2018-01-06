@@ -1,7 +1,3 @@
-/**
- * Created by Moiz.Kachwala on 15-06-2016.
- */
-
 import express = require("express");
 import HeroBusiness = require("./../app/business/HeroBusiness");
 import IBaseController = require("./BaseController");

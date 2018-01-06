@@ -1,11 +1,7 @@
-/**
- * Created by Moiz.Kachwala on 02-06-2016.
- */
-
 import {Component, Input, OnInit} from '@angular/core';
-import {Hero} from "../../models/hero";
+import {Hero} from '../../models/hero';
 import { ActivatedRoute, Params } from '@angular/router';
-import {HeroService} from "../../services/hero.service";
+import {HeroService} from '../../services/hero.service';
 
 @Component({
     selector: 'my-hero-detail',

@@ -1,6 +1,3 @@
-/**
- * Created by Moiz.Kachwala on 02-06-2016.
- */
 import {Component, OnInit} from '@angular/core';
 import {HeroService} from '../../services/hero.service';
 import {Hero} from '../../models/hero';

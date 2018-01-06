@@ -20,9 +20,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Aralhi/RepairMan.git"
+    "url": "git+https://github.com/Aralhi/WhaleShark.git"
   },
-  "author": "Stefanie",
+  "author": "Aralhi",
   "license": "MIT",
   "dependencies": {
     "@angular/animations": "^5.0.0",
@@ -98,7 +98,7 @@
     "cross-env": "^3.1.4"
   },
   "bugs": {
-    "url": "https://github.com/Aralhi/RepairMan/issues"
+    "url": "https://github.com/Aralhi/WhaleShark/issues"
   },
   "homepage": "http://localhost:3000/#/dashboard"
 }

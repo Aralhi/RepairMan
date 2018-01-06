@@ -1,8 +1,4 @@
 import { Observable } from 'rxjs/Observable';
-/**
- * Created by Moiz.Kachwala on 02-06-2016.
- */
-
 import {Injectable} from '@angular/core';
 
 import { Headers, Http, Response } from '@angular/http';
