@@ -1,3 +1,4 @@
+import {ShareModule} from './components/share/share.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -9,7 +10,8 @@ import { ApiService } from './services/api.service';
   imports: [
     BrowserModule,
     AppRouterModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ShareModule
   ],
   declarations: [
     AppComponent
