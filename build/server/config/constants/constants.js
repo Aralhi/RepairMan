@@ -1,0 +1,11 @@
+"use strict";
+var Constants = (function () {
+    function Constants() {
+    }
+    return Constants;
+}());
+Constants.DB_CONNECTION_STRING = process.env.NODE_ENV === 'production' ? process.env.dbURI : "mongodb://localhost:27017/quickStart";
+Object.seal(Constants);
+module.exports = Constants;
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbmZpZy9jb25zdGFudHMvY29uc3RhbnRzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQTtJQUFBO0lBRUEsQ0FBQztJQUFELGdCQUFDO0FBQUQsQ0FGQSxBQUVDO0FBRFUsOEJBQW9CLEdBQVcsT0FBTyxDQUFDLEdBQUcsQ0FBQyxRQUFRLEtBQUssWUFBWSxHQUFHLE9BQU8sQ0FBQyxHQUFHLENBQUMsS0FBSyxHQUFHLHNDQUFzQyxDQUFBO0FBRTVJLE1BQU0sQ0FBQyxJQUFJLENBQUMsU0FBUyxDQUFDLENBQUM7QUFDdkIsaUJBQVMsU0FBUyxDQUFDIiwiZmlsZSI6ImNvbmZpZy9jb25zdGFudHMvY29uc3RhbnRzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiY2xhc3MgQ29uc3RhbnRzIHtcbiAgICBzdGF0aWMgREJfQ09OTkVDVElPTl9TVFJJTkc6IHN0cmluZyA9IHByb2Nlc3MuZW52Lk5PREVfRU5WID09PSAncHJvZHVjdGlvbicgPyBwcm9jZXNzLmVudi5kYlVSSSA6IFwibW9uZ29kYjovL2xvY2FsaG9zdDoyNzAxNy9xdWlja1N0YXJ0XCJcbn1cbk9iamVjdC5zZWFsKENvbnN0YW50cyk7XG5leHBvcnQgPSBDb25zdGFudHM7Il19

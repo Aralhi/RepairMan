@@ -12,7 +12,7 @@ const gulp = require("gulp"),
  * Remove build directory.
  */
 gulp.task('clean', (cb) => {
-    return del(["dist"], cb);
+    return del(["build"], cb);
 });
 
 /**
@@ -25,7 +25,7 @@ gulp.task('build:server', function () {
         .pipe(tsProject());
     return tsResult.js
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('dist/server'));
+        .pipe(gulp.dest('build/server'));
 });
 
 gulp.task('build:client', function () {
@@ -35,7 +35,7 @@ gulp.task('build:client', function () {
         .pipe(tsProject());
     return tsResult.js
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('dist/client'));
+        .pipe(gulp.dest('build/client'));
 });
 
 /**
@@ -53,21 +53,21 @@ gulp.task('tslint', () => {
 /**
  * Compile TypeScript sources and create sourcemaps in build directory.
  */
-gulp.task("compile", ["tslint"], () => {
-    let tsResult = gulp.src("client/**/*.ts")
+gulp.task('compile', ['tslint'], () => {
+    let tsResult = gulp.src('client/**/*.ts')
         .pipe(sourcemaps.init())
         .pipe(tsProject());
     return tsResult.js
-        .pipe(sourcemaps.write("."))
-        .pipe(gulp.dest("dist/client"));
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest('build/client'));
 });
 
 /**
  * Copy all resources that are not TypeScript files into build directory. e.g. index.html, css, images
  */
-gulp.task("clientResources", () => {
-    return gulp.src(["client/**/*", '!**/*.ts', '!client/*.json'])
-        .pipe(gulp.dest('dist/client'));
+gulp.task('clientResources', () => {
+    return gulp.src(['client/**/*', '!**/*.ts', '!client/*.json'])
+        .pipe(gulp.dest('build/client'));
 });
 
 /**
@@ -75,7 +75,7 @@ gulp.task("clientResources", () => {
  */
 gulp.task('serverResources', () => {
     return gulp.src(['server/src/bin/**'])
-        .pipe(gulp.dest('dist/server/bin'));
+        .pipe(gulp.dest('build/server/bin'));
 });
 
 /**
@@ -84,12 +84,12 @@ gulp.task('serverResources', () => {
 gulp.task('libs', () => {
     return gulp.src([
         'core-js/client/**',
-        'zone.js/dist/zone.js',
+        'zone.js/build/zone.js',
         'reflect-metadata/Reflect.js',
         'reflect-metadata/Reflect.js.map',
-        'systemjs/dist/system.src.js'
+        'systemjs/build/system.src.js'
     ], { cwd: 'node_modules/**' }) /* Glob required here. */
-        .pipe(gulp.dest('dist/client/libs'));
+        .pipe(gulp.dest('build/client/libs'));
 });
 
 /**
@@ -97,9 +97,9 @@ gulp.task('libs', () => {
  */
 gulp.task('css', () => {
     return gulp.src([
-        'bootstrap/dist/**/**'
+        'bootstrap/build/**/**'
     ], { cwd: 'node_modules/**' }) /* Glob required here. */
-        .pipe(gulp.dest('dist/client/css'));
+        .pipe(gulp.dest('build/client/css'));
 });
 
 /**
@@ -107,7 +107,7 @@ gulp.task('css', () => {
  */
 gulp.task('start', function () {
     nodemon({
-        script: 'dist/server/bin/www'
+        script: 'build/server/bin/www'
         , ext: 'html js'
         , ignore: ['ignored.js']
         , tasks: ['tslint']
