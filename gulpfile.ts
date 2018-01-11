@@ -1,8 +1,8 @@
-const gulp = require("gulp"),
-    del = require("del"),
-    tsc = require("gulp-typescript"),
+const gulp = require('gulp'),
+    del = require('del'),
+    tsc = require('gulp-typescript'),
     sourcemaps = require('gulp-sourcemaps'),
-    tsProject = tsc.createProject("tsconfig.json"),
+    tsProject = tsc.createProject('tsconfig.json'),
     tslint = require('gulp-tslint'),
     concat = require('gulp-concat'),
     runSequence = require('run-sequence'),
@@ -12,7 +12,7 @@ const gulp = require("gulp"),
  * Remove build directory.
  */
 gulp.task('clean', (cb) => {
-    return del(["build"], cb);
+    return del(['build'], cb);
 });
 
 /**
@@ -25,7 +25,7 @@ gulp.task('build:server', function () {
         .pipe(tsProject());
     return tsResult.js
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('build/server'));
+        .pipe(gulp.dest(process.env.NODE_ENV === 'dev' ? 'build/server' : 'dist/server'));
 });
 
 gulp.task('build:client', function () {
@@ -42,9 +42,9 @@ gulp.task('build:client', function () {
  * Lint all custom TypeScript files.
  */
 gulp.task('tslint', () => {
-    return gulp.src("client/app/**/*.ts")
+    return gulp.src('client/app/**/*.ts')
         .pipe(tslint({
-			formatter: "prose"
+			formatter: 'prose'
 		}))
 		.pipe(tslint.report());
 });
@@ -75,7 +75,7 @@ gulp.task('clientResources', () => {
  */
 gulp.task('serverResources', () => {
     return gulp.src(['server/src/bin/**'])
-        .pipe(gulp.dest('build/server/bin'));
+        .pipe(gulp.dest(process.env.NODE_ENV === 'dev' ? 'build/server/bin' : 'dist/server/bin'));
 });
 
 /**
@@ -161,5 +161,8 @@ gulp.task('build', function (callback) {
 });
 
 gulp.task('server', function () {
+    runSequence('build:server', 'serverResources');
+});
+gulp.task('server:prod', function () {
     runSequence('build:server', 'serverResources');
 });

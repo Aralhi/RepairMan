@@ -8,7 +8,9 @@
     "build": "gulp build",
     "no_use": "concurrently --kill-others \"gulp watch\" \"node ./build/server/bin/www\"",
     "start": "rimraf build/client && cross-env NODE_ENV=dev webpack --progress --watch",
-    "build:server": "gulp server && node ./build/server/bin/www",
+    "build:prod": "rimraf dist/client && cross-env NODE_ENV=prod webpack",
+    "build:server": "NODE_ENV=dev gulp server && node ./build/server/bin/www",
+    "build:server:prod": "NODE_ENV=prod gulp server && node ./dist/server/bin/www",
     "mongod": "mongod --dbpath ~/Documents/mongo/db &"
   },
   "keywords": [

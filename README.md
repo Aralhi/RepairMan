@@ -1,6 +1,6 @@
 # WhaleShark
 
-RepairMan application based on NG-ZORRO and Angular
+RepairMan application based on Angular and NG-ZORRO
 
 ## Features
 
