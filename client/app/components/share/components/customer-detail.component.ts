@@ -1,3 +1,4 @@
+import { UtilService } from './../services/util.service';
 import { Component, Input } from '@angular/core';
 import { CustomerService } from '../../../services/customer.service';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
@@ -11,13 +12,13 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
           style="width: 100%;"
           nzAllowClear
           [nzPlaceHolder]="'选择用户'"
-          [(ngModel)]="customerObj.name"
+          [(ngModel)]="customerObj"
           (ngModelChange)="changeCustomer($event)"
           [nzShowSearch]="true">
           <nz-option
             *ngFor="let option of customers"
             [nzLabel]="option.name"
-            [nzValue]="option.name">
+            [nzValue]="option">
           </nz-option>
         </nz-select>
         <nz-input *ngIf="isCreate" [(ngModel)]="customerObj.name"></nz-input>
@@ -48,18 +49,12 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
   `
 })
 export class CustomerDetailComponent implements OnInit {
-  @Input() customerObj: any = {
-    name: '',
-    carNumber: '',
-    phone: '',
-    carType: '',
-    company: '',
-    remark: ''
-  };
+  @Input() customerObj: any;
   customers: any = [];
   @Input() isCreate: boolean = false;
 
-  constructor(private customerService: CustomerService) {}
+  constructor(private customerService: CustomerService,
+    private utilService: UtilService) {}
 
   ngOnInit() {
     this.customerService.getCustomers().subscribe(resp => {
@@ -69,11 +64,11 @@ export class CustomerDetailComponent implements OnInit {
     });
   }
 
-  selectCustomer(option: any) {
-    this.customerObj = option;
-  }
-
-  changeCustomer(event: any) {
-    console.info(event);
+  changeCustomer(customer: any) {
+    if (!customer) {
+      this.customerObj = this.utilService.getCustomerModel();
+      return;
+    }
+    this.customerObj = customer;
   }
 }

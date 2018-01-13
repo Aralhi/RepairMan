@@ -104,3 +104,6 @@ nav a.router-link-active {
     height: 30px;
     font-size: 14px;
 }
+.row{
+    margin-top: 10px;
+}

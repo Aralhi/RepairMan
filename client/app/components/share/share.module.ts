@@ -1,3 +1,4 @@
+import { UtilService } from './services/util.service';
 import {OrderService} from '../../services/order.service';
 import { CustomerService } from './../../services/customer.service';
 import { NgModule } from '@angular/core';
@@ -30,7 +31,8 @@ import { WsOptionComponent } from './components/ws-option.component';
   providers: [
     HeroService,
     CustomerService,
-    OrderService
+    OrderService,
+    UtilService
   ]
 })
 export class ShareModule {}

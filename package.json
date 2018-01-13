@@ -51,7 +51,8 @@
     "rxjs": "^5.5.2",
     "systemjs": "0.19.39",
     "zone.js": "^0.8.4",
-    "mongoose-timestamp": "^0.5.0"
+    "mongoose-timestamp": "^0.5.0",
+    "date-fns": "1.29.0"
   },
   "devDependencies": {
     "@types/angular": "^1.5.16",

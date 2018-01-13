@@ -21,3 +21,11 @@
 .table-content .item{
   height: 35px;
 }
+.customer-checkbox{
+  position: absolute;
+  top: 6px;
+  left: calc(50% - 30px);
+}
+.customer-checkbox span{
+  color: #5ab0c1;
+}

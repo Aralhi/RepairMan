@@ -5,7 +5,12 @@
 <!--车辆信息-->
 <div class="common-card">
   <span class="card-label-pos">车辆信息</span>
-  <customer-detail [isCreate]="false" [customerObj]="order.customer"></customer-detail>
+  <div class="customer-checkbox">
+    <label nz-checkbox [(ngModel)]="isCreateCustomer" (ngModelChange)="createCustomer($event)">
+      <span>创建并保存新用户</span>
+    </label>
+  </div>
+  <customer-detail *ngIf="order.customer" [isCreate]="isCreateCustomer" [customerObj]="order.customer"></customer-detail>
 </div>
 <!--工单信息-->
 <div class="common-card">
@@ -25,7 +30,7 @@
         </nz-option>
       </nz-select>
     </div>
-    <span class="common-label">派工日期:</span>
+    <span class="common-label" style="width: 6%;">派工日期:</span>
     <div class="col-md-3">
       <nz-datepicker style="width: 50%;" [(ngModel)]="_date" [nzPlaceHolder]="'Select date'"></nz-datepicker>
       <nz-timepicker style="width: 50%;" [(ngModel)]="_date"></nz-timepicker>

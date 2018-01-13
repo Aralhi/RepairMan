@@ -12,10 +12,15 @@ export class OrderDetailComponenet implements OnInit {
       value: '保养'
     }
   ];
+  isCreateCustomer: boolean = false;
   @Input() order: any = {};
 
   constructor() {}
   ngOnInit() {
-    
+    console.info(this.order.customer);
+  }
+
+  createCustomer(event: any) {
+    // this.order.isCreateCustomer = event;
   }
 }
