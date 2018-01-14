@@ -10,7 +10,7 @@
       <span>创建并保存新用户</span>
     </label>
   </div>
-  <customer-detail *ngIf="order.customer" [isCreate]="isCreateCustomer" [customerObj]="order.customer"></customer-detail>
+  <customer-detail *ngIf="order.customer" [isCreate]="isCreateCustomer" [order]="order" [customerObj]="order.customer"></customer-detail>
 </div>
 <!--工单信息-->
 <div class="common-card">

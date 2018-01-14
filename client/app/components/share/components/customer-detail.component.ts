@@ -50,6 +50,7 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 })
 export class CustomerDetailComponent implements OnInit {
   @Input() customerObj: any;
+  @Input() order: any;
   customers: any = [];
   @Input() isCreate: boolean = false;
 
@@ -70,5 +71,6 @@ export class CustomerDetailComponent implements OnInit {
       return;
     }
     this.customerObj = customer;
+    this.order.customer = customer;
   }
 }
