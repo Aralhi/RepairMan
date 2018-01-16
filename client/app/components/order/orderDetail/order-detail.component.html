@@ -44,7 +44,7 @@
       <div class="col-md-2">项目编码</div>
       <div class="col-md-2">施工人</div>
       <div class="col-md-2">工时费</div>
-      <div class="col-md-2">计量单位</div>
+      <div class="col-md-2">单位</div>
     </div>
     <div class="table-content">
       <div class="item" *ngFor="let item of order.repairSubjects;let index = index;">
@@ -52,7 +52,9 @@
         <div class="col-md-2"><nz-input [(ngModel)]="item.name"></nz-input></div>
         <div class="col-md-2"><nz-input [(ngModel)]="item.code"></nz-input></div>
         <div class="col-md-2"><nz-input [(ngModel)]="item.staff"></nz-input></div>
-        <div class="col-md-2"><nz-input [(ngModel)]="item.cost"></nz-input></div>
+        <div class="col-md-2">
+          <nz-input-number style="width:100%" [(ngModel)]="item.cost" [nzMin]="0" [nzStep]="5"></nz-input-number>
+        </div>
         <div class="col-md-2"><nz-input [(ngModel)]="item.costUnit" [nzDisabled]="true"></nz-input></div>
       </div>
     </div>
@@ -66,7 +68,7 @@
       <div class="col-md-2">商品规格</div>
       <div class="col-md-2">数量</div>
       <div class="col-md-2">出库金额</div>
-      <div class="col-md-1">计量单位</div>
+      <div class="col-md-1">单位</div>
     </div>
     <div class="table-content">
       <div class="item" *ngFor="let item of order.repairMaterials;let index = index;">
@@ -74,8 +76,12 @@
         <div class="col-md-2"><nz-input [(ngModel)]="item.name"></nz-input></div>
         <div class="col-md-2"><nz-input [(ngModel)]="item.code"></nz-input></div>
         <div class="col-md-2"><nz-input [(ngModel)]="item.spec"></nz-input></div>
-        <div class="col-md-2"><nz-input [(ngModel)]="item.count"></nz-input></div>
-        <div class="col-md-2"><nz-input [(ngModel)]="item.outPrice"></nz-input></div>
+        <div class="col-md-2">
+          <nz-input-number style="width:100%" [(ngModel)]="item.count" [nzMin]="0" [nzStep]="5"></nz-input-number>
+        </div>
+        <div class="col-md-2">
+          <nz-input-number style="width:100%" [(ngModel)]="item.outPrice" [nzMin]="0" [nzStep]="5"></nz-input-number>
+        </div>
         <div class="col-md-1"><nz-input [(ngModel)]="item.unit" [nzDisabled]="true"></nz-input></div>
       </div>
     </div>

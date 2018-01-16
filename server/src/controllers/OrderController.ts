@@ -91,9 +91,9 @@ class OrderController implements IBaseController<OrderBusiness> {
 
   create(req: express.Request, res: express.Response): void {
     try {
-      let hero: IOrderModel = <IOrderModel>req.body;
+      let order: IOrderModel = <IOrderModel>req.body;
       let orderBusiness = new OrderBusiness();
-      orderBusiness.create(hero, (error, result) => {
+      orderBusiness.create(order, (error, result) => {
         if (error) {
           res.send({ error: error });
         } else {

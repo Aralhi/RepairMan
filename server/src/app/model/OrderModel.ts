@@ -11,6 +11,9 @@ interface OrderModel extends mongoose.Document {
     carType: string;
     company: string;
     remark: string;
+    createdAt: Date;
+    updatedAt: Date;
+    _id: string;
   };
   repairSubjects: [
     {

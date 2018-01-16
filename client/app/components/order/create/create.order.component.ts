@@ -71,7 +71,7 @@ export class CreateOrderComponent implements OnInit {
   }
 
   add() {
-    if (this.order.isCreateCustomer) {
+    if (this.order.isCreateCustomer && !this.order.customer._id) {
       // 保存用户
       this.customerService.save(this.order.customer).subscribe(res => {
         if (res.status === 'success') {

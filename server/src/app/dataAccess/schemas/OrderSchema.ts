@@ -18,7 +18,10 @@ class OrderSchema {
         phone: { type: String, required: false },
         carType: { type: String, required: false },
         company: { type: String, required: false },
-        remark: { type: String, required: false }
+        remark: { type: String, required: false },
+        createdAt: { type: Date, required: false },
+        updatedAt: { type: Date, required: false },
+        _id: { type: String, required: false }
       },
       repairSubjects: [
         {

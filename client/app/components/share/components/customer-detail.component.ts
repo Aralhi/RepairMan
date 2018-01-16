@@ -1,7 +1,7 @@
 import { UtilService } from './../services/util.service';
 import { Component, Input } from '@angular/core';
 import { CustomerService } from '../../../services/customer.service';
-import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { OnInit } from '@angular/core';
 @Component({
   selector: 'customer-detail',
   template: `
@@ -58,6 +58,7 @@ export class CustomerDetailComponent implements OnInit {
     private utilService: UtilService) {}
 
   ngOnInit() {
+    console.log(this.customerObj);
     this.customerService.getCustomers().subscribe(resp => {
       if (resp.status === 'success') {
         this.customers = resp.result;

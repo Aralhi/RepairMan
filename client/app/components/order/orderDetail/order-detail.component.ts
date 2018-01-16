@@ -17,10 +17,9 @@ export class OrderDetailComponenet implements OnInit {
 
   constructor() {}
   ngOnInit() {
-    console.info(this.order.customer);
   }
 
   createCustomer(event: any) {
-    // this.order.isCreateCustomer = event;
+    this.order.isCreateCustomer = event;
   }
 }
