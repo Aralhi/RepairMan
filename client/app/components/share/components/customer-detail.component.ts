@@ -58,10 +58,10 @@ export class CustomerDetailComponent implements OnInit {
     private utilService: UtilService) {}
 
   ngOnInit() {
-    console.log(this.customerObj);
     this.customerService.getCustomers().subscribe(resp => {
       if (resp.status === 'success') {
         this.customers = resp.result;
+        this.customerObj = !this.customerObj.name ? this.customerObj : this.customers.find(item => item.name === this.customerObj.name);
       }
     });
   }
