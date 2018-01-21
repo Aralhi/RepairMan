@@ -1,3 +1,4 @@
+import {SearchComponent} from './components/search.component';
 import { UtilService } from './services/util.service';
 import {OrderService} from '../../services/order.service';
 import { CustomerService } from './../../services/customer.service';
@@ -22,11 +23,13 @@ import { WsOptionComponent } from './components/ws-option.component';
     FormsModule,
     NgZorroAntdModule,
     CustomerDetailComponent,
-    WsOptionComponent
+    WsOptionComponent,
+    SearchComponent
   ],
   declarations: [
     CustomerDetailComponent,
-    WsOptionComponent
+    WsOptionComponent,
+    SearchComponent
   ],
   providers: [
     HeroService,

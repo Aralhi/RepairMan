@@ -47,8 +47,11 @@ export class CreateOrderComponent implements OnInit {
       no: format(new Date(), 'YYYY-MM-DD HH:mm:ss'),
       subject: '',
       customer: this.utilService.getCustomerModel(),
+      status: 'init',
+      progress: 0,
       repairSubjects: [
         {
+          id: 0,
           name: '',
           code: '',
           staff: '',
@@ -56,8 +59,12 @@ export class CreateOrderComponent implements OnInit {
           costUnit: '元'
         }
       ],
+      subjectsCost: 0,
+      materialsCost: 0,
+      orderCost: 0,
       repairMaterials: [
         {
+          id: 0,
           name: '',
           code: '',
           spec: '',
@@ -71,7 +78,7 @@ export class CreateOrderComponent implements OnInit {
   }
 
   add() {
-    if (this.order.isCreateCustomer && !this.order.customer._id) {
+    if (this.order.isCreateCustomer) {
       // 保存用户
       this.customerService.save(this.order.customer).subscribe(res => {
         if (res.status === 'success') {

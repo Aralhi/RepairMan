@@ -1,5 +1,6 @@
-import { CustomerService } from './../../../services/customer.service';
+import { Event } from '@angular/router/src/events';
 import { Component, OnInit, Input } from '@angular/core';
+import { Customer } from '../../../models/customer';
 @Component({
   selector: 'order-detail',
   templateUrl: './order-detail.component.html',
@@ -21,5 +22,59 @@ export class OrderDetailComponenet implements OnInit {
 
   createCustomer(event: any) {
     this.order.isCreateCustomer = event;
+  }
+
+  customerChange(event: Customer) {
+    this.order.customer = event;
+  }
+
+  costChange() {
+    let cost = 0;
+    this.order.repairSubjects.forEach(item => {
+      cost += item.cost;
+    });
+    this.order.subjectsCost = cost;
+    this.order.orderCost = this.order.materialsCost + this.order.subjectsCost;
+  }
+
+  outPriceChange() {
+    let cost = 0;
+    this.order.repairMaterials.forEach(item => {
+      cost += item.outPrice;
+    });
+    this.order.materialsCost = cost;
+    this.order.orderCost = this.order.materialsCost + this.order.subjectsCost;
+  }
+
+  createSubject(index) {
+    this.order.repairSubjects.push({
+      id: index,
+      name: '',
+      code: '',
+      staff: '',
+      cost: 0,
+      costUnit: '元'
+    });
+  }
+
+  createMaterial(index) {
+    this.order.repairMaterials.push({
+      id: index,
+      name: '',
+      code: '',
+      spec: '',
+      count: 0,
+      costUnit: '元',
+      outPrice: 0,
+      unit: ''
+    });
+  }
+
+  re() {
+    this.order.progress -= 1;
+  }
+
+  next() {
+    this.order.progress += 1;
   }
 }

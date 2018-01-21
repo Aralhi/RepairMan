@@ -1,8 +1,24 @@
 <div class="container page-container">
-  <button nz-button [nzType]="'primary'" routerLink="../create">
-    <span>创建工单</span>
+  <button nz-button [nzType]="'primary'" routerLink="../create" style="margin-bottom:16px;">
+    <i class="anticon anticon-plus"></i>
+    <span>新建</span>
   </button>
-  <nz-table #nzTable [nzDataSource]="orders" [nzPageSize]="pageSize">
+  <ws-search (searchFn)="search($event)"></ws-search>
+  <nz-radio-group [(ngModel)]="status" style="float:right;">
+    <label nz-radio-button [nzValue]="'all'">
+      <span>全部</span>
+    </label>
+    <label nz-radio-button [nzValue]="0">
+      <span>新建</span>
+    </label>
+    <label nz-radio-button [nzValue]="1">
+      <span>维修中</span>
+    </label>
+    <label nz-radio-button [nzValue]="'2'">
+      <span>完成</span>
+    </label>
+  </nz-radio-group>
+  <nz-table #nzTable [nzDataSource]="orders" [nzPageSize]="pageSize" [nzShowTotal]="true">
     <thead nz-thead>
       <tr>
         <th nz-th><span>单号</span></th>

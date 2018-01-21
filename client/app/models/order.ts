@@ -3,6 +3,8 @@ export class Order {
   name: string;
   no: string;
   subject: string;
+  status: string;
+  progress: number;
   customer: {
     name: string
     carNumber: string
@@ -11,8 +13,12 @@ export class Order {
     company: string
     remark: string
   };
+  subjectsCost: number;
+  materialsCost: number;
+  orderCost: number;
   repairSubjects: [
     {
+      id: number
       name: string
       code: string
       staff: string
@@ -22,6 +28,7 @@ export class Order {
   ];
   repairMaterials: [
     {
+      id: number
       name: string
       code: string
       spec: string

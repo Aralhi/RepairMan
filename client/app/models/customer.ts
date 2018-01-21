@@ -1,4 +1,4 @@
-export class Customer {
+export interface Customer {
   _id: string;
   name: string;
   carNumber: string;

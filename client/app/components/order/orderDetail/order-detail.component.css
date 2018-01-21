@@ -29,3 +29,13 @@
 .customer-checkbox span{
   color: #5ab0c1;
 }
+.steps-action{
+  margin-top: 16px;
+  text-align: center;
+}
+:host /deep/ .ant-steps.ant-steps-small .ant-steps-head-inner > .ant-steps-icon.anticon{
+  top: 2px !important;
+}
+:host /deep/ .ant-steps .ant-steps-item.ant-steps-status-process .ant-steps-head-inner > .ant-steps-icon{
+  top: 2px !important;
+}

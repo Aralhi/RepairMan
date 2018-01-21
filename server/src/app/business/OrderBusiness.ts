@@ -32,9 +32,11 @@ class OrderBusiness implements BaseBusiness<IOrderModel> {
     this._orderRepository.delete(_id, callback);
   }
 
-  find (searchText: string, callback: (error: any, result: any) => void) {
+  find (searchText: string, status: string, callback: (error: any, result: any) => void) {
     const reg = new RegExp(searchText, 'i');
-    this._orderRepository.find({$or: [{'name': reg}, {'no': reg}, {'carNumber': reg}, {'subject': reg}]}, callback);
+    this._orderRepository.find({$or: [{'name': reg}, {'customer.name': reg}, {'no': reg}, {'customer.carNumber': reg},
+      {'customer.carType': reg}, {'subject': reg}]
+    }, callback);
   }
 }
 Object.seal(OrderBusiness);

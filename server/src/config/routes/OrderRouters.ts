@@ -10,12 +10,13 @@ class OrderRoutes {
 
   get routes() {
     let controller = this._orderController;
-    router.get('/orders', controller.retrieve);
     router.post('/orders', controller.create);
     router.put('/orders/:_id', controller.update);
     router.delete('/orders/:_id', controller.delete);
+    router.get('/orders', controller.retrieve);
     router.get('/orders/:_id', controller.findById);
-    router.get('/orders/:searchText', controller.find);
+    router.get('/orders/search/:status/', controller.find);
+    router.get('/orders/search/:status/:searchText', controller.find);
     return router;
   }
 }

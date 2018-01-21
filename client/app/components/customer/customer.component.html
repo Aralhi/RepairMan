@@ -3,11 +3,7 @@
     <button nz-button [nzType]="'primary'" (click)="showCreate = !showCreate">
       <span>新建客户</span>
     </button>
-    <div class="search-div">
-      <nz-input class="search-input" [(ngModel)]="searchText" [nzPlaceHolder]="'输入关键字搜索'" (keyup)="search()"></nz-input>
-      <!-- <span class="search-icon glyphicon glyphicon-remove" (click)="search()"></span> -->
-      <span class="search-icon glyphicon glyphicon-search" (click)="search()"></span>
-    </div>
+    <ws-search (searchFn)="search($event)"></ws-search>
   </div>
   <!--创建客户-->
   <div class="customer-detail" *ngIf="showCreate">
@@ -18,7 +14,7 @@
       </button>
     </div>
   </div>
-  <nz-table #nzTable [nzDataSource]="customers" [nzPageSize]="pageSize">
+  <nz-table #nzTable [nzDataSource]="customers" [nzPageSize]="pageSize" [nzShowTotal]="true">
       <thead nz-thead>
         <tr>
           <th nz-th><span>姓名</span></th>

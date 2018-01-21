@@ -10,7 +10,8 @@
       <span>创建并保存新用户</span>
     </label>
   </div>
-  <customer-detail *ngIf="order.customer" [isCreate]="isCreateCustomer" [order]="order" [customerObj]="order.customer"></customer-detail>
+  <customer-detail *ngIf="order.customer" [isCreate]="isCreateCustomer" [order]="order" 
+    (customerChange)="customerChange($event)" [customerObj]="order.customer"></customer-detail>
 </div>
 <!--工单信息-->
 <div class="common-card">
@@ -39,7 +40,7 @@
   <!--维修项目-->
   <div class="row">
     <div class="common-table-head">
-      <div class="col-md-1">序号</div>
+      <div class="col-md-1" style="width: 6%;">序号</div>
       <div class="col-md-2">项目名称</div>
       <div class="col-md-2">项目编码</div>
       <div class="col-md-2">施工人</div>
@@ -48,21 +49,26 @@
     </div>
     <div class="table-content">
       <div class="item" *ngFor="let item of order.repairSubjects;let index = index;">
-        <div class="col-md-1" style="height: 30px;line-height: 30px;">{{index+1}}</div>
+        <div class="col-md-1" style="height: 30px;line-height: 30px;width: 6%;">{{index+1}}</div>
         <div class="col-md-2"><nz-input [(ngModel)]="item.name"></nz-input></div>
         <div class="col-md-2"><nz-input [(ngModel)]="item.code"></nz-input></div>
         <div class="col-md-2"><nz-input [(ngModel)]="item.staff"></nz-input></div>
         <div class="col-md-2">
-          <nz-input-number style="width:100%" [(ngModel)]="item.cost" [nzMin]="0" [nzStep]="5"></nz-input-number>
+          <nz-input-number style="width:100%" [(ngModel)]="item.cost" (ngModelChange)="costChange()" (nzBlur)="costChange()" [nzMin]="0" [nzStep]="5"></nz-input-number>
         </div>
-        <div class="col-md-2"><nz-input [(ngModel)]="item.costUnit" [nzDisabled]="true"></nz-input></div>
+        <div class="col-md-2"><nz-input [ngModel]="item.costUnit" [nzDisabled]="true"></nz-input></div>
+        <i class="icon-common anticon anticon-plus" (click)="createSubject(index+1)"></i>
+      </div>
+      <div class="display-center" style="font-size: 12px;">
+        <span>小计：</span>
+        <span>{{order.subjectsCost}}</span>
       </div>
     </div>
   </div>
   <!--使用物料-->
   <div class="row">
     <div class="common-table-head">
-      <div class="col-md-1">序号</div>
+      <div class="col-md-1" style="width: 6%;">序号</div>
       <div class="col-md-2">商品名称</div>
       <div class="col-md-2">商品编码</div>
       <div class="col-md-2">商品规格</div>
@@ -71,8 +77,8 @@
       <div class="col-md-1">单位</div>
     </div>
     <div class="table-content">
-      <div class="item" *ngFor="let item of order.repairMaterials;let index = index;">
-        <div class="col-md-1" style="height: 30px;line-height: 30px;">{{index+1}}</div>
+      <div class="item" *ngFor="let item of order.repairMaterials;trackBy:item?.id; let index = index;">
+        <div class="col-md-1" style="height: 30px;line-height: 30px;width: 6%;">{{index+1}}</div>
         <div class="col-md-2"><nz-input [(ngModel)]="item.name"></nz-input></div>
         <div class="col-md-2"><nz-input [(ngModel)]="item.code"></nz-input></div>
         <div class="col-md-2"><nz-input [(ngModel)]="item.spec"></nz-input></div>
@@ -80,10 +86,35 @@
           <nz-input-number style="width:100%" [(ngModel)]="item.count" [nzMin]="0" [nzStep]="5"></nz-input-number>
         </div>
         <div class="col-md-2">
-          <nz-input-number style="width:100%" [(ngModel)]="item.outPrice" [nzMin]="0" [nzStep]="5"></nz-input-number>
+          <nz-input-number style="width:100%" [(ngModel)]="item.outPrice" (ngModelChange)="outPriceChange()" (nzBlur)="outPriceChange()" [nzMin]="0" [nzStep]="5"></nz-input-number>
         </div>
-        <div class="col-md-1"><nz-input [(ngModel)]="item.unit" [nzDisabled]="true"></nz-input></div>
+        <div class="col-md-1"><nz-input [ngModel]="item.costUnit" [nzDisabled]="true"></nz-input></div>
+        <i class="icon-common anticon anticon-plus" (click)="createMaterial(index+1)"></i>
+      </div>
+      <div class="display-center" style="font-size: 12px;">
+        <span>小计：</span>
+        <span>{{order.materialsCost}}</span>
       </div>
     </div>
+  </div>
+  <div class="row display-center" style="border-top: 1px solid #ccc;padding-top: 5px;margin-bottom: 20px;">
+    <span>合计：</span>
+    <span>{{order.orderCost}}</span>
+  </div>
+  <nz-steps [(nzCurrent)]="order.progress" [nzSize]="'small'">
+    <nz-step [nzTitle]="'新建'"></nz-step>
+    <nz-step [nzTitle]="'维修中'"></nz-step>
+    <nz-step [nzTitle]="'完成'"></nz-step>
+  </nz-steps>
+  <div class="steps-action">
+    <button nz-button [nzType]="'default'" (click)="pre()" *ngIf="order.progress > 0">
+      <span>Previous</span>
+    </button>
+    <button nz-button [nzType]="'default'" (click)="next()" *ngIf="order.progress < 2">
+      <span>Next</span>
+    </button>
+    <button nz-button [nzType]="'primary'"*ngIf="order.progress === 2">
+      <span>Done</span>
+    </button>
   </div>
 </div>

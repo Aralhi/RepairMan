@@ -4,6 +4,8 @@ interface OrderModel extends mongoose.Document {
   name: string;
   no: string;
   subject: string;
+  status: string;
+  progress: number;
   customer: {
     name: string;
     carNumber: string;
@@ -12,8 +14,12 @@ interface OrderModel extends mongoose.Document {
     company: string;
     remark: string;
   };
+  subjectsCost: number;
+  materialsCost: number;
+  orderCost: number;
   repairSubjects: [
     {
+      id: number;
       name: string;
       code: string;
       staff: string;
@@ -23,6 +29,7 @@ interface OrderModel extends mongoose.Document {
   ];
   repairMaterials: [
     {
+      id: number;
       name: string;
       code: string;
       spec: string;

@@ -10,7 +10,6 @@ import { cloneDeepWith } from 'lodash';
 export class CustomerComponent implements OnInit{
   customers: any = [];
   pageSize: number = 10;
-  searchText: string = '';
   showCreate: boolean = false;
   newCustomer: any = {
     name: '',
@@ -88,8 +87,8 @@ export class CustomerComponent implements OnInit{
     this.isEditCustomer = true;
   }
 
-  search() {
-    this.customerService.search(this.searchText).subscribe(res => {
+  search(searchText: string) {
+    this.customerService.search(searchText).subscribe(res => {
       if (res.status === 'success') {
         this.customers = res.result;
       }

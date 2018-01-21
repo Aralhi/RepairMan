@@ -1,6 +1,5 @@
 import DataAccess = require('../DataAccess');
 import IOrderModel = require('./../../model/OrderModel');
-import { Number } from 'core-js/library/web/timers';
 let timestamps = require('mongoose-timestamp');
 
 let mongoose = DataAccess.mongooseInstance;
@@ -12,6 +11,8 @@ class OrderSchema {
       name: { type: String, required: true },
       no: { type: String, required: true },
       subject: { type: String, required: false },
+      status: { type: String, required: true },
+      progress: { type: Number, required: false },
       customer: {
         name: { type: String, required: true },
         carNumber: { type: String, required: false },
@@ -20,23 +21,28 @@ class OrderSchema {
         company: { type: String, required: false },
         remark: { type: String, required: false }
       },
+      subjectsCost: { type: Number, required: false },
+      materialsCost: { type: Number, required: false },
+      orderCost: { type: Number, required: false },
       repairSubjects: [
         {
+          id: { type: Number, required: false },
           name: { type: String, required: false },
           code: { type: String, required: false },
           staff: { type: String, required: false },
-          cost: { type: String, required: false },
+          cost: { type: Number, required: false },
           costUnit: { type: String, required: false }
         }
       ],
       repairMaterials: [
         {
+          id: { type: Number, required: false },
           name: { type: String, required: false },
           code: { type: String, required: false },
           spec: { type: String, required: false },
-          count: { type: String, required: false },
+          count: { type: Number, required: false },
           costUnit: { type: String, required: false },
-          outPrice: { type: String, required: false },
+          outPrice: { type: Number, required: false },
           unit: { type: String, required: false }
         }
       ]

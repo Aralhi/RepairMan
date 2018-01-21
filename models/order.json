@@ -3,6 +3,8 @@
     "name": "string",
     "no": "string",
     "subject": "string",
+    "status": "init",
+    "progress": 0,
     "customer": {
       "name": "张经理",
       "carNumber": "粤B12345",
@@ -11,8 +13,12 @@
       "company": "腾讯",
       "remark": ""
     },
+    "subjectsCost": 0,
+    "materialsCost": 0,
+    "orderCost": 0,
     "repairSubjects": [
       {
+        "id": 0,
         "name": "string",
         "code": "string",
         "staff": "string",
@@ -22,6 +28,7 @@
     ],
     "repairMaterials": [
       {
+        "id": 0,
         "name": "string",
         "code": "string",
         "spec": "string",

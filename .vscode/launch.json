@@ -8,7 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceRoot}/dist/server/bin/www",
+      "program": "${workspaceRoot}/build/server/bin/www",
       "cwd": "${workspaceRoot}",
       "outFiles": [
         "${workspaceFolder}/build/app/**/*.js"

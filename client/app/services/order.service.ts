@@ -22,6 +22,14 @@ export class OrderService {
       .catch(this.apiService.handleError);
   }
 
+  search(search: any): Observable<any> {
+    let url = `${this.orderUrl}/search/${search.status}/${search.searchText}`;
+    return this.http
+      .get(url)
+      .map(res => res.json())
+      .catch(this.apiService.handleError);
+  }
+
   save(order: Order): Observable<any> {
     let headers = new Headers({
       'Content-type': 'application/json'

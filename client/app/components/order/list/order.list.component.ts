@@ -11,6 +11,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class OrderListComponent implements OnInit{
   orders: any = [];
   pageSize: number = 10;
+  status: string = 'all';
+
   constructor(private orderService: OrderService,
               private _notification: NzNotificationService,
               private confirmServ: NzModalService,
@@ -51,5 +53,16 @@ export class OrderListComponent implements OnInit{
 
   edit(order: any) {
     this.router.navigate(['../create', order._id], { relativeTo: this.activatedRoute});
+  }
+
+  search(searchText: string) {
+    this.orderService.search({
+      searchText: searchText,
+      status: this.status
+    }).subscribe(res => {
+      if (res.status === 'success') {
+        this.orders = res.result;
+      }
+    });
   }
 }
