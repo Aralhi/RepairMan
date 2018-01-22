@@ -47,7 +47,7 @@ export class CreateOrderComponent implements OnInit {
       no: format(new Date(), 'YYYY-MM-DD HH:mm:ss'),
       subject: '',
       customer: this.utilService.getCustomerModel(),
-      status: 'init',
+      status: '新建',
       progress: 0,
       repairSubjects: [
         {

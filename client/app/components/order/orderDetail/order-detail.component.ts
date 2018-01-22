@@ -70,11 +70,27 @@ export class OrderDetailComponenet implements OnInit {
     });
   }
 
-  re() {
+  pre() {
     this.order.progress -= 1;
+    switch (this.order.progress) {
+      case 1:
+        this.order.status = '进行中';
+        break;
+      case 0:
+        this.order.status = '新建';
+        break;
+    }
   }
 
   next() {
     this.order.progress += 1;
+    switch (this.order.progress) {
+      case 1:
+        this.order.status = '进行中';
+        break;
+      case 2:
+        this.order.status = '完成';
+        break;
+    }
   }
 }

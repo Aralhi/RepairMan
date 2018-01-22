@@ -1,4 +1,5 @@
-import { Component, Output, Input, EventEmitter } from '@angular/core';
+import { Component, Output, Input, EventEmitter, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'ws-search',
@@ -27,25 +28,50 @@ import { Component, Output, Input, EventEmitter } from '@angular/core';
       right: 23px;
     }
     `
+  ],
+  providers    : [
+    {
+      provide    : NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => SearchComponent)
+    }
   ]
 })
-export class SearchComponent {
+export class SearchComponent implements ControlValueAccessor{
   @Input() isKeyUpSearch: boolean = true;
   @Output() searchFn: EventEmitter<string> = new EventEmitter();
-  searchText: string = '';
+  _searchText: string = '';
+  onChange: any = Function.prototype;
+  onTouched: any = Function.prototype;
+
+  @Input()
+  get nzChecked(): string {
+    return this._searchText;
+  }
+
+  writeValue(value: any): void {
+    this._searchText = value;
+  }
+
+  registerOnChange(fn: (_: any) => {}): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => {}): void {
+    this.onTouched = fn;
+  }
 
   keyupSearch() {
     if (this.isKeyUpSearch) {
-      this.searchFn.emit(this.searchText);
+      this.searchFn.emit(this._searchText);
     }
   }
 
   search() {
-    this.searchFn.emit(this.searchText);
+    this.searchFn.emit(this._searchText);
   }
 
   removeSearch() {
-    this.searchText = '';
-    this.searchFn.emit(this.searchText);
+    this._searchText = '';
+    this.searchFn.emit(this._searchText);
   }
 }

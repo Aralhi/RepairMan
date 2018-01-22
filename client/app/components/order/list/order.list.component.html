@@ -3,18 +3,18 @@
     <i class="anticon anticon-plus"></i>
     <span>新建</span>
   </button>
-  <ws-search (searchFn)="search($event)"></ws-search>
+  <ws-search [(ngModel)]="searchText" (searchFn)="search($event)"></ws-search>
   <nz-radio-group [(ngModel)]="status" style="float:right;">
-    <label nz-radio-button [nzValue]="'all'">
+    <label nz-radio-button [nzValue]="'all'" (click)="query()">
       <span>全部</span>
     </label>
-    <label nz-radio-button [nzValue]="0">
+    <label nz-radio-button [nzValue]="0" (click)="query()">
       <span>新建</span>
     </label>
-    <label nz-radio-button [nzValue]="1">
+    <label nz-radio-button [nzValue]="1" (click)="query()">
       <span>维修中</span>
     </label>
-    <label nz-radio-button [nzValue]="'2'">
+    <label nz-radio-button [nzValue]="'2'" (click)="query()">
       <span>完成</span>
     </label>
   </nz-radio-group>
@@ -23,6 +23,7 @@
       <tr>
         <th nz-th><span>单号</span></th>
         <th nz-th><span>名称</span></th>
+        <th nz-th><span>进度</span></th>
         <th nz-th><span>类型</span></th>
         <th nz-th><span>客户</span></th>
         <th nz-th><span>车型</span></th>
@@ -34,6 +35,7 @@
       <tr nz-tbody-tr *ngFor="let data of nzTable.data">
         <td nz-td>{{data.no}}</td>
         <td nz-td>{{data.name}}</td>
+        <td nz-td>{{data.status}}</td>
         <td nz-td>{{data.subject}}</td>
         <td nz-td>{{data.customer.name}}</td>
         <td nz-td>{{data.customer.carType}}</td>

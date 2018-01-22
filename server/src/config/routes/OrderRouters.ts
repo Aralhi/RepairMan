@@ -15,8 +15,8 @@ class OrderRoutes {
     router.delete('/orders/:_id', controller.delete);
     router.get('/orders', controller.retrieve);
     router.get('/orders/:_id', controller.findById);
-    router.get('/orders/search/:status/', controller.find);
-    router.get('/orders/search/:status/:searchText', controller.find);
+    router.get('/orders/search/:progress/', controller.find);
+    router.get('/orders/search/:progress/:searchText', controller.find);
     return router;
   }
 }

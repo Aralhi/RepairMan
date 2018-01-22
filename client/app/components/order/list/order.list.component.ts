@@ -12,6 +12,7 @@ export class OrderListComponent implements OnInit{
   orders: any = [];
   pageSize: number = 10;
   status: string = 'all';
+  searchText: string = '';
 
   constructor(private orderService: OrderService,
               private _notification: NzNotificationService,
@@ -55,10 +56,22 @@ export class OrderListComponent implements OnInit{
     this.router.navigate(['../create', order._id], { relativeTo: this.activatedRoute});
   }
 
-  search(searchText: string) {
+  search() {
     this.orderService.search({
-      searchText: searchText,
-      status: this.status
+      searchText: this.searchText,
+      progress: this.status
+    }).subscribe(res => {
+      if (res.status === 'success') {
+        this.orders = res.result;
+      }
+    });
+  }
+
+  query() {
+    console.info(this.searchText);
+    this.orderService.search({
+      searchText: this.searchText,
+      progress: this.status
     }).subscribe(res => {
       if (res.status === 'success') {
         this.orders = res.result;

@@ -23,7 +23,7 @@ export class OrderService {
   }
 
   search(search: any): Observable<any> {
-    let url = `${this.orderUrl}/search/${search.status}/${search.searchText}`;
+    let url = `${this.orderUrl}/search/${search.progress}/${search.searchText}`;
     return this.http
       .get(url)
       .map(res => res.json())
