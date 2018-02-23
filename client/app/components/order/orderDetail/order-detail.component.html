@@ -13,6 +13,17 @@
   <customer-detail *ngIf="order.customer" [isCreate]="isCreateCustomer" [order]="order" 
     (customerChange)="customerChange($event)" [customerObj]="order.customer"></customer-detail>
 </div>
+<div class="display-center" style="margin: 16px 0;">
+  <button nz-button [nzType]="'primary'" style="margin-right: 50px;">
+    <i class="anticon anticon-plus"></i>
+    <span>派工</span>
+  </button>
+  <span class="common-label" style="width: 6%;">派工日期:</span>
+  <div class="col-md-3">
+    <nz-datepicker style="width: 50%;" [(ngModel)]="_date" [nzPlaceHolder]="'Select date'"></nz-datepicker>
+    <nz-timepicker style="width: 50%;" [(ngModel)]="_date"></nz-timepicker>
+  </div>
+</div>
 <!--工单信息-->
 <div class="common-card">
   <span class="card-label-pos">工单信息</span>
@@ -30,11 +41,6 @@
           [nzValue]="option.value">
         </nz-option>
       </nz-select>
-    </div>
-    <span class="common-label" style="width: 6%;">派工日期:</span>
-    <div class="col-md-3">
-      <nz-datepicker style="width: 50%;" [(ngModel)]="_date" [nzPlaceHolder]="'Select date'"></nz-datepicker>
-      <nz-timepicker style="width: 50%;" [(ngModel)]="_date"></nz-timepicker>
     </div>
   </div>
   <!--维修项目-->

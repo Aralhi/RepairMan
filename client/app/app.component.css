@@ -111,3 +111,26 @@ nav a.router-link-active {
     line-height: 28px;
     cursor: pointer;
 }
+.ant-input{
+    position: relative;
+    display: inline-block;
+    padding: 4px 7px;
+    width: 100%;
+    height: 28px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: rgba(0, 0, 0, 0.65);
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    transition: all .3s;
+}
+.ant-input:focus {
+    border-color: #49a9ee;
+    outline: 0;
+    box-shadow: 0 0 0 2px rgba(16, 142, 233, 0.2);
+}
+.ant-input:hover {
+    border-color: #49a9ee;
+}

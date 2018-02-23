@@ -56,7 +56,8 @@ export class OrderListComponent implements OnInit{
     this.router.navigate(['../create', order._id], { relativeTo: this.activatedRoute});
   }
 
-  search() {
+  search(event) {
+    console.log(event);
     this.orderService.search({
       searchText: this.searchText,
       progress: this.status
