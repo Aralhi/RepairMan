@@ -1,3 +1,4 @@
+import { StaffService } from './../../../services/staff.service';
 import { Event } from '@angular/router/src/events';
 import { Component, OnInit, Input } from '@angular/core';
 import { Customer } from '../../../models/customer';
@@ -15,8 +16,11 @@ export class OrderDetailComponenet implements OnInit {
   ];
   isCreateCustomer: boolean = false;
   @Input() order: any = {};
+  staffs: any = [];
+  showAssign: boolean = false;
+  assignStaffs: any;
 
-  constructor() {}
+  constructor(private staffService: StaffService) {}
   ngOnInit() {
   }
 
@@ -92,5 +96,23 @@ export class OrderDetailComponenet implements OnInit {
         this.order.status = '完成';
         break;
     }
+  }
+
+  assign() {
+    this.staffService.getStaffs().subscribe(res => {
+      if (res.status === 'success') {
+        this.staffs = res.result;
+      }
+    });
+    this.showAssign = true;
+  }
+
+  assignCancel(event) {
+    this.showAssign = false;
+  }
+
+  assignOk(event) {
+    this.order.assignStaffs = this.assignStaffs;
+    this.showAssign = false;
   }
 }

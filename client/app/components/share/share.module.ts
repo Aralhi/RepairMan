@@ -10,6 +10,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { CommonModule } from '@angular/common';
 import { CustomerDetailComponent } from './components/customer-detail.component';
 import { WsOptionComponent } from './components/ws-option.component';
+import { StaffService } from '../../services/staff.service';
 @NgModule({
   imports: [
     CommonModule,
@@ -35,7 +36,8 @@ import { WsOptionComponent } from './components/ws-option.component';
     HeroService,
     CustomerService,
     OrderService,
-    UtilService
+    UtilService,
+    StaffService
   ]
 })
 export class ShareModule {}

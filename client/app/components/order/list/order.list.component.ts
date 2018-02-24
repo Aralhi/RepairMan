@@ -57,7 +57,6 @@ export class OrderListComponent implements OnInit{
   }
 
   search(event) {
-    console.log(event);
     this.orderService.search({
       searchText: this.searchText,
       progress: this.status
@@ -69,7 +68,6 @@ export class OrderListComponent implements OnInit{
   }
 
   query() {
-    console.info(this.searchText);
     this.orderService.search({
       searchText: this.searchText,
       progress: this.status

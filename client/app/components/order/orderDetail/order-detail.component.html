@@ -14,7 +14,7 @@
     (customerChange)="customerChange($event)" [customerObj]="order.customer"></customer-detail>
 </div>
 <div class="display-center" style="margin: 16px 0;">
-  <button nz-button [nzType]="'primary'" style="margin-right: 50px;">
+  <button nz-button [nzType]="'primary'" style="margin-right: 50px;" (click)="assign()">
     <i class="anticon anticon-plus"></i>
     <span>派工</span>
   </button>
@@ -23,6 +23,25 @@
     <nz-datepicker style="width: 50%;" [(ngModel)]="_date" [nzPlaceHolder]="'Select date'"></nz-datepicker>
     <nz-timepicker style="width: 50%;" [(ngModel)]="_date"></nz-timepicker>
   </div>
+  <nz-modal [nzVisible]="showAssign" [nzTitle]="'派工记录'" [nzContent]="modalContent" 
+    (nzOnCancel)="assignCancel($event)" (nzOnOk)="assignOk($event)">
+    <ng-template #modalContent>
+      <div class="display-center">
+        <span class="common-label" style="width: 6%;">员工:</span>
+        <nz-select style="width: 80%;" [nzMode]="'multiple'"
+          [(ngModel)]="assignStaffs" [nzPlaceHolder]="'选择员工'" nzAllowClear>
+          <nz-option
+            *ngFor="let option of staffs"
+            [nzLabel]="option.name"
+            [nzValue]="option">
+          </nz-option>
+        </nz-select>
+      </div>
+    </ng-template>
+  </nz-modal>
+</div>
+<div class="display-center">
+  <div *ngFor="let staff of order.assignStaffs;let last=last;" style="margin-right: 10px;">{{staff.name + (last ? '' : ',')}}</div>
 </div>
 <!--工单信息-->
 <div class="common-card">

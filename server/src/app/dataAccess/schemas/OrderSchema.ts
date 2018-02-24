@@ -24,6 +24,15 @@ class OrderSchema {
       subjectsCost: { type: Number, required: false },
       materialsCost: { type: Number, required: false },
       orderCost: { type: Number, required: false },
+      assignStaffs: [
+        {
+          _id: { type: String, required: false },
+          name: { type: String, required: false },
+          phone: { type: String, required: false },
+          address: { type: String, required: false },
+          remark: { type: String, required: false }
+        }
+      ],
       repairSubjects: [
         {
           id: { type: Number, required: false },

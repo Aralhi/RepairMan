@@ -1,15 +1,15 @@
-import ICustomerModel = require('./../app/model/CustomerModel');
+import IStaffModel = require('./../app/model/StaffModel');
 import express = require('express');
 import IBaseController = require('./BaseController');
-import CustomerBusiness = require('./../app/business/CustomerBusiness');
+import StaffBusiness = require('./../app/business/StaffBusiness');
 
-class CustomerController implements IBaseController<CustomerBusiness> {
+class StaffController implements IBaseController<StaffBusiness> {
   findById: express.RequestHandler;
 
   retrieve(req: express.Request, res: express.Response): void {
     try {
-      let customerBusiness = new CustomerBusiness();
-      customerBusiness.retrieve((error, result) => {
+      let staffBusiness = new StaffBusiness();
+      staffBusiness.retrieve((error, result) => {
         if (error) {
           res.send({ error: error });
         } else {
@@ -26,9 +26,9 @@ class CustomerController implements IBaseController<CustomerBusiness> {
   
   find(req: express.Request, res: express.Response): void {
     try {
-      let customerBusiness = new CustomerBusiness();
+      let staffBusiness = new StaffBusiness();
       const searchText: string = req.params.searchText;
-      customerBusiness.find(searchText, (error, result) => {
+      staffBusiness.find(searchText, (error, result) => {
         if (error) {
           res.send({ error: error });
         } else {
@@ -49,8 +49,8 @@ class CustomerController implements IBaseController<CustomerBusiness> {
   delete(req: express.Request, res: express.Response): void {
     try {
       let _id: string = req.params._id;
-      let customerBusiness = new CustomerBusiness();
-      customerBusiness.delete(_id, (error, result) => {
+      let staffBusiness = new StaffBusiness();
+      staffBusiness.delete(_id, (error, result) => {
         if (error) 
           res.send({ error: error });
         else
@@ -69,9 +69,9 @@ class CustomerController implements IBaseController<CustomerBusiness> {
 
   create(req: express.Request, res: express.Response): void {
     try {
-      let customer: ICustomerModel = <ICustomerModel>req.body;
-      let customerBusiness = new CustomerBusiness();
-      customerBusiness.create(customer, (error, result) => {
+      let staff: IStaffModel = <IStaffModel>req.body;
+      let staffBusiness = new StaffBusiness();
+      staffBusiness.create(staff, (error, result) => {
         if (error) 
           res.send({ error: error });
         else
@@ -90,10 +90,10 @@ class CustomerController implements IBaseController<CustomerBusiness> {
 
   update(req: express.Request, res: express.Response): void {
     try {
-      let customer: ICustomerModel = <ICustomerModel>req.body;
+      let staff: IStaffModel = <IStaffModel>req.body;
       let _id: string = req.params._id;
-      let customerBusiness = new CustomerBusiness();
-      customerBusiness.update(_id, customer, (error, result) => {
+      let staffBusiness = new StaffBusiness();
+      staffBusiness.update(_id, staff, (error, result) => {
         if (error) 
           res.send({ error: error });
         else
@@ -110,4 +110,4 @@ class CustomerController implements IBaseController<CustomerBusiness> {
     }
   }
 }
-export = CustomerController;
+export = StaffController;

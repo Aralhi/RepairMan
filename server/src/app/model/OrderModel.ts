@@ -17,6 +17,13 @@ interface OrderModel extends mongoose.Document {
   subjectsCost: number;
   materialsCost: number;
   orderCost: number;
+  assignStaffs: [{
+    _id: string;
+    name: string;
+    phone: string;
+    address: string;
+    remark: string;
+  }];
   repairSubjects: [
     {
       id: number;

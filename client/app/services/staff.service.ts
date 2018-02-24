@@ -1,24 +1,24 @@
-import { Customer } from './../models/customer';
+import { Staff } from './../models/staff';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { ApiService } from './api.service';
 
 @Injectable()
-export class CustomerService {
-  private customersUrl = 'api/customers';
+export class StaffService {
+  private staffUrl = 'api/staff';
 
   constructor(private http: Http, private apiService: ApiService) {}
 
-  getCustomers(): Observable<any> {
+  getStaffs(): Observable<any> {
     return this.http
-      .get(this.customersUrl)
+      .get(this.staffUrl)
       .map(res => res.json())
       .catch(this.apiService.handleError);
   }
 
   search(searchText: string): Observable<any> {
-    let url = `${this.customersUrl}/${searchText}`;
+    let url = `${this.staffUrl}/${searchText}`;
     return this.http
       .get(url)
       .map(res => res.json())
@@ -26,26 +26,26 @@ export class CustomerService {
   }
 
   delete(id: string): Observable<any> {
-    let url = `${this.customersUrl}/${id}`;
+    let url = `${this.staffUrl}/${id}`;
     return this.http
       .delete(url)
       .map(res => res.json())
       .catch(this.apiService.handleError);
   }
 
-  save(customer: Customer): Observable<any> {
+  save(staff: Staff): Observable<any> {
     let headers = new Headers({
       'Content-Type': 'application/json'
     });
-    if (customer._id) {
-      let url = `${this.customersUrl}/${customer._id}`;
+    if (staff._id) {
+      let url = `${this.staffUrl}/${staff._id}`;
       return this.http
-      .put(url, JSON.stringify(customer), { headers: headers })
+      .put(url, JSON.stringify(staff), { headers: headers })
       .map(res => res.json())
       .catch(this.apiService.handleError);
     }
     return this.http
-      .post(this.customersUrl, JSON.stringify(customer), { headers: headers })
+      .post(this.staffUrl, JSON.stringify(staff), { headers: headers })
       .map(res => res.json())
       .catch(this.apiService.handleError);
   }

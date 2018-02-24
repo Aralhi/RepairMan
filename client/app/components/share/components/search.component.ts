@@ -13,10 +13,10 @@ import 'rxjs/add/observable/fromEvent';
       (keyup.enter)="keyupEnter(filterInput.value)"
       (change)="inputChange(filterInput.value, $event)"
       (keyup)="inputChange(filterInput.value, $event)" type="text"/>
-      <i class="btn-common search-btn anticon anticon-search" (click)="search()"></i>
-      <i #clearIcon class="btn-common delete-btn anticon anticon-close-circle" (click)="clearText()"></i>
+      <i class="btn-common search-btn anticon anticon-search" (click)="keyupEnter(filterInput.value)"></i>
     </div>
   `,
+  // <i #clearIcon class="btn-common delete-btn anticon anticon-close-circle" (click)="clearText()"></i>
   styles: [
     `
     .search-div{
@@ -53,7 +53,7 @@ export class SearchComponent implements ControlValueAccessor, OnInit, AfterViewI
   onTouched: any = Function.prototype;
   private subscription: Subscription;
 
-  constructor(private renderer2: Renderer2){}
+  constructor(private renderer2: Renderer2) {}
 
   ngOnInit() {
   }
@@ -73,7 +73,6 @@ export class SearchComponent implements ControlValueAccessor, OnInit, AfterViewI
 
   clearText() {
     this.renderer2.setValue(this.filterInputElement.nativeElement, '');
-    this.filterInputElement.nativeElement.value = '';
     this.searchFn.emit('');
     this.renderClearIcon();
   }
