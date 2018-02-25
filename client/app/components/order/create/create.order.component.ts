@@ -63,6 +63,7 @@ export class CreateOrderComponent implements OnInit {
       materialsCost: 0,
       orderCost: 0,
       assignStaffs: [],
+      assignDate: undefined,
       repairMaterials: [
         {
           id: 0,

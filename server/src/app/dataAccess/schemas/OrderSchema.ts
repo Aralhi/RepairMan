@@ -33,6 +33,7 @@ class OrderSchema {
           remark: { type: String, required: false }
         }
       ],
+      assignDate: {type: Date, require: false},
       repairSubjects: [
         {
           id: { type: Number, required: false },

@@ -23,6 +23,7 @@ export class Order {
     address: string;
     remark: string;
   }];
+  assignDate: Date;
   repairSubjects: [
     {
       id: number

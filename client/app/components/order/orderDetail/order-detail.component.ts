@@ -8,6 +8,7 @@ import { Customer } from '../../../models/customer';
   styleUrls: ['./order-detail.component.css']
 })
 export class OrderDetailComponenet implements OnInit {
+  @Input() order: any = {};
   subjects: any = [
     {
       label: '保养',
@@ -15,13 +16,20 @@ export class OrderDetailComponenet implements OnInit {
     }
   ];
   isCreateCustomer: boolean = false;
-  @Input() order: any = {};
   staffs: any = [];
-  showAssign: boolean = false;
-  assignStaffs: any;
 
   constructor(private staffService: StaffService) {}
   ngOnInit() {
+    this.staffService.getStaffs().subscribe(res => {
+      if (res.status === 'success') {
+        this.staffs = res.result;
+        for (let i = 0; i < this.order.assignStaffs.length; i++) {
+          this.order.assignStaffs[i] = this.staffs.find(item => {
+            return item._id === this.order.assignStaffs[i]._id;
+          });
+        }
+      }
+    });
   }
 
   createCustomer(event: any) {
@@ -96,23 +104,5 @@ export class OrderDetailComponenet implements OnInit {
         this.order.status = '完成';
         break;
     }
-  }
-
-  assign() {
-    this.staffService.getStaffs().subscribe(res => {
-      if (res.status === 'success') {
-        this.staffs = res.result;
-      }
-    });
-    this.showAssign = true;
-  }
-
-  assignCancel(event) {
-    this.showAssign = false;
-  }
-
-  assignOk(event) {
-    this.order.assignStaffs = this.assignStaffs;
-    this.showAssign = false;
   }
 }

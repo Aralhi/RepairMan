@@ -24,6 +24,7 @@ interface OrderModel extends mongoose.Document {
     address: string;
     remark: string;
   }];
+  assignDate: Date;
   repairSubjects: [
     {
       id: number;

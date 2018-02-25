@@ -134,3 +134,6 @@ nav a.router-link-active {
 .ant-input:hover {
     border-color: #49a9ee;
 }
+.left-20{
+    margin-left: 20px;
+}
