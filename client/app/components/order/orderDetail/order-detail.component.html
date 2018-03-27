@@ -87,7 +87,7 @@
       <div class="col-md-1">单位</div>
     </div>
     <div class="table-content">
-      <div class="item" *ngFor="let item of order.repairMaterials;trackBy:item?.id; let index = index;">
+      <div class="item" *ngFor="let item of order?.repairMaterials;let index = index;">
         <div class="col-md-1" style="height: 30px;line-height: 30px;width: 6%;">{{index+1}}</div>
         <div class="col-md-2"><nz-input [(ngModel)]="item.name"></nz-input></div>
         <div class="col-md-2"><nz-input [(ngModel)]="item.code"></nz-input></div>

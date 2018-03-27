@@ -21,7 +21,7 @@ const config = {
     vendor: ['./client/polyfills.ts', './client/app/vendor.ts']
   },
   output: {
-    path: './build/client',
+    path: path.resolve(__dirname, '../build/client'),
     filename: '[name].bundle.js',
     chunkFilename: 'app/[name].module.js',
     sourceMapFilename: 'app/[name].module.map'

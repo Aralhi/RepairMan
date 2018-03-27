@@ -13,14 +13,6 @@ const appRoutes: Routes = [
     loadChildren: './components/dashboard/dashboard.module#DashboardModule'
   },
   {
-    path: 'detail/:id',
-    loadChildren: './components/heroDetail/hero-detail.module#HeroDetailModule'
-  },
-  {
-    path: 'heroes',
-    loadChildren: './components/heroes/heroes.module#HeroesModule'
-  },
-  {
     path: 'order',
     loadChildren: './components/order/order.module#OrderModule'
   },
@@ -39,6 +31,10 @@ const appRoutes: Routes = [
   {
     path: 'staff',
     loadChildren: './components/staff/staff.module#StaffModule'
+  },
+  {
+    path: 'material',
+    loadChildren: './components/material/material.module#MaterialModule'
   }
 ];
 

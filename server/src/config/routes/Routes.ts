@@ -5,6 +5,7 @@ import HeroRoutes = require('../routes/HeroRoutes');
 import CustomerRoutes = require('../routes/CustomerRoutes');
 import OrderRoutes = require('../routes/OrderRouters');
 import StaffRoutes = require('../routes/StaffRoutes');
+import MaterialRoutes = require('../routes/MaterialRoutes');
 
 let app = express();
 
@@ -14,6 +15,7 @@ class Routes {
     app.use('/', new CustomerRoutes().routes);
     app.use('/', new OrderRoutes().routes);
     app.use('/', new StaffRoutes().routes);
+    app.use('/', new MaterialRoutes().routes);
 
     return app;
   }

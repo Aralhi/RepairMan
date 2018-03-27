@@ -30,17 +30,17 @@ import { OnInit } from '@angular/core';
       </div>
       <span class="common-label">车型:</span>
       <div class="col-md-3">
-        <nz-input [(ngModel)]="customerObj.phone" (ngModelChange)="change()"></nz-input>
+        <nz-input [(ngModel)]="customerObj.carType" (ngModelChange)="change()"></nz-input>
       </div>
     </div>
     <div class="row">
       <span class="common-label">单位:</span>
       <div class="col-md-3 mr-20">
-        <nz-input [(ngModel)]="customerObj.carType" (ngModelChange)="change()"></nz-input>
+        <nz-input [(ngModel)]="customerObj.company" (ngModelChange)="change()"></nz-input>
       </div>
       <span class="common-label">电话:</span>
       <div class="col-md-3 mr-20">
-        <nz-input [(ngModel)]="customerObj.company" (ngModelChange)="change()"></nz-input>
+        <nz-input [(ngModel)]="customerObj.phone" (ngModelChange)="change()"></nz-input>
       </div>
       <span class="common-label">备注:</span>
       <div class="col-md-3">

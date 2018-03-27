@@ -137,3 +137,16 @@ nav a.router-link-active {
 .left-20{
     margin-left: 20px;
 }
+.search-div{
+    width: 25%;
+    position: relative;
+    float: right;
+  }
+  .search-icon{
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .search-input{
+    width: 100%;
+  }

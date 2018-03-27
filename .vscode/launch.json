@@ -9,10 +9,7 @@
       "request": "launch",
       "name": "Launch Program",
       "program": "${workspaceRoot}/build/server/bin/www",
-      "cwd": "${workspaceRoot}",
-      "outFiles": [
-        "${workspaceFolder}/build/app/**/*.js"
-      ]
+      "cwd": "${workspaceRoot}"
     }
   ]
 }
