@@ -5,12 +5,27 @@ import { NzNotificationService, NzModalService } from 'ng-zorro-antd';
 import { cloneDeepWith } from 'lodash';
 @Component({
   templateUrl: './material.component.html',
-  styleUrls: ['./material.component.css']
+  styles: [`
+    .material-detail{
+      padding: 20px 35px;
+      border: 1px solid #ccc;
+      clear: both;
+      margin-top: 20px;
+      position: relative;
+      margin-bottom: 10px;
+    }
+    .search-input{
+      width: 200px;
+      height: 30px;
+      float: right;
+    }
+  `]
 })
 export class MaterialComponent implements OnInit{
   pageSize: number = 10;
   showCreate: boolean = false;
   materials: any = [];
+  searchText: string = '';
   newMaterial: any = {
     name: '',
     no: '',
@@ -85,8 +100,8 @@ export class MaterialComponent implements OnInit{
     this.showCreate = true;
   }
 
-  search(searchText: string) {
-    this.materialService.search(searchText).subscribe(res => {
+  search(evenet) {
+    this.materialService.search(this.searchText).subscribe(res => {
       if (res.status === 'success') {
         this.materials = res.result;
       }

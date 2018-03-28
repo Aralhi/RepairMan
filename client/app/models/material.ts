@@ -4,6 +4,8 @@ export interface Material {
   no: string;
   guige: number;
   unit: string;
+  inPrice: number;
+  outPrice: number;
   vendor: string;
   remark: string;
 }

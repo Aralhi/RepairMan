@@ -3,7 +3,10 @@
     <button nz-button [nzType]="'primary'" (click)="showCreate = !showCreate">
       <span>新建物料</span>
     </button>
-    <ws-search (searchFn)="search($event)"></ws-search>
+    <div class="search-input">
+      <nz-input [nzType]="'search'" [(ngModel)]="searchText" (nzOnSearch)="search($event)" (keyup)="search($event)"></nz-input>
+    </div>
+    <!-- <ws-search (searchFn)="search($event)"></ws-search> -->
   </div>
   <!--创建物料-->
   <div class="material-detail" *ngIf="showCreate">
@@ -20,6 +23,8 @@
           <th nz-th><span>名称</span></th>
           <th nz-th><span>编码</span></th>
           <th nz-th><span>规格</span></th>
+          <th nz-th><span>进价</span></th>
+          <th nz-th><span>售价</span></th>
           <th nz-th><span>单位</span></th>
           <th nz-th><span>供应商</span></th>
           <th nz-th class="col-md-2"><span>备注</span></th>
@@ -31,6 +36,8 @@
           <td nz-td>{{data.name}}</td>
           <td nz-td>{{data.no}}</td>
           <td nz-td>{{data.guige}}</td>
+          <td nz-td>{{data.inPrice}}</td>
+          <td nz-td>{{data.outPrice}}</td>
           <td nz-td>{{data.unit}}</td>
           <td nz-td>{{data.vendor}}</td>
           <td nz-td>{{data.remark}}</td>

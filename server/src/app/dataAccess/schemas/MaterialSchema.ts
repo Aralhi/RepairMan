@@ -1,19 +1,21 @@
 import DataAccess = require('../DataAccess');
 import ICustsomerModel = require('./../../model/MaterialModel');
-var timestamps = require('mongoose-timestamp');
+let timestamps = require('mongoose-timestamp');
 
-var mongoose = DataAccess.mongooseInstance;
-var mongooseConnection = DataAccess.mongooseConnection;
+let mongoose = DataAccess.mongooseInstance;
+let mongooseConnection = DataAccess.mongooseConnection;
 
 class MaterialSchema {
 
     static get schema () {
-        var schema =  mongoose.Schema({
+        let schema =  mongoose.Schema({
             name : {type: String, required: true},
             no : {type: String, required: false},
             guige : {type: String, required: false},
             unit : {type: String, required: false},
             vendor : {type: String, required: false},
+            inPrice : {type: Number, required: false},
+            outPrice : {type: Number, required: false},
             remark : {type: String, required: false},
         });
         schema.plugin(timestamps);
