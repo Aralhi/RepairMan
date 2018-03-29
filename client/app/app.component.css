@@ -61,7 +61,7 @@ nav a.router-link-active {
     height: 30px;
     line-height: 30px;
     display: inline-block;
-    width: 5%;
+    width: 6%;
 }
 .mr-20{
     margin-right: 20px;
@@ -148,5 +148,19 @@ nav a.router-link-active {
     top: 0;
   }
   .search-input{
-    width: 100%;
+    width: 200px;
+    height: 30px;
+    float: right;
   }
+  .add-contain{
+    padding: 20px 35px;
+    border: 1px solid #ccc;
+    clear: both;
+    margin-top: 20px;
+    position: relative;
+    margin-bottom: 10px;
+  }
+  body table{
+    font-size: 18px;
+  }
+  

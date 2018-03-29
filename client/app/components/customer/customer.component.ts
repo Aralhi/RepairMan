@@ -4,8 +4,7 @@ import { NzNotificationService, NzModalService } from 'ng-zorro-antd';
 import { cloneDeepWith } from 'lodash';
 
 @Component({
-  templateUrl: './customer.component.html',
-  styleUrls: ['./customer.component.css']
+  templateUrl: './customer.component.html'
 })
 export class CustomerComponent implements OnInit{
   customers: any = [];

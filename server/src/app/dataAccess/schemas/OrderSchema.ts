@@ -8,12 +8,13 @@ let mongooseConnection = DataAccess.mongooseConnection;
 class OrderSchema {
   static get schema() {
     let schema = mongoose.Schema({
-      name: { type: String, required: true },
+      name: { type: String, required: false },
       no: { type: String, required: true },
       subject: { type: String, required: false },
       status: { type: String, required: true },
       progress: { type: Number, required: false },
       customer: {
+        _id: { type: String, required: true },
         name: { type: String, required: true },
         carNumber: { type: String, required: false },
         phone: { type: String, required: false },
@@ -46,12 +47,13 @@ class OrderSchema {
       ],
       repairMaterials: [
         {
-          id: { type: Number, required: false },
+          _id: { type: String, required: false },
           name: { type: String, required: false },
-          code: { type: String, required: false },
-          spec: { type: String, required: false },
+          no: { type: String, required: false },
+          guige: { type: String, required: false },
           count: { type: Number, required: false },
           costUnit: { type: String, required: false },
+          inPrice: { type: Number, required: false },
           outPrice: { type: Number, required: false },
           unit: { type: String, required: false }
         }

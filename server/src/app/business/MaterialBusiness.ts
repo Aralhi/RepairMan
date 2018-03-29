@@ -34,7 +34,7 @@ class MaterialBusiness implements BaseBusiness<IMaterialModel> {
 
   find (searchText: string, callback: (error: any, result: any) => void) {
     const reg = new RegExp(searchText, 'i');
-    this._materialRepository.find({$or: [{'name': reg}, {'no': reg}, {'vendor': reg}, {'remark': reg}]}, callback);
+    this._materialRepository.find({$or: [{'name': reg}, {'no': reg}, {'vendor.name': reg}, {'remark': reg}]}, callback);
   }
 }
 Object.seal(MaterialBusiness);

@@ -80,20 +80,34 @@
     <div class="common-table-head">
       <div class="col-md-1" style="width: 6%;">序号</div>
       <div class="col-md-2">商品名称</div>
-      <div class="col-md-2">商品编码</div>
-      <div class="col-md-2">商品规格</div>
-      <div class="col-md-2">数量</div>
+      <div class="col-md-2">编码</div>
+      <div class="col-md-1">规格</div>
+      <div class="col-md-1">数量</div>
+      <div class="col-md-2">进价</div>
       <div class="col-md-2">出库金额</div>
       <div class="col-md-1">单位</div>
     </div>
     <div class="table-content">
       <div class="item" *ngFor="let item of order?.repairMaterials;let index = index;">
         <div class="col-md-1" style="height: 30px;line-height: 30px;width: 6%;">{{index+1}}</div>
-        <div class="col-md-2"><nz-input [(ngModel)]="item.name"></nz-input></div>
-        <div class="col-md-2"><nz-input [(ngModel)]="item.code"></nz-input></div>
-        <div class="col-md-2"><nz-input [(ngModel)]="item.spec"></nz-input></div>
+        <!-- <div class="col-md-2"><nz-input [(ngModel)]="item.name"></nz-input></div> -->
         <div class="col-md-2">
-          <nz-input-number style="width:100%" [(ngModel)]="item.count" [nzMin]="0" [nzStep]="5"></nz-input-number>
+          <nz-select style="width: 100%;" zAllowClear [nzPlaceHolder]="'选择物料'"
+            [(ngModel)]="item._id" [nzShowSearch]="true" (ngModelChange)="changeMaterial($event, index)">
+            <nz-option
+              *ngFor="let option of materials"
+              [nzLabel]="option.name"
+              [nzValue]="option._id">
+            </nz-option>
+          </nz-select>
+        </div>
+        <div class="col-md-2"><nz-input [(ngModel)]="item.no"></nz-input></div>
+        <div class="col-md-1"><nz-input [(ngModel)]="item.guige"></nz-input></div>
+        <div class="col-md-1">
+          <nz-input-number style="width:100%" [(ngModel)]="item.count" [nzMin]="0" [nzStep]="1" (ngModelChange)="materialCountChange($event, index)"></nz-input-number>
+        </div>
+        <div class="col-md-2">
+          <nz-input-number style="width:100%" [(ngModel)]="item.inPrice"  (nzBlur)="outPriceChange()" [disabled]="true"></nz-input-number>
         </div>
         <div class="col-md-2">
           <nz-input-number style="width:100%" [(ngModel)]="item.outPrice" (ngModelChange)="outPriceChange()" (nzBlur)="outPriceChange()" [nzMin]="0" [nzStep]="5"></nz-input-number>

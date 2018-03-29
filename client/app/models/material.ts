@@ -6,6 +6,9 @@ export interface Material {
   unit: string;
   inPrice: number;
   outPrice: number;
-  vendor: string;
+  vendor: {
+    _id: string;
+    name: string;
+  };
   remark: string;
 }

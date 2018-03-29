@@ -1,5 +1,5 @@
 import DataAccess = require('../DataAccess');
-import ICustsomerModel = require('./../../model/MaterialModel');
+import IMaterialModel = require('./../../model/MaterialModel');
 let timestamps = require('mongoose-timestamp');
 
 let mongoose = DataAccess.mongooseInstance;
@@ -13,7 +13,10 @@ class MaterialSchema {
             no : {type: String, required: false},
             guige : {type: String, required: false},
             unit : {type: String, required: false},
-            vendor : {type: String, required: false},
+            vendor : {
+                _id: { type: String, required: false },
+                name: { type: String, required: false }
+              },
             inPrice : {type: Number, required: false},
             outPrice : {type: Number, required: false},
             remark : {type: String, required: false},
@@ -22,5 +25,5 @@ class MaterialSchema {
         return schema;
     }
 }
-let schema = mongooseConnection.model<ICustsomerModel>('Materials', MaterialSchema.schema);
+let schema = mongooseConnection.model<IMaterialModel>('Materials', MaterialSchema.schema);
 export = schema;

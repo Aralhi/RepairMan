@@ -1,5 +1,5 @@
 <div class="create-order-page display-center">
-  <order-detail *ngIf="order.customer" [order]="order"></order-detail>
+  <order-detail style="width: 100%;" *ngIf="order.customer" [order]="order"></order-detail>
   <button class="common-btn" style="margin:20px 0;" nz-button [nzType]="'primary'" (click)="add()">
     <span>保存</span>
   </button>

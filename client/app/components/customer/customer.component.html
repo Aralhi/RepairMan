@@ -6,7 +6,7 @@
     <ws-search (searchFn)="search($event)"></ws-search>
   </div>
   <!--创建客户-->
-  <div class="customer-detail" *ngIf="showCreate">
+  <div class="add-contain" *ngIf="showCreate">
     <customer-detail [isCreate]="true" [customerObj]="newCustomer"></customer-detail>
     <div style="width: 50px; margin: 10px auto 0;">
       <button style="width: 80px;" nz-button [nzType]="'primary'" (click)="add()">

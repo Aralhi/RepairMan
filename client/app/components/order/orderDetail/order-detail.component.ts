@@ -2,6 +2,7 @@ import { StaffService } from './../../../services/staff.service';
 import { Event } from '@angular/router/src/events';
 import { Component, OnInit, Input } from '@angular/core';
 import { Customer } from '../../../models/customer';
+import { MaterialService } from '../../../services/material.service';
 @Component({
   selector: 'order-detail',
   templateUrl: './order-detail.component.html',
@@ -17,8 +18,10 @@ export class OrderDetailComponenet implements OnInit {
   ];
   isCreateCustomer: boolean = false;
   staffs: any = [];
+  materials: any = [];
 
-  constructor(private staffService: StaffService) {}
+  constructor(private staffService: StaffService,
+              private materialService: MaterialService) {}
   ngOnInit() {
     this.staffService.getStaffs().subscribe(res => {
       if (res.status === 'success') {
@@ -28,6 +31,11 @@ export class OrderDetailComponenet implements OnInit {
             return item._id === this.order.assignStaffs[i]._id;
           });
         }
+      }
+    });
+    this.materialService.getMaterials().subscribe(res => {
+      if (res.status === 'success') {
+        this.materials = res.result;
       }
     });
   }
@@ -71,12 +79,13 @@ export class OrderDetailComponenet implements OnInit {
 
   createMaterial(index) {
     this.order.repairMaterials.push({
-      id: index,
+      _id: '',
       name: '',
-      code: '',
-      spec: '',
+      no: '',
+      guige: '',
       count: 0,
       costUnit: '元',
+      inPrice: 0,
       outPrice: 0,
       unit: ''
     });
@@ -104,5 +113,25 @@ export class OrderDetailComponenet implements OnInit {
         this.order.status = '完成';
         break;
     }
+  }
+
+  changeMaterial(event: any, index: number) {
+    let material = this.order.repairMaterials[index];
+    const temp = this.materials.find(item => item._id === event);
+    // material._id = event._id;
+    material.name = temp.name;
+    material.no = temp.no;
+    material.guige = temp.guige;
+    material.inPrice = temp.inPrice;
+    material.outPrice = temp.outPrice;
+    material.unit = temp.unit;
+    material.count = 1;
+    this.outPriceChange();
+  }
+
+  materialCountChange(event: any, index: number) {
+    let material = this.order.repairMaterials[index];
+    material.outPrice = event * material.outPrice;
+    this.outPriceChange();
   }
 }

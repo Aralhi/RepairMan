@@ -6,10 +6,9 @@
     <div class="search-input">
       <nz-input [nzType]="'search'" [(ngModel)]="searchText" (nzOnSearch)="search($event)" (keyup)="search($event)"></nz-input>
     </div>
-    <!-- <ws-search (searchFn)="search($event)"></ws-search> -->
   </div>
   <!--创建物料-->
-  <div class="material-detail" *ngIf="showCreate">
+  <div class="add-contain" *ngIf="showCreate">
     <material-detail [material]="newMaterial"></material-detail>
     <div style="width: 50px; margin: 10px auto 0;">
       <button style="width: 80px;" nz-button [nzType]="'primary'" (click)="add()">
@@ -39,7 +38,7 @@
           <td nz-td>{{data.inPrice}}</td>
           <td nz-td>{{data.outPrice}}</td>
           <td nz-td>{{data.unit}}</td>
-          <td nz-td>{{data.vendor}}</td>
+          <td nz-td>{{data?.vendor?.name}}</td>
           <td nz-td>{{data.remark}}</td>
           <td nz-td>
             <span>

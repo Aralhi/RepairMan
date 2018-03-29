@@ -6,6 +6,7 @@ export class Order {
   status: string;
   progress: number;
   customer: {
+    _id: string
     name: string
     carNumber: string
     phone: string
@@ -36,13 +37,14 @@ export class Order {
   ];
   repairMaterials: [
     {
-      id: number
+      _id: number
       name: string
-      code: string
-      spec: string
+      no: string
+      guige: string
       count: number
       costUnit: string
       outPrice: number
+      inPrice: number
       unit: string
     }
   ];

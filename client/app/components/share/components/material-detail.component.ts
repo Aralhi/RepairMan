@@ -1,5 +1,6 @@
 import { Material } from './../../../models/material';
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { VendorService } from '../../../services/vendor.service';
 @Component({
   selector: 'material-detail',
   template: `
@@ -39,7 +40,15 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
       </div>
       <span class="common-label">供应商:</span>
       <div class="col-md-2 mr-20">
-        <nz-input [(ngModel)]="material.vendor"></nz-input>
+      <nz-select style="width: 100%;" zAllowClear [nzPlaceHolder]="'选择供应商'"
+        [(ngModel)]="material.vendor"
+        [nzShowSearch]="true">
+        <nz-option
+          *ngFor="let option of vendors"
+          [nzLabel]="option.name"
+          [nzValue]="option">
+        </nz-option>
+      </nz-select>
       </div>
       <span class="common-label">备注:</span>
       <div class="col-md-2">
@@ -52,11 +61,22 @@ export class MaterialDetailComponent implements OnInit{
   @Input() material;
   @Output() materialChange: EventEmitter<Material> = new EventEmitter();
   units: any = ['个', '台', '条', '其他'];
+  vendors: any = [];
+
+  constructor(private vendorService: VendorService){ }
 
   ngOnInit() {
     if (this.units.indexOf(this.material.unit) < 0) {
       this.units.push(this.material.unit);
     }
+    this.vendorService.getVendors().subscribe(res => {
+      if (res.status === 'success') {
+        this.vendors = res.result;
+        if (this.material.vendor.name) {
+          this.material.vendor = this.vendors.find(item => item._id === this.material.vendor._id);
+        }
+      }
+    });
   }
 
   change() {

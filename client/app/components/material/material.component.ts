@@ -4,22 +4,7 @@ import { MaterialService } from '../../services/material.service';
 import { NzNotificationService, NzModalService } from 'ng-zorro-antd';
 import { cloneDeepWith } from 'lodash';
 @Component({
-  templateUrl: './material.component.html',
-  styles: [`
-    .material-detail{
-      padding: 20px 35px;
-      border: 1px solid #ccc;
-      clear: both;
-      margin-top: 20px;
-      position: relative;
-      margin-bottom: 10px;
-    }
-    .search-input{
-      width: 200px;
-      height: 30px;
-      float: right;
-    }
-  `]
+  templateUrl: './material.component.html'
 })
 export class MaterialComponent implements OnInit{
   pageSize: number = 10;
@@ -31,13 +16,13 @@ export class MaterialComponent implements OnInit{
     no: '',
     guige: '',
     unit: '',
-    vendor: '',
+    vendor: {},
     remark: ''
   };
 
   constructor(private materialService: MaterialService,
-    private _notification: NzNotificationService,
-    private confirmServ: NzModalService) { }
+              private _notification: NzNotificationService,
+              private confirmServ: NzModalService) { }
 
   ngOnInit() {
     this.materialService.getMaterials().subscribe(res => {
@@ -54,10 +39,10 @@ export class MaterialComponent implements OnInit{
         this._notification.create('success', res.msg, `${name}保存成功`);
         this.newMaterial = {
           name: '',
-          carNumber: '',
-          phone: '',
-          carType: '',
-          company: '',
+          no: '',
+          guige: '',
+          unit: '',
+          vendor: {},
           remark: ''
         };
         this.materialService.getMaterials().subscribe(res => {

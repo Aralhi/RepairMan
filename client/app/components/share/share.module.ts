@@ -12,6 +12,7 @@ import { WsOptionComponent } from './components/ws-option.component';
 import { StaffService } from '../../services/staff.service';
 import { MaterialDetailComponent } from './components/material-detail.component';
 import { MaterialService } from '../../services/material.service';
+import { VendorService } from '../../services/vendor.service';
 @NgModule({
   imports: [
     CommonModule,
@@ -40,7 +41,8 @@ import { MaterialService } from '../../services/material.service';
     OrderService,
     UtilService,
     StaffService,
-    MaterialService
+    MaterialService,
+    VendorService
   ]
 })
 export class ShareModule {}
