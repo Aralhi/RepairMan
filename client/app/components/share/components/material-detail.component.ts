@@ -9,9 +9,9 @@ import { VendorService } from '../../../services/vendor.service';
       <div class="col-md-2 mr-20">
         <nz-input [(ngModel)]="material.name"></nz-input>
       </div>
-      <span class="common-label">编码:</span>
+      <span class="common-label">车型:</span>
       <div class="col-md-2 mr-20">
-        <nz-input [(ngModel)]="material.no"></nz-input>
+        <nz-input [(ngModel)]="material.carType"></nz-input>
       </div>
       <span class="common-label">进价:</span>
       <div class="col-md-2 mr-20">
@@ -23,9 +23,9 @@ import { VendorService } from '../../../services/vendor.service';
       </div>
     </div>
     <div class="row">
-      <span class="common-label">规格:</span>
+      <span class="common-label">库存:</span>
       <div class="col-md-2 mr-20">
-        <nz-input [(ngModel)]="material.guige"></nz-input>
+      <nz-input-number style="width: 100%;" [(ngModel)]="material.count" [nzMin]="0" [nzStep]="10"></nz-input-number>
       </div>
       <span class="common-label">单位:</span>
       <div class="col-md-2 mr-20">

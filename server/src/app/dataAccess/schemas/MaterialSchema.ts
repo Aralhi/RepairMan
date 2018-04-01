@@ -10,8 +10,8 @@ class MaterialSchema {
     static get schema () {
         let schema =  mongoose.Schema({
             name : {type: String, required: true},
-            no : {type: String, required: false},
-            guige : {type: String, required: false},
+            carType : {type: String, required: false},
+            count : {type: Number, required: false},
             unit : {type: String, required: false},
             vendor : {
                 _id: { type: String, required: false },

@@ -26,6 +26,15 @@ class MaterialBusiness implements BaseBusiness<IMaterialModel> {
     });
   }
 
+  updateCount (_id: string, key: string, value: any, callback: (error: any, result: any) => void) {
+    this._materialRepository.findById(_id, (err, res) => {
+      if (err) 
+        callback(err, res);
+      else
+        this._materialRepository.updateOneKey(res._id, key, value, callback);
+    });
+  }
+
   findById: (_id: string, callback: (error: any, result: IMaterialModel) => void) => void;
 
   delete (_id: string, callback: (error: any, result: any) => void) {
@@ -34,7 +43,7 @@ class MaterialBusiness implements BaseBusiness<IMaterialModel> {
 
   find (searchText: string, callback: (error: any, result: any) => void) {
     const reg = new RegExp(searchText, 'i');
-    this._materialRepository.find({$or: [{'name': reg}, {'no': reg}, {'vendor.name': reg}, {'remark': reg}]}, callback);
+    this._materialRepository.find({$or: [{'name': reg}, {'carType': reg}, {'vendor.name': reg}, {'remark': reg}]}, callback);
   }
 }
 Object.seal(MaterialBusiness);

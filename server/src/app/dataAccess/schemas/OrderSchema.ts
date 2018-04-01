@@ -49,8 +49,8 @@ class OrderSchema {
         {
           _id: { type: String, required: false },
           name: { type: String, required: false },
-          no: { type: String, required: false },
-          guige: { type: String, required: false },
+          carType: { type: String, required: false },
+          materialCount: { type: String, required: false },
           count: { type: Number, required: false },
           costUnit: { type: String, required: false },
           inPrice: { type: Number, required: false },

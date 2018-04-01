@@ -39,8 +39,7 @@ export class Order {
     {
       _id: number
       name: string
-      no: string
-      guige: string
+      carType: string
       count: number
       costUnit: string
       outPrice: number

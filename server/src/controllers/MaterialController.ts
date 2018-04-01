@@ -109,5 +109,27 @@ class MaterialController implements IBaseController<MaterialBusiness> {
       });
     }
   }
+
+  updateCount(req: express.Request, res: express.Response): void {
+    try {
+      let params = req.body;
+      let _id: string = req.params._id;
+      let materialBusiness = new MaterialBusiness();
+      materialBusiness.updateCount(_id, params.key, params.value, (error, result) => {
+        if (error) 
+          res.send({ error: error });
+        else
+          res.send({
+            status: 'success',
+            msg: '保存成功！'
+          });
+      });
+    } catch (e) {
+      res.send({
+        status: 'error',
+        msg: '保存失败！' + e
+      });
+    }
+  }
 }
 export = MaterialController;

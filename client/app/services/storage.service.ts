@@ -1,24 +1,24 @@
-import { Material } from './../models/material';
+import { Storage } from './../models/storage';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { ApiService } from './api.service';
 
 @Injectable()
-export class MaterialService {
-  private materialsUrl = 'api/materials';
+export class StorageService {
+  private storagesUrl = 'api/storages';
 
   constructor(private http: Http, private apiService: ApiService) { }
 
-  getMaterials(): Observable<any> {
+  getStorages(): Observable<any> {
     return this.http
-      .get(this.materialsUrl)
+      .get(this.storagesUrl)
       .map(res => res.json())
       .catch(this.apiService.handleError);
   }
 
   search(searchText: string): Observable<any> {
-    let url = `${this.materialsUrl}/${searchText}`;
+    let url = `${this.storagesUrl}/${searchText}`;
     return this.http
       .get(url)
       .map(res => res.json())
@@ -26,41 +26,27 @@ export class MaterialService {
   }
 
   delete(id: string): Observable<any> {
-    let url = `${this.materialsUrl}/${id}`;
+    let url = `${this.storagesUrl}/${id}`;
     return this.http
       .delete(url)
       .map(res => res.json())
       .catch(this.apiService.handleError);
   }
 
-  save(material: Material): Observable<any> {
+  save(storage: Storage): Observable<any> {
     let headers = new Headers({
       'Content-Type': 'application/json'
     });
-    if (material._id) {
-      let url = `${this.materialsUrl}/${material._id}`;
+    if (storage._id) {
+      let url = `${this.storagesUrl}/${storage._id}`;
       return this.http
-      .put(url, JSON.stringify(material), { headers: headers })
+      .put(url, JSON.stringify(storage), { headers: headers })
       .map(res => res.json())
       .catch(this.apiService.handleError);
     }
     return this.http
-      .post(this.materialsUrl, JSON.stringify(material), { headers: headers })
+      .post(this.storagesUrl, JSON.stringify(storage), { headers: headers })
       .map(res => res.json())
       .catch(this.apiService.handleError);
-  }
-
-  updateCount(params) {
-    let headers = new Headers({
-      'Content-Type': 'application/json'
-    });
-    let url = `${this.materialsUrl}/${params._id}`;
-    return this.http
-    .post(url, JSON.stringify({
-      key: params.key,
-      value: params.value
-    }), { headers: headers })
-    .map(res => res.json())
-    .catch(this.apiService.handleError);
   }
 }

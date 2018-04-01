@@ -80,8 +80,8 @@
     <div class="common-table-head">
       <div class="col-md-1" style="width: 6%;">序号</div>
       <div class="col-md-2">商品名称</div>
-      <div class="col-md-2">编码</div>
-      <div class="col-md-1">规格</div>
+      <div class="col-md-2">车型</div>
+      <div class="col-md-1">库存</div>
       <div class="col-md-1">数量</div>
       <div class="col-md-2">进价</div>
       <div class="col-md-2">出库金额</div>
@@ -101,8 +101,8 @@
             </nz-option>
           </nz-select>
         </div>
-        <div class="col-md-2"><nz-input [(ngModel)]="item.no"></nz-input></div>
-        <div class="col-md-1"><nz-input [(ngModel)]="item.guige"></nz-input></div>
+        <div class="col-md-2"><nz-input [(ngModel)]="item.carType" [disabled]="true"></nz-input></div>
+        <div class="col-md-1"><nz-input [ngModel]="item.materialCount" [disabled]="true"></nz-input></div>
         <div class="col-md-1">
           <nz-input-number style="width:100%" [(ngModel)]="item.count" [nzMin]="0" [nzStep]="1" (ngModelChange)="materialCountChange($event, index)"></nz-input-number>
         </div>

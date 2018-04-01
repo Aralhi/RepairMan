@@ -1,8 +1,8 @@
 export interface Material {
   _id: string;
   name: string;
-  no: string;
-  guige: number;
+  carType: string;
+  count: number;
   unit: string;
   inPrice: number;
   outPrice: number;

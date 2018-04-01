@@ -20,8 +20,8 @@
       <thead nz-thead>
         <tr>
           <th nz-th><span>名称</span></th>
-          <th nz-th><span>编码</span></th>
-          <th nz-th><span>规格</span></th>
+          <th nz-th><span>车型</span></th>
+          <th nz-th><span>库存</span></th>
           <th nz-th><span>进价</span></th>
           <th nz-th><span>售价</span></th>
           <th nz-th><span>单位</span></th>
@@ -33,8 +33,8 @@
       <tbody nz-tbody>
         <tr nz-tbody-tr *ngFor="let data of nzTable.data">
           <td nz-td>{{data.name}}</td>
-          <td nz-td>{{data.no}}</td>
-          <td nz-td>{{data.guige}}</td>
+          <td nz-td>{{data.carType}}</td>
+          <td nz-td>{{data.count}}</td>
           <td nz-td>{{data.inPrice}}</td>
           <td nz-td>{{data.outPrice}}</td>
           <td nz-td>{{data.unit}}</td>

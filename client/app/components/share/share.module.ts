@@ -13,6 +13,7 @@ import { StaffService } from '../../services/staff.service';
 import { MaterialDetailComponent } from './components/material-detail.component';
 import { MaterialService } from '../../services/material.service';
 import { VendorService } from '../../services/vendor.service';
+import { StorageService } from '../../services/storage.service';
 @NgModule({
   imports: [
     CommonModule,
@@ -42,7 +43,8 @@ import { VendorService } from '../../services/vendor.service';
     UtilService,
     StaffService,
     MaterialService,
-    VendorService
+    VendorService,
+    StorageService
   ]
 })
 export class ShareModule {}

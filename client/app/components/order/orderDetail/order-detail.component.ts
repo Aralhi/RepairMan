@@ -3,6 +3,7 @@ import { Event } from '@angular/router/src/events';
 import { Component, OnInit, Input } from '@angular/core';
 import { Customer } from '../../../models/customer';
 import { MaterialService } from '../../../services/material.service';
+import { NzModalService, NzNotificationService } from 'ng-zorro-antd';
 @Component({
   selector: 'order-detail',
   templateUrl: './order-detail.component.html',
@@ -21,7 +22,9 @@ export class OrderDetailComponenet implements OnInit {
   materials: any = [];
 
   constructor(private staffService: StaffService,
-              private materialService: MaterialService) {}
+              private materialService: MaterialService,
+              private _notification: NzNotificationService,
+              private confirmServ: NzModalService) {}
   ngOnInit() {
     this.staffService.getStaffs().subscribe(res => {
       if (res.status === 'success') {
@@ -36,6 +39,10 @@ export class OrderDetailComponenet implements OnInit {
     this.materialService.getMaterials().subscribe(res => {
       if (res.status === 'success') {
         this.materials = res.result;
+        for (let item of this.order.repairMaterials) {
+          const temp = this.materials.find(i => i._id === item._id);
+          item.materialCount = temp ? temp.count || 0 : 0;
+        }
       }
     });
   }
@@ -81,8 +88,8 @@ export class OrderDetailComponenet implements OnInit {
     this.order.repairMaterials.push({
       _id: '',
       name: '',
-      no: '',
-      guige: '',
+      carType: '',
+      materialCount: '',
       count: 0,
       costUnit: '元',
       inPrice: 0,
@@ -110,7 +117,14 @@ export class OrderDetailComponenet implements OnInit {
         this.order.status = '进行中';
         break;
       case 2:
-        this.order.status = '完成';
+        let that = this;
+        this.confirmServ.confirm({
+          title  : `完成状态将会把订单中的物料去库存，是否继续`,
+          content: '',
+          onOk() {
+            that.order.status = '完成';
+          }
+        });
         break;
     }
   }
@@ -120,8 +134,8 @@ export class OrderDetailComponenet implements OnInit {
     const temp = this.materials.find(item => item._id === event);
     // material._id = event._id;
     material.name = temp.name;
-    material.no = temp.no;
-    material.guige = temp.guige;
+    material.carType = temp.carType;
+    material.materialCount = temp.count;
     material.inPrice = temp.inPrice;
     material.outPrice = temp.outPrice;
     material.unit = temp.unit;

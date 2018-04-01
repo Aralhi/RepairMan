@@ -1,10 +1,11 @@
+import { MaterialService } from './../../../services/material.service';
 import { UtilService } from './../../share/services/util.service';
 import { CustomerService } from '../../../services/customer.service';
 import { OrderService } from '../../../services/order.service';
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { NzNotificationService, NzModalService } from 'ng-zorro-antd';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { format } from 'date-fns';
 
 @Component({
@@ -18,6 +19,7 @@ export class CreateOrderComponent implements OnInit {
 
   constructor(private orderService: OrderService,
     private customerService: CustomerService,
+    private materialService: MaterialService,
     private utilService: UtilService,
     private _notification: NzNotificationService,
     private confirmServ: NzModalService,
@@ -68,8 +70,8 @@ export class CreateOrderComponent implements OnInit {
         {
           id: 0,
           name: '',
-          code: '',
-          spec: '',
+          carType: '',
+          materialCount: 0,
           count: 0,
           costUnit: '元',
           outPrice: 0,
@@ -92,6 +94,18 @@ export class CreateOrderComponent implements OnInit {
     }
     this.orderService.save(this.order).subscribe(res => {
       if (res.status === 'success') {
+        const repairMaterials = this.order.repairMaterials;
+        if (this.order.progress === 2 && repairMaterials && repairMaterials.length > 0) {
+          for (let item of repairMaterials) {
+            this.materialService.updateCount({
+              _id: item._id,
+              key: 'count',
+              value: item.materialCount - item.count
+            }).subscribe(res => {
+              console.log(res);
+            });
+          }
+        }
         this._notification.create('success', res.msg, `${name}保存成功`);
         this.router.navigate(['../../list'], { relativeTo: this.route });
       } else {

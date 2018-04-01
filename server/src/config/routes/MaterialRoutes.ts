@@ -17,6 +17,7 @@ class MaterialRoutes {
     // router.get('/materials/:_id', controller.findById)
     router.delete('/materials/:_id', controller.delete);
     router.get('/materials/:searchText', controller.find);
+    router.post('/materials/:_id', controller.updateCount);
 
     return router;
   }

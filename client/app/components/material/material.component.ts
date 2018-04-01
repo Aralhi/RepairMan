@@ -13,8 +13,8 @@ export class MaterialComponent implements OnInit{
   searchText: string = '';
   newMaterial: any = {
     name: '',
-    no: '',
-    guige: '',
+    carType: '',
+    count: '',
     unit: '',
     vendor: {},
     remark: ''
@@ -39,8 +39,8 @@ export class MaterialComponent implements OnInit{
         this._notification.create('success', res.msg, `${name}保存成功`);
         this.newMaterial = {
           name: '',
-          no: '',
-          guige: '',
+          carType: '',
+          count: '',
           unit: '',
           vendor: {},
           remark: ''
