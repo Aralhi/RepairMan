@@ -25,6 +25,14 @@ export class MaterialService {
       .catch(this.apiService.handleError);
   }
 
+  findLessThan(key: string, value: number): Observable<any> {
+    let url = `${this.materialsUrl}/lessThan/${key}/${value}`;
+    return this.http
+      .get(url)
+      .map(res => res.json())
+      .catch(this.apiService.handleError);
+  }
+
   delete(id: string): Observable<any> {
     let url = `${this.materialsUrl}/${id}`;
     return this.http

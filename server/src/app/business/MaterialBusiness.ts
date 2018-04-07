@@ -45,6 +45,10 @@ class MaterialBusiness implements BaseBusiness<IMaterialModel> {
     const reg = new RegExp(searchText, 'i');
     this._materialRepository.find({$or: [{'name': reg}, {'carType': reg}, {'vendor.name': reg}, {'remark': reg}]}, callback);
   }
+
+  findLessThan (key: string, value: string, callback: (error: any, result: any) => void) {
+    this._materialRepository.find({[key]: {$lte: value}}, callback);
+  }
 }
 Object.seal(MaterialBusiness);
 export = MaterialBusiness;

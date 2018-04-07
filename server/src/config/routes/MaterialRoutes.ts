@@ -12,6 +12,7 @@ class MaterialRoutes {
     let controller = this._materialController;
 
     router.get('/materials', controller.retrieve);
+    router.get('/materials/lessThan/:key/:value', controller.findLessThan);
     router.post('/materials', controller.create);
     router.put('/materials/:_id', controller.update);
     // router.get('/materials/:_id', controller.findById)

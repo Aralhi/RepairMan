@@ -1,3 +1,37 @@
-<div class="row">
-    
+<div class="page-container">
+  <div class="title">库存告急</div>
+  <nz-table #nzTable [nzDataSource]="lessMaterials" [nzPageSize]="pageSize" [nzShowTotal]="true">
+    <thead nz-thead>
+      <tr>
+        <th nz-th><span>名称</span></th>
+        <th nz-th><span>车型</span></th>
+        <th nz-th><span>库存</span></th>
+        <th nz-th><span>进价</span></th>
+        <th nz-th><span>售价</span></th>
+        <th nz-th><span>单位</span></th>
+        <th nz-th><span>供应商</span></th>
+        <th nz-th class="col-md-2"><span>备注</span></th>
+        <th nz-th><span>操作</span></th>
+      </tr>
+    </thead>
+    <tbody nz-tbody>
+      <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+        <td nz-td>{{data.name}}</td>
+        <td nz-td>{{data.carType}}</td>
+        <td nz-td>{{data.count}}</td>
+        <td nz-td>{{data.inPrice}}</td>
+        <td nz-td>{{data.outPrice}}</td>
+        <td nz-td>{{data.unit}}</td>
+        <td nz-td>{{data?.vendor?.name}}</td>
+        <td nz-td>{{data.remark}}</td>
+        <td nz-td>
+          <span>
+            <a (click)="edit(data)">编辑</a>
+            <span nz-table-divider></span>
+            <a (click)="delete(data._id, data.name)">删除</a>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
 </div>

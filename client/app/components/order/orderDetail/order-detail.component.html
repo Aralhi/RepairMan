@@ -83,9 +83,9 @@
       <div class="col-md-2">车型</div>
       <div class="col-md-1">库存</div>
       <div class="col-md-1">数量</div>
-      <div class="col-md-2">进价</div>
+      <!-- <div class="col-md-2">进价</div> -->
       <div class="col-md-2">出库金额</div>
-      <div class="col-md-1">单位</div>
+      <div class="col-md-2">单位</div>
     </div>
     <div class="table-content">
       <div class="item" *ngFor="let item of order?.repairMaterials;let index = index;">
@@ -106,13 +106,13 @@
         <div class="col-md-1">
           <nz-input-number style="width:100%" [(ngModel)]="item.count" [nzMin]="0" [nzStep]="1" (ngModelChange)="materialCountChange($event, index)"></nz-input-number>
         </div>
-        <div class="col-md-2">
+        <!-- <div class="col-md-2">
           <nz-input-number style="width:100%" [(ngModel)]="item.inPrice"  (nzBlur)="outPriceChange()" [disabled]="true"></nz-input-number>
-        </div>
+        </div> -->
         <div class="col-md-2">
           <nz-input-number style="width:100%" [(ngModel)]="item.outPrice" (ngModelChange)="outPriceChange()" (nzBlur)="outPriceChange()" [nzMin]="0" [nzStep]="5"></nz-input-number>
         </div>
-        <div class="col-md-1"><nz-input [ngModel]="item.costUnit" [nzDisabled]="true"></nz-input></div>
+        <div class="col-md-2"><nz-input [ngModel]="item.costUnit" [nzDisabled]="true"></nz-input></div>
         <i class="icon-common anticon anticon-plus" (click)="createMaterial(index+1)"></i>
       </div>
       <div class="display-center" style="font-size: 12px;">

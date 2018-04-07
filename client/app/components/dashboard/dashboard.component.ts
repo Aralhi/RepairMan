@@ -1,7 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-import {Hero} from '../../models/hero';
+import { MaterialService } from '../../services/material.service';
 
 @Component({
     selector: 'my-dashboard',
@@ -10,19 +9,18 @@ import {Hero} from '../../models/hero';
 })
 
 export class DashboardComponent implements OnInit {
-    heroes: Hero[] = [];
+    lessMaterials: any = [];
+    pageSize: number = 10;
 
-    constructor(
-        private router: Router) {
+    constructor(private router: Router,
+        private materialService: MaterialService) {
     }
 
     ngOnInit() {
-        // this.heroService.getHeroes()
-        //     .subscribe(heroes => this.heroes = heroes);
-    }
-
-    gotoDetail(hero: Hero) {
-        let link = ['/detail', hero._id];
-        this.router.navigate(link);
+        this.materialService.findLessThan('count', 11).subscribe(res => {
+            if (res.status === 'success') {
+                this.lessMaterials = res.result;
+            }
+        });
     }
 }

@@ -131,5 +131,28 @@ class MaterialController implements IBaseController<MaterialBusiness> {
       });
     }
   }
+
+  findLessThan(req: express.Request, res: express.Response): void {
+    try {
+      let materialBusiness = new MaterialBusiness();
+      const key: string = req.params.key;
+      const value: string = req.params.value;
+      materialBusiness.findLessThan(key, value, (error, result) => {
+        if (error) {
+          res.send({ error: error });
+        } else {
+          res.send({
+            status: 'success',
+            result: result
+          });
+        }
+      });
+    } catch (e) {
+      res.send({
+        status: 'error',
+        msg: '查询失败！' + e
+      });
+    }
+  }
 }
 export = MaterialController;
