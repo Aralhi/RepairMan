@@ -58,7 +58,7 @@
       <div class="col-md-2">单位</div>
     </div>
     <div class="table-content">
-      <div class="item" *ngFor="let item of order.repairSubjects;let index = index;">
+      <div class="item" *ngFor="let item of order.repairSubjects;let index = index;let last=last;let first=first;">
         <div class="col-md-1" style="height: 30px;line-height: 30px;width: 6%;">{{index+1}}</div>
         <div class="col-md-2"><nz-input [(ngModel)]="item.name"></nz-input></div>
         <div class="col-md-2"><nz-input [(ngModel)]="item.code"></nz-input></div>
@@ -67,7 +67,8 @@
           <nz-input-number style="width:100%" [(ngModel)]="item.cost" (ngModelChange)="costChange()" (nzBlur)="costChange()" [nzMin]="0" [nzStep]="5"></nz-input-number>
         </div>
         <div class="col-md-2"><nz-input [ngModel]="item.costUnit" [nzDisabled]="true"></nz-input></div>
-        <i class="icon-common anticon anticon-plus" (click)="createSubject(index+1)"></i>
+        <i class="icon-common anticon anticon-plus" *ngIf="last" (click)="createSubject(index+1)"></i>
+        <i class="icon-common anticon anticon-minus" *ngIf="!first" (click)="removeMaterial(index)"></i>
       </div>
       <div class="display-center" style="font-size: 12px;">
         <span>小计：</span>
@@ -88,7 +89,7 @@
       <div class="col-md-2">单位</div>
     </div>
     <div class="table-content">
-      <div class="item" *ngFor="let item of order?.repairMaterials;let index = index;">
+      <div class="item" *ngFor="let item of order?.repairMaterials;let index = index;let last=last;let first=first;">
         <div class="col-md-1" style="height: 30px;line-height: 30px;width: 6%;">{{index+1}}</div>
         <!-- <div class="col-md-2"><nz-input [(ngModel)]="item.name"></nz-input></div> -->
         <div class="col-md-2">
@@ -113,7 +114,8 @@
           <nz-input-number style="width:100%" [(ngModel)]="item.outPrice" (ngModelChange)="outPriceChange()" (nzBlur)="outPriceChange()" [nzMin]="0" [nzStep]="5"></nz-input-number>
         </div>
         <div class="col-md-2"><nz-input [ngModel]="item.costUnit" [nzDisabled]="true"></nz-input></div>
-        <i class="icon-common anticon anticon-plus" (click)="createMaterial(index+1)"></i>
+        <i class="icon-common anticon anticon-plus" *ngIf="last" (click)="createMaterial(index+1)"></i>
+        <i class="icon-common anticon anticon-minus" *ngIf="!first" (click)="removeMaterial(index)"></i>
       </div>
       <div class="display-center" style="font-size: 12px;">
         <span>小计：</span>

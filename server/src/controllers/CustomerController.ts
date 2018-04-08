@@ -77,7 +77,8 @@ class CustomerController implements IBaseController<CustomerBusiness> {
         else
           res.send({
             status: 'success',
-            msg: '保存成功！'
+            msg: '保存成功！',
+            id: result._id.toString()
           });
       });
     } catch (e) {

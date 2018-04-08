@@ -98,6 +98,11 @@ export class OrderDetailComponenet implements OnInit {
     });
   }
 
+  removeMaterial(index) {
+    this.order.repairMaterials.splice(index, 1);
+    this.outPriceChange();
+  }
+
   pre() {
     this.order.progress -= 1;
     switch (this.order.progress) {

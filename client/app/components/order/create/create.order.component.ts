@@ -86,12 +86,19 @@ export class CreateOrderComponent implements OnInit {
       // 保存用户
       this.customerService.save(this.order.customer).subscribe(res => {
         if (res.status === 'success') {
-          this._notification.create('success', res.msg, `${name}保存成功`);
+          this._notification.create('success', `客户${name}保存成功`, res.msg);
+          this.order.customer._id = res.id;
+          this.saveOrder();
         } else {
-          this._notification.create('error', res.msg, `${name}保存失败`);
+          this._notification.create('error', `维修单${name}保存失败`, res.msg);
         }
       });
+    } else {
+      this.saveOrder();
     }
+  }
+
+  saveOrder() {
     this.orderService.save(this.order).subscribe(res => {
       if (res.status === 'success') {
         const repairMaterials = this.order.repairMaterials;
