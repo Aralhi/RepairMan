@@ -85,6 +85,10 @@ export class MaterialComponent implements OnInit{
     this.showCreate = true;
   }
 
+  materialChange(event) {
+    this.newMaterial = event;
+  }
+
   search(evenet) {
     this.materialService.search(this.searchText).subscribe(res => {
       if (res.status === 'success') {

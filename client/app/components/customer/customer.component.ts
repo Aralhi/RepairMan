@@ -86,6 +86,10 @@ export class CustomerComponent implements OnInit{
     this.isEditCustomer = true;
   }
 
+  customerChange(event) {
+    this.newCustomer = event;
+  }
+
   search(searchText: string) {
     this.customerService.search(searchText).subscribe(res => {
       if (res.status === 'success') {

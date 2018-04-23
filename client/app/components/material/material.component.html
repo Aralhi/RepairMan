@@ -9,7 +9,7 @@
   </div>
   <!--创建物料-->
   <div class="add-contain" *ngIf="showCreate">
-    <material-detail [material]="newMaterial"></material-detail>
+    <material-detail [material]="newMaterial" (materialChange)="materialChange($event)"></material-detail>
     <div style="width: 50px; margin: 10px auto 0;">
       <button style="width: 80px;" nz-button [nzType]="'primary'" (click)="add()">
         <span>保存</span>
