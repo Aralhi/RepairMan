@@ -4,3 +4,20 @@ show tables
 // 导入json文件到mongoDB
 mongoimport --db quickStart --collection customers --file /Users/zhangzhiping/Documents/git/WhaleShark/models/customer.json --jsonArray
 mongoimport --db quickStart --collection orders --file /Users/zhangzhiping/Documents/git/WhaleShark/models/order.json --jsonArray
+导入csv
+mongoimport -d whaleshark -u stefani -p 'pwd' -c customers --type csv --headerline --file customers.csv
+删除数据库
+use stefanie
+db.dropDatabase
+添加用户
+db.createUser({
+  user: 'admin',
+  pwd: 'pwd',
+  roles: [{role: 'root', db: 'admin'}]
+})
+备份
+  mongodump -h 127.0.0.1 -u admin -p 'pwd' -o <path>
+恢复
+  mongorestore -h 127.0.0.1 -u admin -p 'pwd' --authenticationDatabase admin -dwhaleshark <path>
+导出
+  mongoexport -h 127.0.0.1 -u admin -p 'pwd' --authenticationDatabase admin -d whaleshark --type csv -c customers -f 'name,phone' -o <path>
