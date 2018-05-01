@@ -21,3 +21,5 @@ db.createUser({
   mongorestore -h 127.0.0.1 -u admin -p 'pwd' --authenticationDatabase admin -dwhaleshark <path>
 导出
   mongoexport -h 127.0.0.1 -u admin -p 'pwd' --authenticationDatabase admin -d whaleshark --type csv -c customers -f 'name,carType,count,unit,vendor,remark' -o <path>
+添加字段
+  db.orders.update({}, {$set: {userId: "E73F0E41D9A68D8F1FBDF89F4A9398DE"}}, {multi: 1})

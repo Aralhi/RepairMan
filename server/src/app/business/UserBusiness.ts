@@ -1,7 +1,7 @@
 import BaseBusiness = require('./BaseBusiness');
 import UserRepository = require('./../repository/UserRepository');
 import IUserModel = require('./../model/UserModel');
-
+import express = require('express');
 class UserBusiness implements BaseBusiness<IUserModel> {
   private _userRepository: UserRepository;
 
@@ -9,38 +9,39 @@ class UserBusiness implements BaseBusiness<IUserModel> {
     this._userRepository = new UserRepository();
   }
 
-  retrieve(callback: (error: any, result: any) => void) {
-    this._userRepository.retrieve(callback);
+  retrieve(req: express.Request, callback: (error: any, result: any) => void) {
+    this._userRepository.retrieve(req, callback);
   }
-  
-  create (item: IUserModel, callback: (error: any, result: any) => void) {
-    this._userRepository.create(item, callback);
+
+  create (req: express.Request, item: IUserModel, callback: (error: any, result: any) => void) {
+    this._userRepository.create(req, item, callback);
   }
-  
-  update (_id: string, item: IUserModel, callback: (error: any, result: any) => void) {
-    this._userRepository.findById(_id, (err, res) => {
-      if (err) 
+
+  update (req: express.Request, _id: string, item: IUserModel, callback: (error: any, result: any) => void) {
+    this._userRepository.findById(req, _id, (err, res) => {
+      if (err) {
         callback(err, res);
-      else
-        this._userRepository.update(res._id, item, callback);
+      } else {
+        this._userRepository.update(req, res._id, item, callback);
+      }
     });
   }
 
-  findById (_id: string, callback: (error: any, result: any) => void) {
-    this._userRepository.findById(_id, callback);
+  findById (req: express.Request, _id: string, callback: (error: any, result: any) => void) {
+    this._userRepository.findById(req, _id, callback);
   }
 
-  findOne (conditions: Object, callback: (error: any, result: any) => void) {
-    this._userRepository.findOne(conditions, callback);
+  findOne (req: express.Request, conditions: Object, callback: (error: any, result: any) => void) {
+    this._userRepository.findOne(req, conditions, callback);
   }
 
-  delete (_id: string, callback: (error: any, result: any) => void) {
-    this._userRepository.delete(_id , callback);
+  delete (req: express.Request, _id: string, callback: (error: any, result: any) => void) {
+    this._userRepository.delete(req, _id , callback);
   }
 
-  find (searchText: string, callback: (error: any, result: any) => void) {
+  find (req: express.Request, searchText: string, callback: (error: any, result: any) => void) {
     const reg = new RegExp(searchText, 'i');
-    this._userRepository.find({$or: [{'name': reg}, {'carNumber': reg}, {'phone': reg}, {'carType': reg}]}, callback);
+    this._userRepository.find(req, {$or: [{'name': reg}, {'carNumber': reg}, {'phone': reg}, {'carType': reg}]}, callback);
   }
 }
 Object.seal(UserBusiness);

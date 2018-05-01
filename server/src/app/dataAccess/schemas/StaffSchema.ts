@@ -13,6 +13,7 @@ class StaffSchema {
             phone : {type: String, required: false},
             address : {type: String, required: false},
             remark : {type: String, required: false},
+            userId: { type: String, required: true }
         });
         schema.plugin(timestamps);
         return schema;

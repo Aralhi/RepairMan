@@ -7,6 +7,7 @@ interface CustomerModel extends mongoose.Document {
     carType: string;
     company: string;
     remark: string;
+    userId: string;
 }
 
 export = CustomerModel;

@@ -8,7 +8,7 @@ class OrderController implements IBaseController<OrderBusiness> {
   retrieve(req: express.Request, res: express.Response): void {
     try {
       let orderBusiness = new OrderBusiness();
-      orderBusiness.retrieve((error, result) => {
+      orderBusiness.retrieve(req, (error, result) => {
         if (error) {
           res.send({ error: error });
         } else {
@@ -28,7 +28,7 @@ class OrderController implements IBaseController<OrderBusiness> {
       let orderBusiness = new OrderBusiness();
       const searchText: string = req.params.searchText || '';
       const progress: string = req.params.progress;
-      orderBusiness.find(searchText, progress, (error, result) => {
+      orderBusiness.find(req, searchText, progress, (error, result) => {
         if (error) {
           res.send({ error: error });
         } else {
@@ -50,7 +50,7 @@ class OrderController implements IBaseController<OrderBusiness> {
     try {
       let _id: string = req.params._id;
       let orderBusiness = new OrderBusiness();
-      orderBusiness.findById(_id, (error, result) => {
+      orderBusiness.findById(req, _id, (error, result) => {
         if (error) {
           res.send({ error: error });
         } else {
@@ -72,7 +72,7 @@ class OrderController implements IBaseController<OrderBusiness> {
     try {
       let _id: string = req.params._id;
       let orderBusiness = new OrderBusiness();
-      orderBusiness.delete(_id, (error, result) => {
+      orderBusiness.delete(req, _id, (error, result) => {
         if (error) {
           res.send({ error: error });
         } else {
@@ -94,7 +94,7 @@ class OrderController implements IBaseController<OrderBusiness> {
     try {
       let order: IOrderModel = <IOrderModel>req.body;
       let orderBusiness = new OrderBusiness();
-      orderBusiness.create(order, (error, result) => {
+      orderBusiness.create(req, order, (error, result) => {
         if (error) {
           res.send({ error: error });
         } else {
@@ -117,7 +117,7 @@ class OrderController implements IBaseController<OrderBusiness> {
       let hero: IOrderModel = <IOrderModel>req.body;
       let _id: string = req.params._id;
       let orderBusiness = new OrderBusiness();
-      orderBusiness.update(_id, hero, (error, result) => {
+      orderBusiness.update(req, _id, hero, (error, result) => {
         if (error) {
           res.send({ error: error });
         } else {

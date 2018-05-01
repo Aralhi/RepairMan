@@ -1,5 +1,5 @@
 import DataAccess = require('../DataAccess');
-import IHeroModel = require("./../../model/interfaces/HeroModel");
+import IHeroModel = require('./../../model/interfaces/HeroModel');
 
 var mongoose = DataAccess.mongooseInstance;
 var mongooseConnection = DataAccess.mongooseConnection;
@@ -19,11 +19,12 @@ class HeroSchema {
             amountPeopleSaved: {
                 type: Number,
                 required: true
-            }
+            },
+            userId: { type: String, required: true }
         });
 
         return schema;
     }
 }
-var schema = mongooseConnection.model<IHeroModel>("Heroes", HeroSchema.schema);
-export = schema;""
+var schema = mongooseConnection.model<IHeroModel>('Heroes', HeroSchema.schema);
+export = schema;''

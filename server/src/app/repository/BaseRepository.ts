@@ -1,7 +1,6 @@
 import IRead = require('./interfaces/Read');
 import IWrite = require('./interfaces/Write');
-import IHeroModel = require('./../model/interfaces/HeroModel');
-
+import express = require('express');
 import mongoose = require('mongoose');
 
 class RepositoryBase<T extends mongoose.Document> implements IRead<T>, IWrite<T> {
@@ -12,35 +11,35 @@ class RepositoryBase<T extends mongoose.Document> implements IRead<T>, IWrite<T>
         this._model = schemaModel;
     }
 
-    create (item: T, callback: (error: any, result: any) => void) {
-        const res = this._model.create(item, callback);
+    create (req: express.Request, item: T, callback: (error: any, result: any) => void) {
+        const res = this._model.create(Object.assign(item, {userId: req.user.id}), callback);
         console.log(res);
     }
 
-    retrieve (callback: (error: any, result: any) => void) {
-        this._model.find({}, callback).sort({createdAt: -1});
+    retrieve (req: express.Request, callback: (error: any, result: any) => void) {
+        this._model.find({userId: req.user.id}, callback).sort({createdAt: -1});
     }
 
-    update (_id: mongoose.Types.ObjectId, item: T, callback: (error: any, result: any) => void) {
-        this._model.update({_id: _id}, item, callback);
+    update (req: express.Request, _id: mongoose.Types.ObjectId, item: T, callback: (error: any, result: any) => void) {
+        this._model.update({_id: _id, userId: req.user.id}, item, callback);
     }
 
-    updateOneKey (_id: mongoose.Types.ObjectId, key: string, value: any, callback: (error: any, result: any) => void) {
-        this._model.update({_id: _id}, {$set: {[key]: value}}, callback);
+    updateOneKey (req: express.Request, _id: mongoose.Types.ObjectId, key: string, value: any, callback: (error: any, result: any) => void) {
+        this._model.update({_id: _id, userId: req.user.id}, {$set: {[key]: value}}, callback);
     }
 
-    delete (_id: string, callback: (error: any, result: any) => void) {
-        // this._model.remove({_id: this.toObjectId(_id)}, (err) => callback(err, null));
+    delete (req: express.Request, _id: string, callback: (error: any, result: any) => void) {
+        // this._model.remove({_id: this.toObjectId(_id), userId: req.user.id}, (err) => callback(err, null));
     }
 
-    findById (_id: string, callback: (error: any, result: T) => void) {
+    findById (req: express.Request, _id: string, callback: (error: any, result: T) => void) {
         this._model.findById(_id, callback).sort({create_at: -1});
     }
-    findOne (conditions: Object, callback: (error: any, result: T) => void) {
-        this._model.findOne(conditions, callback).sort({create_at: -1});
+    findOne (req: express.Request, conditions: Object, callback: (error: any, result: T) => void) {
+        this._model.findOne({$and: [{userId: req.user.id}, conditions]}, callback).sort({create_at: -1});
     }
-    find (conditions: any, callback: (error: any, result: T) => void) {
-        this._model.find(conditions, callback).sort({createdAt: -1});
+    find (req: express.Request, conditions: any, callback: (error: any, result: T) => void) {
+        this._model.find({$and : [{userId: req.user.id}, conditions]}, callback).sort({createdAt: -1});
     }
 
     private toObjectId (_id: string): mongoose.Types.ObjectId {

@@ -13,6 +13,7 @@ class OrderSchema {
       subject: { type: String, required: false },
       status: { type: String, required: true },
       progress: { type: Number, required: false },
+      userId: { type: String, required: true },
       customer: {
         _id: { type: String, required: true },
         name: { type: String, required: true },

@@ -7,6 +7,7 @@ interface MaterialModel extends mongoose.Document {
     unit: string;
     vendor: string;
     remark: string;
+    userId: string;
 }
 
 export = MaterialModel;

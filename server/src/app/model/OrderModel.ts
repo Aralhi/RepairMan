@@ -6,6 +6,7 @@ interface OrderModel extends mongoose.Document {
   subject: string;
   status: string;
   progress: number;
+  userId: string;
   customer: {
     name: string;
     carNumber: string;

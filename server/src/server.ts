@@ -42,15 +42,20 @@ passport.use(new QQStrategy({
             // to associate the qq account with a user record in your database,
             // and return that user instead.
             let userBusiness = new UserBusiness();
-            userBusiness.findOne({id: profile.id}, (error, result) => {
+            userBusiness.findOne({
+                user: profile
+            } as express.Request, {id: profile.id}, (error, result) => {
                 if (!result) {
                     let newUser = new UserSchema({
                         name: profile.nickname,
                         id: profile.id,
                         _raw: profile._raw,
-                        _json: profile._json
+                        _json: profile._json,
+                        userId: profile.id
                     });
-                    userBusiness.create(newUser, (createResult) => {
+                    userBusiness.create({
+                        user: profile
+                    } as express.Request, newUser, (createResult) => {
                         console.log(createResult);
                     });
                 }

@@ -5,6 +5,7 @@ interface VendorModel extends mongoose.Document {
     phone: string;
     address: string;
     remark: string;
+    userId: string;
 }
 
 export = VendorModel;

@@ -9,7 +9,7 @@ class VendorController implements IBaseController<VendorBusiness> {
   retrieve(req: express.Request, res: express.Response): void {
     try {
       let vendorBusiness = new VendorBusiness();
-      vendorBusiness.retrieve((error, result) => {
+      vendorBusiness.retrieve(req, (error, result) => {
         if (error) {
           res.send({ error: error });
         } else {
@@ -28,7 +28,7 @@ class VendorController implements IBaseController<VendorBusiness> {
     try {
       let vendorBusiness = new VendorBusiness();
       const searchText: string = req.params.searchText;
-      vendorBusiness.find(searchText, (error, result) => {
+      vendorBusiness.find(req, searchText, (error, result) => {
         if (error) {
           res.send({ error: error });
         } else {
@@ -50,7 +50,7 @@ class VendorController implements IBaseController<VendorBusiness> {
     try {
       let _id: string = req.params._id;
       let vendorBusiness = new VendorBusiness();
-      vendorBusiness.delete(_id, (error, result) => {
+      vendorBusiness.delete(req, _id, (error, result) => {
         if (error) 
           res.send({ error: error });
         else
@@ -71,7 +71,7 @@ class VendorController implements IBaseController<VendorBusiness> {
     try {
       let vendor: IVendorModel = <IVendorModel>req.body;
       let vendorBusiness = new VendorBusiness();
-      vendorBusiness.create(vendor, (error, result) => {
+      vendorBusiness.create(req, vendor, (error, result) => {
         if (error) 
           res.send({ error: error });
         else
@@ -93,7 +93,7 @@ class VendorController implements IBaseController<VendorBusiness> {
       let vendor: IVendorModel = <IVendorModel>req.body;
       let _id: string = req.params._id;
       let vendorBusiness = new VendorBusiness();
-      vendorBusiness.update(_id, vendor, (error, result) => {
+      vendorBusiness.update(req, _id, vendor, (error, result) => {
         if (error) 
           res.send({ error: error });
         else

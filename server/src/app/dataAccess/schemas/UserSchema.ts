@@ -12,6 +12,7 @@ class UserSchema {
         var schema =  mongoose.Schema({
             name : {type: String, required: true},
             id : {type: String, required: true},
+            userId : {type: String, required: true},
             _raw : {type: Schema.Types.Mixed, required: false},
             _json : {type: Schema.Types.Mixed, required: false}
         });

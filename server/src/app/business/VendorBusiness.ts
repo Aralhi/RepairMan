@@ -1,7 +1,7 @@
 import BaseBusiness = require('./BaseBusiness');
 import VendorRepository = require('./../repository/VendorRepository');
 import IVendorModel = require('./../model/VendorModel');
-
+import express = require('express');
 class VendorBusiness implements BaseBusiness<IVendorModel> {
   private _vendorRepository: VendorRepository;
 
@@ -9,32 +9,33 @@ class VendorBusiness implements BaseBusiness<IVendorModel> {
     this._vendorRepository = new VendorRepository();
   }
 
-  retrieve(callback: (error: any, result: any) => void) {
-    this._vendorRepository.retrieve(callback);
+  retrieve(req: express.Request, callback: (error: any, result: any) => void) {
+    this._vendorRepository.retrieve(req, callback);
   }
 
-  create (item: IVendorModel, callback: (error: any, result: any) => void) {
-    this._vendorRepository.create(item, callback);
+  create (req: express.Request, item: IVendorModel, callback: (error: any, result: any) => void) {
+    this._vendorRepository.create(req, item, callback);
   }
 
-  update (_id: string, item: IVendorModel, callback: (error: any, result: any) => void) {
-    this._vendorRepository.findById(_id, (err, res) => {
-      if (err) 
+  update (req: express.Request, _id: string, item: IVendorModel, callback: (error: any, result: any) => void) {
+    this._vendorRepository.findById(req, _id, (err, res) => {
+      if (err) {
         callback(err, res);
-      else
-        this._vendorRepository.update(res._id, item, callback);
+      } else {
+        this._vendorRepository.update(req, res._id, item, callback);
+      }
     });
   }
 
-  findById: (_id: string, callback: (error: any, result: IVendorModel) => void) => void;
+  findById: (req: express.Request, _id: string, callback: (error: any, result: IVendorModel) => void) => void;
 
-  delete (_id: string, callback: (error: any, result: any) => void) {
-    this._vendorRepository.delete(_id , callback);
+  delete (req: express.Request, _id: string, callback: (error: any, result: any) => void) {
+    this._vendorRepository.delete(req, _id , callback);
   }
 
-  find (searchText: string, callback: (error: any, result: any) => void) {
+  find (req: express.Request, searchText: string, callback: (error: any, result: any) => void) {
     const reg = new RegExp(searchText, 'i');
-    this._vendorRepository.find({$or: [{'name': reg}, {'address': reg}, {'phone': reg}, {'remark': reg}]}, callback);
+    this._vendorRepository.find(req, {$or: [{'name': reg}, {'address': reg}, {'phone': reg}, {'remark': reg}]}, callback);
   }
 }
 Object.seal(VendorBusiness);

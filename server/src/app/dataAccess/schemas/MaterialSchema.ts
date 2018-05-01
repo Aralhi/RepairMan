@@ -20,6 +20,7 @@ class MaterialSchema {
             inPrice : {type: Number, required: false},
             outPrice : {type: Number, required: false},
             remark : {type: String, required: false},
+            userId: { type: String, required: true }
         });
         schema.plugin(timestamps);
         return schema;

@@ -11,7 +11,8 @@ class VendorSchema {
         let schema =  mongoose.Schema({
             name : {type: String, required: true},
             phone : {type: String, required: false},
-            address : {type: String, required: false}
+            address : {type: String, required: false},
+            userId: { type: String, required: true }
         });
         schema.plugin(timestamps);
         return schema;

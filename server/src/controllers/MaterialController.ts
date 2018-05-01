@@ -9,7 +9,7 @@ class MaterialController implements IBaseController<MaterialBusiness> {
   retrieve(req: express.Request, res: express.Response): void {
     try {
       let materialBusiness = new MaterialBusiness();
-      materialBusiness.retrieve((error, result) => {
+      materialBusiness.retrieve(req, (error, result) => {
         if (error) {
           res.send({ error: error });
         } else {
@@ -28,7 +28,7 @@ class MaterialController implements IBaseController<MaterialBusiness> {
     try {
       let materialBusiness = new MaterialBusiness();
       const searchText: string = req.params.searchText;
-      materialBusiness.find(searchText, (error, result) => {
+      materialBusiness.find(req, searchText, (error, result) => {
         if (error) {
           res.send({ error: error });
         } else {
@@ -50,7 +50,7 @@ class MaterialController implements IBaseController<MaterialBusiness> {
     try {
       let _id: string = req.params._id;
       let materialBusiness = new MaterialBusiness();
-      materialBusiness.delete(_id, (error, result) => {
+      materialBusiness.delete(req, _id, (error, result) => {
         if (error) 
           res.send({ error: error });
         else
@@ -71,7 +71,7 @@ class MaterialController implements IBaseController<MaterialBusiness> {
     try {
       let material: IMaterialModel = <IMaterialModel>req.body;
       let materialBusiness = new MaterialBusiness();
-      materialBusiness.create(material, (error, result) => {
+      materialBusiness.create(req, material, (error, result) => {
         if (error) 
           res.send({ error: error });
         else
@@ -93,7 +93,7 @@ class MaterialController implements IBaseController<MaterialBusiness> {
       let material: IMaterialModel = <IMaterialModel>req.body;
       let _id: string = req.params._id;
       let materialBusiness = new MaterialBusiness();
-      materialBusiness.update(_id, material, (error, result) => {
+      materialBusiness.update(req, _id, material, (error, result) => {
         if (error) 
           res.send({ error: error });
         else
@@ -115,7 +115,7 @@ class MaterialController implements IBaseController<MaterialBusiness> {
       let params = req.body;
       let _id: string = req.params._id;
       let materialBusiness = new MaterialBusiness();
-      materialBusiness.updateCount(_id, params.key, params.value, (error, result) => {
+      materialBusiness.updateCount(req, _id, params.key, params.value, (error, result) => {
         if (error) 
           res.send({ error: error });
         else
@@ -137,7 +137,7 @@ class MaterialController implements IBaseController<MaterialBusiness> {
       let materialBusiness = new MaterialBusiness();
       const key: string = req.params.key;
       const value: string = req.params.value;
-      materialBusiness.findLessThan(key, value, (error, result) => {
+      materialBusiness.findLessThan(req, key, value, (error, result) => {
         if (error) {
           res.send({ error: error });
         } else {

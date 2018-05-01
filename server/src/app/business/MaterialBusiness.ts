@@ -1,7 +1,7 @@
 import BaseBusiness = require('./BaseBusiness');
 import MaterialRepository = require('./../repository/MaterialRepository');
 import IMaterialModel = require('./../model/MaterialModel');
-
+import express = require('express');
 class MaterialBusiness implements BaseBusiness<IMaterialModel> {
   private _materialRepository: MaterialRepository;
 
@@ -9,45 +9,45 @@ class MaterialBusiness implements BaseBusiness<IMaterialModel> {
     this._materialRepository = new MaterialRepository();
   }
 
-  retrieve(callback: (error: any, result: any) => void) {
-    this._materialRepository.retrieve(callback);
+  retrieve(req: express.Request, callback: (error: any, result: any) => void) {
+    this._materialRepository.retrieve(req, callback);
   }
 
-  create (item: IMaterialModel, callback: (error: any, result: any) => void) {
-    this._materialRepository.create(item, callback);
+  create (req: express.Request, item: IMaterialModel, callback: (error: any, result: any) => void) {
+    this._materialRepository.create(req, item, callback);
   }
 
-  update (_id: string, item: IMaterialModel, callback: (error: any, result: any) => void) {
-    this._materialRepository.findById(_id, (err, res) => {
+  update (req: express.Request, _id: string, item: IMaterialModel, callback: (error: any, result: any) => void) {
+    this._materialRepository.findById(req, _id, (err, res) => {
       if (err) 
         callback(err, res);
       else
-        this._materialRepository.update(res._id, item, callback);
+        this._materialRepository.update(req, res._id, item, callback);
     });
   }
 
-  updateCount (_id: string, key: string, value: any, callback: (error: any, result: any) => void) {
-    this._materialRepository.findById(_id, (err, res) => {
+  updateCount (req: express.Request, _id: string, key: string, value: any, callback: (error: any, result: any) => void) {
+    this._materialRepository.findById(req, _id, (err, res) => {
       if (err) 
         callback(err, res);
       else
-        this._materialRepository.updateOneKey(res._id, key, value, callback);
+        this._materialRepository.updateOneKey(req, res._id, key, value, callback);
     });
   }
 
-  findById: (_id: string, callback: (error: any, result: IMaterialModel) => void) => void;
+  findById: (req: express.Request, _id: string, callback: (error: any, result: IMaterialModel) => void) => void;
 
-  delete (_id: string, callback: (error: any, result: any) => void) {
-    this._materialRepository.delete(_id , callback);
+  delete (req: express.Request, _id: string, callback: (error: any, result: any) => void) {
+    this._materialRepository.delete(req, _id , callback);
   }
 
-  find (searchText: string, callback: (error: any, result: any) => void) {
+  find (req: express.Request, searchText: string, callback: (error: any, result: any) => void) {
     const reg = new RegExp(searchText, 'i');
-    this._materialRepository.find({$or: [{'name': reg}, {'carType': reg}, {'vendor.name': reg}, {'remark': reg}]}, callback);
+    this._materialRepository.find(req, {$or: [{'name': reg}, {'carType': reg}, {'vendor.name': reg}, {'remark': reg}]}, callback);
   }
 
-  findLessThan (key: string, value: string, callback: (error: any, result: any) => void) {
-    this._materialRepository.find({[key]: {$lte: value}}, callback);
+  findLessThan (req: express.Request, key: string, value: string, callback: (error: any, result: any) => void) {
+    this._materialRepository.find(req, {[key]: {$lte: value}}, callback);
   }
 }
 Object.seal(MaterialBusiness);

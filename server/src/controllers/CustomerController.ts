@@ -9,7 +9,7 @@ class CustomerController implements IBaseController<CustomerBusiness> {
   retrieve(req: express.Request, res: express.Response): void {
     try {
       let customerBusiness = new CustomerBusiness();
-      customerBusiness.retrieve((error, result) => {
+      customerBusiness.retrieve(req, (error, result) => {
         if (error) {
           res.send({ error: error });
         } else {
@@ -28,7 +28,7 @@ class CustomerController implements IBaseController<CustomerBusiness> {
     try {
       let customerBusiness = new CustomerBusiness();
       const searchText: string = req.params.searchText;
-      customerBusiness.find(searchText, (error, result) => {
+      customerBusiness.find(req, searchText, (error, result) => {
         if (error) {
           res.send({ error: error });
         } else {
@@ -50,7 +50,7 @@ class CustomerController implements IBaseController<CustomerBusiness> {
     try {
       let _id: string = req.params._id;
       let customerBusiness = new CustomerBusiness();
-      customerBusiness.delete(_id, (error, result) => {
+      customerBusiness.delete(req, _id, (error, result) => {
         if (error) 
           res.send({ error: error });
         else
@@ -71,7 +71,7 @@ class CustomerController implements IBaseController<CustomerBusiness> {
     try {
       let customer: ICustomerModel = <ICustomerModel>req.body;
       let customerBusiness = new CustomerBusiness();
-      customerBusiness.create(customer, (error, result) => {
+      customerBusiness.create(req, customer, (error, result) => {
         if (error) 
           res.send({ error: error });
         else
@@ -94,7 +94,7 @@ class CustomerController implements IBaseController<CustomerBusiness> {
       let customer: ICustomerModel = <ICustomerModel>req.body;
       let _id: string = req.params._id;
       let customerBusiness = new CustomerBusiness();
-      customerBusiness.update(_id, customer, (error, result) => {
+      customerBusiness.update(req, _id, customer, (error, result) => {
         if (error) 
           res.send({ error: error });
         else

@@ -15,6 +15,7 @@ class CustomerSchema {
             carType : {type: String, required: false},
             company : {type: String, required: false},
             remark : {type: String, required: false},
+            userId: { type: String, required: true }
         });
         schema.plugin(timestamps);
         return schema;
