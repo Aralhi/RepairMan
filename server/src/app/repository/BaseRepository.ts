@@ -34,9 +34,11 @@ class RepositoryBase<T extends mongoose.Document> implements IRead<T>, IWrite<T>
     }
 
     findById (_id: string, callback: (error: any, result: T) => void) {
-        this._model.findById( _id, callback).sort({create_at: -1});
+        this._model.findById(_id, callback).sort({create_at: -1});
     }
-
+    findOne (conditions: Object, callback: (error: any, result: T) => void) {
+        this._model.findOne(conditions, callback).sort({create_at: -1});
+    }
     find (conditions: any, callback: (error: any, result: T) => void) {
         this._model.find(conditions, callback).sort({createdAt: -1});
     }

@@ -1,15 +1,58 @@
-import ICustomerModel = require('./../app/model/CustomerModel');
+import IUserModel = require('./../app/model/UserModel');
 import express = require('express');
 import IBaseController = require('./BaseController');
-import CustomerBusiness = require('./../app/business/CustomerBusiness');
+import UserBusiness = require('./../app/business/UserBusiness');
 
-class CustomerController implements IBaseController<CustomerBusiness> {
-  findById: express.RequestHandler;
+class UserController implements IBaseController<UserBusiness> {
+
+  findById(req: express.Request, res: express.Response): void {
+    try {
+      var _id: string = req.params._id;
+      var userBusiness = new UserBusiness();
+      userBusiness.findById(_id, (error, result) => {
+        if (error) {
+          res.send({ error: error });
+        } else {
+          res.send({
+            status: 'success',
+            result: result
+          });
+        }
+      });
+    } catch (e)  {
+      console.log(e);
+      res.send({'error': 'error in your request'});
+    }
+  }
+
+  findOne(req: express.Request, res: express.Response): void {
+    try {
+      if (!req.user) {
+        res.send({ error: '请先登陆' });
+        return;
+      }
+      var id: string = req.user.id;
+      var userBusiness = new UserBusiness();
+      userBusiness.findOne({id: id}, (error, result) => {
+        if (error) {
+          res.send({ error: error });
+        } else {
+          res.send({
+            status: 'success',
+            result: result
+          });
+        }
+      });
+    } catch (e)  {
+      console.log(e);
+      res.send({'error': 'error in your request'});
+    }
+  }
 
   retrieve(req: express.Request, res: express.Response): void {
     try {
-      let customerBusiness = new CustomerBusiness();
-      customerBusiness.retrieve((error, result) => {
+      let userBusiness = new UserBusiness();
+      userBusiness.retrieve((error, result) => {
         if (error) {
           res.send({ error: error });
         } else {
@@ -26,9 +69,9 @@ class CustomerController implements IBaseController<CustomerBusiness> {
 
   find(req: express.Request, res: express.Response): void {
     try {
-      let customerBusiness = new CustomerBusiness();
+      let userBusiness = new UserBusiness();
       const searchText: string = req.params.searchText;
-      customerBusiness.find(searchText, (error, result) => {
+      userBusiness.find(searchText, (error, result) => {
         if (error) {
           res.send({ error: error });
         } else {
@@ -49,8 +92,8 @@ class CustomerController implements IBaseController<CustomerBusiness> {
   delete(req: express.Request, res: express.Response): void {
     try {
       let _id: string = req.params._id;
-      let customerBusiness = new CustomerBusiness();
-      customerBusiness.delete(_id, (error, result) => {
+      let userBusiness = new UserBusiness();
+      userBusiness.delete(_id, (error, result) => {
         if (error) 
           res.send({ error: error });
         else
@@ -69,9 +112,9 @@ class CustomerController implements IBaseController<CustomerBusiness> {
 
   create(req: express.Request, res: express.Response): void {
     try {
-      let customer: ICustomerModel = <ICustomerModel>req.body;
-      let customerBusiness = new CustomerBusiness();
-      customerBusiness.create(customer, (error, result) => {
+      let user: IUserModel = <IUserModel>req.body;
+      let userBusiness = new UserBusiness();
+      userBusiness.create(user, (error, result) => {
         if (error) 
           res.send({ error: error });
         else
@@ -91,10 +134,10 @@ class CustomerController implements IBaseController<CustomerBusiness> {
 
   update(req: express.Request, res: express.Response): void {
     try {
-      let customer: ICustomerModel = <ICustomerModel>req.body;
+      let user: IUserModel = <IUserModel>req.body;
       let _id: string = req.params._id;
-      let customerBusiness = new CustomerBusiness();
-      customerBusiness.update(_id, customer, (error, result) => {
+      let userBusiness = new UserBusiness();
+      userBusiness.update(_id, user, (error, result) => {
         if (error) 
           res.send({ error: error });
         else
@@ -111,4 +154,4 @@ class CustomerController implements IBaseController<CustomerBusiness> {
     }
   }
 }
-export = CustomerController;
+export = UserController;

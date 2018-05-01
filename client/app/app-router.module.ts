@@ -39,6 +39,10 @@ const appRoutes: Routes = [
   {
     path: 'vendor',
     loadChildren: './components/vendor/vendor.module#VendorModule'
+  },
+  {
+    path: 'login',
+    loadChildren: './components/login/login.module#LoginModule'
   }
 ];
 

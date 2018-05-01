@@ -1,4 +1,4 @@
-<nav class="navbar-inverse" role="navigation" style="height: 60px;">
+<nav class="navbar-inverse" role="navigation" style="height: 60px;" *ngIf="!isLogin">
 	<div class="container">
 		<div class="logo">
 			<a routerLink="/dashboard" routerLinkActive="active"></a>
@@ -15,8 +15,27 @@
 				<li><a routerLink="/staff" routerLinkActive="active">员工档案</a></li>
 			</ul>
 		</div>
+		<div class="nav-login-warp" (mouseenter)="showList = true" (mouseleave)="showList = false">
+			<div class="logined">
+				<div class="nick-warp">
+					<span class="icon">
+						<div class="app-logo" [ngStyle]="{'background-image': 'url(' + user?._json?.figureurl_qq_2 + ')'}"></div>
+					</span>
+					<span class="nick">
+						<span>{{user?.name}}</span>
+						<ul *ngIf="showList"> 
+							<!-- <li class="authorization-management">授权管理</li> -->
+							<li class="quit">
+								<a href="/auth/logout">退出</a>
+							</li> 
+						</ul>
+					</span>
+					<span class="triangle-down"></span>
+				</div>
+			</div>
+		</div>
 	</div>
 </nav>
-<div class="container">
+<div [ngClass]="{'container': !isLogin}">
 	<router-outlet></router-outlet>
 </div>

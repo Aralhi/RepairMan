@@ -14,6 +14,8 @@ import { MaterialDetailComponent } from './components/material-detail.component'
 import { MaterialService } from '../../services/material.service';
 import { VendorService } from '../../services/vendor.service';
 import { StorageService } from '../../services/storage.service';
+import { LoginService } from '../../services/login.service';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -44,7 +46,8 @@ import { StorageService } from '../../services/storage.service';
     StaffService,
     MaterialService,
     VendorService,
-    StorageService
+    StorageService,
+    LoginService
   ]
 })
 export class ShareModule {}

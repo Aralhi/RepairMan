@@ -20,4 +20,4 @@ db.createUser({
 恢复
   mongorestore -h 127.0.0.1 -u admin -p 'pwd' --authenticationDatabase admin -dwhaleshark <path>
 导出
-  mongoexport -h 127.0.0.1 -u admin -p 'pwd' --authenticationDatabase admin -d whaleshark --type csv -c customers -f 'name,phone' -o <path>
+  mongoexport -h 127.0.0.1 -u admin -p 'pwd' --authenticationDatabase admin -d whaleshark --type csv -c customers -f 'name,carType,count,unit,vendor,remark' -o <path>
