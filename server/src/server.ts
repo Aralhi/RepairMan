@@ -32,7 +32,7 @@ passport.deserializeUser(function (obj, done) {
 passport.use(new QQStrategy({
     clientID: appKey,
     clientSecret: appSecret,
-    callbackURL: 'http://127.0.0.1:3000/auth/qq/callback'
+    callbackURL: 'https://webmixian.cn/auth/qq/callback'
 },
     function (accessToken, refreshToken, profile, done) {
         // asynchronous verification, for effect...
