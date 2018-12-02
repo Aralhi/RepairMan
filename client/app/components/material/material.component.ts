@@ -19,6 +19,7 @@ export class MaterialComponent implements OnInit{
     vendor: {},
     remark: ''
   };
+  showInPrice: boolean = false;
 
   constructor(private materialService: MaterialService,
               private _notification: NzNotificationService,
@@ -30,6 +31,12 @@ export class MaterialComponent implements OnInit{
         this.materials = res.result;
       }
     });
+    this.showInPrice = JSON.parse(localStorage.getItem('showInPrice') || 'false');
+  }
+
+  inPriceChange() {
+    this.showInPrice = !this.showInPrice;
+    localStorage.setItem('showInPrice', this.showInPrice.toLocaleString());
   }
 
   add() {

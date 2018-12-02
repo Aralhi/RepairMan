@@ -6,6 +6,9 @@
     <div class="search-input">
       <nz-input [nzType]="'search'" [(ngModel)]="searchText" (nzOnSearch)="search($event)" (keyup)="search($event)"></nz-input>
     </div>
+    <button style="float: right; margin-right: 10px;" nz-button [nzType]="'primary'" (click)="inPriceChange()">
+      <span>{{showInPrice ? '取消显示进价' : '显示进价'}}</span>
+    </button>
   </div>
   <!--创建物料-->
   <div class="add-contain" *ngIf="showCreate">
@@ -22,7 +25,7 @@
           <th nz-th><span>名称</span></th>
           <th nz-th><span>车型</span></th>
           <th nz-th><span>库存</span></th>
-          <th nz-th><span>进价</span></th>
+          <th nz-th *ngIf="showInPrice"><span>进价</span></th>
           <th nz-th><span>售价</span></th>
           <th nz-th><span>单位</span></th>
           <th nz-th><span>供应商</span></th>
@@ -35,7 +38,7 @@
           <td nz-td>{{data.name}}</td>
           <td nz-td>{{data.carType}}</td>
           <td nz-td>{{data.count}}</td>
-          <td nz-td>{{data.inPrice}}</td>
+          <td nz-td *ngIf="showInPrice">{{data.inPrice}}</td>
           <td nz-td>{{data.outPrice}}</td>
           <td nz-td>{{data.unit}}</td>
           <td nz-td>{{data?.vendor?.name}}</td>
