@@ -1,5 +1,9 @@
 <div class="page-container">
-  <div class="title">库存告急</div>
+  <div>
+    <span class="title">库存告急</span>
+    <span>显示小于等于</span>
+    <nz-input-number [(ngModel)]="lessValue" [nzMin]="1" [nzMax]="10" [nzStep]="1" (ngModelChange)="valueChange($event)"></nz-input-number>
+  </div>
   <nz-table #nzTable [nzDataSource]="lessMaterials" [nzPageSize]="pageSize" [nzShowTotal]="true">
     <thead nz-thead>
       <tr>
