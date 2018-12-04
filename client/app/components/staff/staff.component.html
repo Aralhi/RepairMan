@@ -6,7 +6,7 @@
     <ws-search (searchFn)="search($event)"></ws-search>
   </div>
   <!--创建员工-->
-  <div class="customer-detail" *ngIf="showCreate">
+  <div class="customer-detail add-contain" *ngIf="showCreate">
     <div class="row display-center">
       <span class="common-label">姓名:</span>
       <div class="col-md-3 mr-20">
@@ -15,6 +15,10 @@
       <span class="common-label">电话:</span>
       <div class="col-md-3 mr-20">
         <nz-input [(ngModel)]="newStaff.phone"></nz-input>
+      </div>
+      <span class="common-label">分组:</span>
+      <div class="col-md-3 mr-20">
+        <nz-input [(ngModel)]="newStaff.group"></nz-input>
       </div>
     </div>
     <div class="row display-center">
@@ -37,6 +41,7 @@
       <thead nz-thead>
         <tr>
           <th nz-th><span>姓名</span></th>
+          <th nz-th><span>分组</span></th>
           <th nz-th><span>电话</span></th>
           <th nz-th><span>地址</span></th>
           <th nz-th class="col-md-2"><span>备注</span></th>
@@ -46,6 +51,7 @@
       <tbody nz-tbody>
         <tr nz-tbody-tr *ngFor="let data of nzTable.data">
           <td nz-td>{{data.name}}</td>
+          <td nz-td>{{data.group}}</td>
           <td nz-td>{{data.phone}}</td>
           <td nz-td>{{data.address}}</td>
           <td nz-td>{{data.remark}}</td>

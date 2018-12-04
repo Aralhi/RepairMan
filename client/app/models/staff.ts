@@ -4,4 +4,5 @@ export interface Staff {
   phone: string;
   address: string;
   remark: string;
+  group: string;
 }

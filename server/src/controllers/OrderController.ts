@@ -28,7 +28,8 @@ class OrderController implements IBaseController<OrderBusiness> {
       let orderBusiness = new OrderBusiness();
       const searchText: string = req.params.searchText || '';
       const progress: string = req.params.progress;
-      orderBusiness.find(req, searchText, progress, (error, result) => {
+      const group: string = req.params.group;
+      orderBusiness.find(req, searchText, progress, group, (error, result) => {
         if (error) {
           res.send({ error: error });
         } else {

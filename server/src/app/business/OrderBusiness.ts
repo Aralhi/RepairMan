@@ -2,6 +2,7 @@ import OrderRepository = require('../repository/OrderRepository');
 import BaseBusiness = require('./BaseBusiness');
 import IOrderModel = require('./../model/OrderModel');
 import express = require('express');
+import { filter } from 'minimatch';
 class OrderBusiness implements BaseBusiness<IOrderModel> {
   private _orderRepository: OrderRepository;
   constructor() {
@@ -32,14 +33,19 @@ class OrderBusiness implements BaseBusiness<IOrderModel> {
     this._orderRepository.delete(req, _id, callback);
   }
 
-  find (req: express.Request, searchText: string, progress: string, callback: (error: any, result: any) => void) {
+  find (req: express.Request, searchText: string, progress: string, group: string, callback: (error: any, result: any) => void) {
     const reg = new RegExp(searchText, 'i');
+    let filters = [];
+    filters.push({$or: [{'name': reg}, {'customer.name': reg}, {'no': reg}, {'customer.carNumber': reg},
+    {'customer.carType': reg}, {'subject': reg}]});
+    if (progress !== 'all' && progress) {
+      filters.push({$or: [{'progress': progress}]});
+    }
+    if (group !== 'all' && group) {
+      filters.push({$or: [{'assignStaffs.group': group}]});
+    }
     this._orderRepository.find(req, {
-      $and: [
-        {$or: [{'name': reg}, {'customer.name': reg}, {'no': reg}, {'customer.carNumber': reg},
-          {'customer.carType': reg}, {'subject': reg}]},
-        {$or: [{'progress': progress === 'all' ? {$in: [0, 1, 2]} : progress}]}
-      ]
+      $and: filters
     }, callback);
   }
 }

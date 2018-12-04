@@ -20,6 +20,7 @@ export class Order {
   assignStaffs: [{
     _id: string;
     name: string;
+    group: string;
     phone: string;
     address: string;
     remark: string;

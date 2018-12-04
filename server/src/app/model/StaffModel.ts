@@ -6,6 +6,7 @@ interface StaffModel extends mongoose.Document {
     address: string;
     remark: string;
     userId: string;
+    group: string;
 }
 
 export = StaffModel;

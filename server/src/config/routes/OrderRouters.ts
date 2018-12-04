@@ -16,7 +16,8 @@ class OrderRoutes {
     router.get('/orders', controller.retrieve);
     router.get('/orders/:_id', controller.findById);
     router.get('/orders/search/:progress/', controller.find);
-    router.get('/orders/search/:progress/:searchText', controller.find);
+    router.get('/orders/search/:progress/:group', controller.find);
+    router.get('/orders/search/:progress/:group/:searchText', controller.find);
     return router;
   }
 }

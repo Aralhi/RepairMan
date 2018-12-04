@@ -11,6 +11,7 @@ class StaffSchema {
         let schema =  mongoose.Schema({
             name : {type: String, required: true},
             phone : {type: String, required: false},
+            group : {type: String, required: false},
             address : {type: String, required: false},
             remark : {type: String, required: false},
             userId: { type: String, required: true }

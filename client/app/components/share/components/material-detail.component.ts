@@ -30,13 +30,13 @@ import { VendorService } from '../../../services/vendor.service';
       <span class="common-label">单位:</span>
       <div class="col-md-2 mr-20">
         <nz-select style="width: 100%;" nzTags [nzPlaceHolder]="'选择单位'" [(ngModel)]="material.unit"
-        [nzNotFoundContent]="'无法找到'" nzShowSearch>
-        <nz-option
-          *ngFor="let option of units"
-          [nzLabel]="option"
-          [nzValue]="option">
-        </nz-option>
-    </nz-select>
+          [nzNotFoundContent]="'无法找到'" nzShowSearch>
+          <nz-option
+            *ngFor="let option of units"
+            [nzLabel]="option"
+            [nzValue]="option">
+          </nz-option>
+        </nz-select>
       </div>
       <span class="common-label">供应商:</span>
       <div class="col-md-2 mr-20">

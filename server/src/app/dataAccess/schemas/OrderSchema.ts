@@ -30,6 +30,7 @@ class OrderSchema {
         {
           _id: { type: String, required: false },
           name: { type: String, required: false },
+          group: { type: String, required: false },
           phone: { type: String, required: false },
           address: { type: String, required: false },
           remark: { type: String, required: false }
