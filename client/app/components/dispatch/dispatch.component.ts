@@ -47,7 +47,7 @@ export class DispatchComponent {
     });
   }
 
-  changeGroup(event: any, index: number) {
+  changeGroup(event: any) {
     this.orderService.search({
       searchText: this.searchText,
       progress: this.status,

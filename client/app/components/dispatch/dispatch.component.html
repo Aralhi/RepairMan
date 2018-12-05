@@ -17,7 +17,7 @@
     </label>
   </nz-radio-group>
   <nz-select style="width: 120px;float: right; margin-right: 20px;" zAllowClear [nzPlaceHolder]="'选择小组'"
-    [(ngModel)]="group" (ngModelChange)="changeGroup($event, index)"
+    [(ngModel)]="group" (ngModelChange)="changeGroup($event)"
     [nzShowSearch]="true">
     <nz-option
       *ngFor="let option of groups"
