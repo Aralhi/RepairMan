@@ -21,7 +21,7 @@ export class DispatchComponent {
   ngOnInit() {
     this.staffService.getStaffs().subscribe(res => {
       if (res.status === 'success') {
-        this.groups = [].concat((res.result || []).map(i => i.group));
+        this.groups = this.groups.concat((res.result || []).map(i => i.group));
       }
     });
     this.orderService.search({
