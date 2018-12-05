@@ -30,6 +30,7 @@
       <tr>
         <th nz-th><span>单号</span></th>
         <th nz-th><span>派工</span></th>
+        <th nz-th><span>小组</span></th>
         <th nz-th><span>进度</span></th>
         <th nz-th><span>合计</span></th>
         <th nz-th><span>类型</span></th>
@@ -43,6 +44,9 @@
         <td nz-td>{{data.no}}</td>
         <td nz-td>
           <span *ngFor="let item of data?.assignStaffs; let last=last;">{{item.name + (!last ? ', ' : '')}}</span>
+        </td>
+        <td nz-td>
+          <span *ngFor="let item of data?.assignStaffs; let last=last;">{{item.group + (!last ? ', ' : '')}}</span>
         </td>
         <td nz-td>{{data.status}}</td>
         <td nz-td>{{data.orderCost}}</td>
